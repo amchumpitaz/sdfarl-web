@@ -1,0 +1,60 @@
+<div class="custom-bar">
+    <div class="container">
+        <div class="row justify-content-center">
+        <div class="col-12 col-lg-12 text-center pl-2">
+            <div class="input-group">
+            <div class="input-group-append bg-white rounded">
+                <img src="assets/images/logo-secondary.png" routerLink="/catalogo" alt="Enel Ecommerce" class="removeLink imgNav" />
+            </div>
+            <div class="input-group-prepend ml-5 centerNav"></div>
+            <div class="input-group-append rightNav ml-5">
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+<div class="login-page" style="height: 70vh !important;">
+    <div class="row align-items-center h-100" style="margin-right: 0; margin-left: 0; font-size: 1rem; font-weight: 300">
+      <div class="col-lg-4 col-md-6 col-sm-10 mx-auto pb-5 card p-4">
+          <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+            <h5 class="pt-4">{{'Cambiar de Contraseña' | translate }}</h5>
+            <div class="form-content">
+              <div class="form-group text-left">
+                <label for="newPassword">{{'Nueva Contraseña' | translate}}</label>
+                <input name="newPassword"
+                formControlName="newPassword"
+                type="password" class="form-control"
+                id="newPassword"
+                [ngClass]="{ 'is-invalid': (newPassword.dirty || newPassword.touched) && newPassword.errors }"
+                placeholder="{{'nueva contraseña' | translate }}"
+                required />
+                <div *ngIf="newPassword.errors && (newPassword.dirty || newPassword.touched) " class="invalid-feedback">
+                  <div *ngIf="newPassword.errors?.required">{{'La nueva contraseña es obligatoria' | translate}}.</div>
+                  <div *ngIf="newPassword.errors?.minlength">{{'La contraseña debe tener al menos 6 characteres' | translate}}.</div>
+                  <div *ngIf="newPassword.errors?.mustMatch">{{'La nueva contraseña deben ser iguales' | translate}}.</div>
+                </div>
+              </div>
+          
+              <div class="form-group text-left">
+                <label for="confirmNewPassword">{{'Confirmar Nueva Contraseña' | translate}}</label>
+                <input name="confirmNewPassword"
+                formControlName="confirmNewPassword"
+                type="password" class="form-control"
+                id="confirmNewPassword"
+                [ngClass]="{ 'is-invalid': (confirmNewPassword.dirty || confirmNewPassword.touched) && confirmNewPassword.errors }"
+                placeholder="{{'nueva contraseña' | translate }}"
+                required />
+                <div *ngIf="confirmNewPassword.errors && (confirmNewPassword.dirty || confirmNewPassword.touched)" class="invalid-feedback">
+                  <div *ngIf="confirmNewPassword.errors?.required">{{'La contraseña es obligatoria' | translate}}.</div>
+                  <div *ngIf="confirmNewPassword.errors?.minlength">{{'La contraseña debe tener al menos 6 characteres' | translate}}.</div>
+                  <div *ngIf="confirmNewPassword.errors?.mustMatch">{{'Las contraseñas deben ser iguales' | translate}}.</div>
+                </div>
+              </div>
+          </div>
+          <button type="submit" class="btn btn-success btn-block">{{'Guardar' | translate }}</button>
+      </form>
+    </div>
+  </div>
+</div>

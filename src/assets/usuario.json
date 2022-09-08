@@ -1,0 +1,12 @@
+    {
+        "usuarioid": 1,
+        "perfil": "Administrador",
+        "email": "zz@enel.com",
+        "nombre": "Marco",
+        "apellidopaterno": "Prieto",
+        "apellidomaterno": "Armado",
+        "tipodocumento": "DNI",
+        "nrodocumento": "74345050",
+        "pais": "Peru",
+        "empresa": "Enel"
+    }

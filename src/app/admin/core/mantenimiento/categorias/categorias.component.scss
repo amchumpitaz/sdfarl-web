@@ -1,0 +1,34 @@
+i+h2 {
+    display: inline-block;
+  }
+  
+  .icon {
+    text-decoration: none;
+    font-size: 1em;
+    /* edit this to change the size of the icon */
+    display: inline-block;
+    position: relative;
+  }
+  
+  .icon:before {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-transform: none !important;
+    display: inline-block;
+    line-height: 2.5em;
+    text-align: center;
+    width: 2.5em;
+  }
+  .text_underline{
+    border-bottom: 1px solid black;
+  }
+  .error {
+    display: block !important;
+  width: 100% !important;
+  margin-top: 0.25rem !important;
+  font-size: 80% !important;
+  color: #dc3545 !important;
+  }

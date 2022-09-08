@@ -1,0 +1,128 @@
+<div class="container">
+  <div class="py-3 pt-5 text-left text_underline">
+    <h2>{{'Categorias' | translate }}</h2>
+  </div>
+  <div class="row">
+    <div class="col-md-12 order-md-1">
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <input name="id" formControlName="id" type="text" class="form-control"
+          id="id" hidden>
+        <div class="form-group row mb-3 mt-3">
+          <label for="categoria" class="col-sm-2 col-form-label">{{'Categoria' | translate }}</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" id="categoria" name="categoria" formControlName="categoria"
+              [ngClass]="{ 'is-invalid': (registerForm.get('categoria').dirty || registerForm.get('categoria').touched || submitted) && f.categoria.errors }">
+            <div
+              *ngIf="(registerForm.get('categoria').dirty || registerForm.get('categoria').touched || submitted) && f['categoria'].errors"
+              class="invalid-feedback">
+              <div *ngIf="f['categoria'].errors?.required">{{'La categoria es obligatoria' | translate }}.</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row mb-3 mt-3">
+          <label for="descripcion" class="col-sm-2 col-form-label">{{'Descripción' | translate }}</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" id="descripcion" name="descripcion" formControlName="descripcion"
+              [ngClass]="{ 'is-invalid': (registerForm.get('descripcion').dirty || registerForm.get('descripcion').touched || submitted) && f.descripcion.errors }">
+            <div
+              *ngIf="(registerForm.get('descripcion').dirty || registerForm.get('descripcion').touched || submitted) && f['descripcion'].errors"
+              class="invalid-feedback">
+              <div *ngIf="f['descripcion'].errors?.required">{{'La descripcion es obligatoria' | translate }}.</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row mb-3 mt-3">
+          <label for="inputPassword" class="col-sm-2 col-form-label">{{'Estado' | translate }}</label>
+          <div class="col-sm-6">
+            <div class="form-check form-check-inline">
+              <div class="custom-control custom-radio">
+                <input type="radio" class="custom-control-input" id="activo" name="estado" value="activo"
+                  formControlName="estado" [ngClass]="{ 'is-invalid': submitted && f.estado.errors }">
+                <label class="custom-control-label" for="activo">{{'Activo' | translate }}</label>
+              </div>
+            </div>
+            <div class="form-check form-check-inline">
+              <div class="custom-control custom-radio">
+                <input type="radio" class="custom-control-input" id="inactivo" name="estado" value="inactivo"
+                  formControlName="estado" [ngClass]="{ 'is-invalid': submitted && f.estado.errors }">
+                <label class="custom-control-label" for="inactivo">{{'Inactivo' | translate }}</label>
+              </div>
+            </div>
+            <!-- <div *ngIf="isCleanField"> -->
+            <div *ngIf="submitted && f['estado'].errors">
+              <div [ngClass]="'error'"> {{'Por favor seleccione un estado' | translate }} </div>
+            </div>
+            <!-- </div> -->
+          </div>
+        </div>
+        <button class="btn btn-primary btn-lz mt-3 mb-3" type="submit">{{'Registrar' | translate }}</button>
+        <button class="btn btn-danger btn-lz mt-3 mb-3 ml-3" type="reset" (click)="limpiarCampos()">{{'Cancelar' | translate }}</button>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col col-lg-12 pt-3 pb-3">
+      <div>
+        <div id="tabla" class="card-body table-responsive p-2">
+          <table class="table table-hover">
+            <thead>
+              <tr style="background-color: #cfd8dc !important">
+                <td class="text-center">
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" name="all" class="custom-control-input" id="customCheck"
+                      [checked]="isAllChecked()" (change)="checkAll($event)" />
+                    <label class="custom-control-label" for="customCheck"></label>
+                  </div>
+                </td>
+                <td>{{'Fecha Creación' | translate }}</td>
+                <td>{{'Nombre' | translate }}</td>
+                <td>{{'Descripción' | translate }}</td>
+                <td>{{'Estado' | translate }}</td>
+                <td class="text-center">{{'Opciones' | translate }}</td>
+              </tr>
+            </thead>
+            <tbody *ngIf="categorias; else noData">
+              <tr *ngFor="let categoria of categorias; let i = index">
+                <th class="text-center">
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" name="categoriacb[]" class="custom-control-input" id="customCheck{{i}}"
+                      value="{{categoria.id}}" [(ngModel)]="categoria.state" />
+                    <label class="custom-control-label" attr.for="customCheck{{i}}"></label>
+                  </div>
+                </th>
+                <td hidden>{{ categoria?.id }}</td>
+                <td>{{ categoria?.fechacreacion }}</td>
+                <td>{{ categoria?.nombre }}</td>
+                <td>{{ categoria?.descripcion }}</td>
+                <td>{{ categoria?.estado }}</td>
+                <td>
+                  <div class="btn-group pull-right" role="group">
+                    <button type="button" class="btn btn-outline-dark" (click)="getCategoriaById(categoria.id)"><span
+                        class="fa fa-pencil fa-lg" aria-hidden="true"></span></button>
+                    <button type="button" class="btn btn-outline-danger"
+                      (click)="modalEliminarCategoria(categoria.id)"><span class="fa fa-trash fa-lg"
+                        aria-hidden="true"></span></button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+            <ng-template #noData>
+              <tbody>
+                <tr>
+                  <td colspan="4" class="text-center">{{'Ningún registro que mostrar según sus criterios de búsqueda' | translate }}</td>
+                </tr>
+              </tbody>
+            </ng-template>
+          </table>
+        </div>
+        <br>
+        <div class="form-group row">
+          <div class="col-sm-10">
+            <button type="submit" style="width: 150px;" class="btn btn-danger"
+              (click)="eliminaMasiva()">{{'Eliminar' | translate }}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

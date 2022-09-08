@@ -1,0 +1,34 @@
+<!-- Consultar respecto a este tema-->
+<nav class="navbar navbar-expand-lg fixed-top">
+  <!-- <a class="navbar-brand" href="#"> Enel Admin </a> -->
+  <img src="assets/images/logo.png" routerLink="/catalogo" alt="Enel Ecommerce" class="removeLink imgNav bg-white rounded ml-5" />
+  <button class="navbar-toggler" type="button" (click)="toggleSidebar()">
+      <!-- <span class="navbar-toggler-icon"></span> -->
+      <i class="fa fa-bars text-muted" aria-hidden="true"></i>
+  </button>
+  <div class="collapse navbar-collapse animate slideIn">
+      <!-- <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="text" placeholder="{{ 'Search' | translate }}" >
+      </form> -->
+      <ul class="navbar-nav ml-auto m-0 navGeneral">
+          <!--Perfil de usuario-->
+          <li class="nav-item dropdown navPerfilUsuario" ngbDropdown>
+            <a href="javascript:void(0)" class="nav-link" ngbDropdownToggle>
+                <i class="fa fa-user sizeFont"></i>
+                <span class="ml-2">Lincoln Ortega</span>            
+            </a>
+            <div class="dropdown-menu-right" ngbDropdownMenu>
+                <a class="dropdown-item" href="javascript:void(0)">
+                    <i class="fa fa-fw fa-user"></i> {{ 'Mi Cuenta' | translate }}
+                </a>
+                <!-- <a class="dropdown-item" href="javascript:void(0)">
+                    <i class="fa fa-fw fa-gear"></i> {{ 'Configuración' | translate }}
+                </a> -->
+                <a class="dropdown-item" [routerLink]="['/login']" (click)="onLoggedout()">
+                    <i class="fa fa-fw fa-power-off"></i> {{ 'Cerrar Sesión' | translate }}
+                </a>
+            </div>
+        </li>
+      </ul>
+  </div>
+</nav>

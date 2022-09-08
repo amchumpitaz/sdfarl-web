@@ -1,0 +1,480 @@
+    {
+        "perfilId": 1,
+        "rol": 2,
+        "tecnologia": 2,
+        "descripcion": "Administrador",
+        "perfil": "Tiene todo los privilegios",
+        "estado": "activo",
+        "funciones": [
+            {
+                "id": 1,
+                "value": "Mis Pedidos",
+                "isSelected": true,
+                "isNotVisible": false,
+                "isClosed": false,
+                "childList": [
+                    {
+                        "id": 1,
+                        "parent_id": 1,
+                        "value": "Pedidos",
+                        "isSelected": true,
+                        "isNotVisible": false,
+                        "childParentList": [
+                            {
+                                "id": 1,
+                                "parent_id": 1,
+                                "parentChild_id": 1,
+                                "value": "Menu",
+                                "isSelected": true
+                            },
+                            {
+                                "id": 2,
+                                "parent_id": 1,
+                                "parentChild_id": 1,
+                                "value": "Crear",
+                                "isSelected": false
+                            },
+                            {
+                                "id": 3,
+                                "parent_id": 1,
+                                "parentChild_id": 1,
+                                "value": "Actualizar",
+                                "isSelected": false
+                            },
+                            {
+                                "id": 4,
+                                "parent_id": 1,
+                                "parentChild_id": 1,
+                                "value": "Eliminar",
+                                "isSelected": false
+                            },
+                            {
+                                "id": 5,
+                                "parent_id": 1,
+                                "parentChild_id": 1,
+                                "value": "Consultar",
+                                "isSelected": false
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "value": "Mantenimiento",
+                "isSelected": true,
+                "isClosed": false,
+                "isNotVisible": false,
+                "childList": [
+                    {
+                        "id": 1,
+                        "parent_id": 1,
+                        "value": "Productos",
+                        "isSelected": false,
+                        "isNotVisible": false,
+                        "childParentList": [
+                            {
+                                "id": 1,
+                                "parent_id": 1,
+                                "parentChild_id": 1,
+                                "value": "Menu",
+                                "isSelected": false,
+                                "isNotVisible": false
+                            },
+                            {
+                                "id": 2,
+                                "parent_id": 1,
+                                "parentChild_id": 1,
+                                "value": "Crear",
+                                "isSelected": false,
+                                "isNotVisible": false
+                            },
+                            {
+                                "id": 3,
+                                "parent_id": 1,
+                                "parentChild_id": 1,
+                                "value": "Actualizar",
+                                "isSelected": false,
+                                "isNotVisible": false
+                            },
+                            {
+                                "id": 4,
+                                "parent_id": 1,
+                                "parentChild_id": 1,
+                                "value": "Eliminar",
+                                "isSelected": false,
+                                "isNotVisible": false
+                            },
+                            {
+                                "id": 5,
+                                "parent_id": 1,
+                                "parentChild_id": 1,
+                                "value": "Consultar",
+                                "isSelected": false,
+                                "isNotVisible": false
+                            }
+                        ]
+                    },
+                    {
+                        "id": 2,
+                        "parent_id": 1,
+                        "value": "Carga Masiva",
+                        "isSelected": false,
+                        "isNotVisible": false,
+                        "childParentList": [
+                            {
+                                "id": 1,
+                                "parent_id": 1,
+                                "parentChild_id": 1,
+                                "value": "Menu",
+                                "isSelected": false,
+                                "isNotVisible": false
+                            },
+                            {
+                                "id": 2,
+                                "parent_id": 1,
+                                "parentChild_id": 1,
+                                "value": "Crear",
+                                "isSelected": false,
+                                "isNotVisible": false
+                            },
+                            {
+                                "id": 3,
+                                "parent_id": 1,
+                                "parentChild_id": 1,
+                                "value": "Actualizar",
+                                "isSelected": false,
+                                "isNotVisible": false
+                            },
+                            {
+                                "id": 4,
+                                "parent_id": 1,
+                                "parentChild_id": 1,
+                                "value": "Eliminar",
+                                "isSelected": false,
+                                "isNotVisible": false
+                            },
+                            {
+                                "id": 5,
+                                "parent_id": 1,
+                                "parentChild_id": 1,
+                                "value": "Consultar",
+                                "isSelected": false,
+                                "isNotVisible": false
+                            }
+                        ]
+                    },
+                    {
+                        "id": 3,
+                        "parent_id": 1,
+                        "value": "Perfiles",
+                        "isSelected": false,
+                        "isNotVisible": false,
+                        "childParentList": [
+                            {
+                                "id": 1,
+                                "parent_id": 1,
+                                "parentChild_id": 1,
+                                "value": "Menu",
+                                "isSelected": false,
+                                "isNotVisible": false
+                            },
+                            {
+                                "id": 2,
+                                "parent_id": 1,
+                                "parentChild_id": 1,
+                                "value": "Crear",
+                                "isSelected": false,
+                                "isNotVisible": false
+                            },
+                            {
+                                "id": 3,
+                                "parent_id": 1,
+                                "parentChild_id": 1,
+                                "value": "Actualizar",
+                                "isSelected": false,
+                                "isNotVisible": false
+                            },
+                            {
+                                "id": 4,
+                                "parent_id": 1,
+                                "parentChild_id": 1,
+                                "value": "Eliminar",
+                                "isSelected": false,
+                                "isNotVisible": false
+                            },
+                            {
+                                "id": 5,
+                                "parent_id": 1,
+                                "parentChild_id": 1,
+                                "value": "Consultar",
+                                "isSelected": false,
+                                "isNotVisible": false
+                            }
+                        ]
+                    },
+                    {
+                        "id": 4,
+                        "parent_id": 1,
+                        "value": "Usuarios",
+                        "isSelected": false,
+                        "isNotVisible": false,
+                        "childParentList": [
+                            {
+                                "id": 1,
+                                "parent_id": 1,
+                                "parentChild_id": 1,
+                                "value": "Menu",
+                                "isSelected": false,
+                                "isNotVisible": false
+                            },
+                            {
+                                "id": 2,
+                                "parent_id": 1,
+                                "parentChild_id": 1,
+                                "value": "Crear",
+                                "isSelected": false,
+                                "isNotVisible": false
+                            },
+                            {
+                                "id": 3,
+                                "parent_id": 1,
+                                "parentChild_id": 1,
+                                "value": "Actualizar",
+                                "isSelected": false,
+                                "isNotVisible": false
+                            },
+                            {
+                                "id": 4,
+                                "parent_id": 1,
+                                "parentChild_id": 1,
+                                "value": "Eliminar",
+                                "isSelected": false,
+                                "isNotVisible": false
+                            },
+                            {
+                                "id": 5,
+                                "parent_id": 1,
+                                "parentChild_id": 1,
+                                "value": "Consultar",
+                                "isSelected": false,
+                                "isNotVisible": false
+                            }
+                        ]
+                    },
+                    {
+                        "id": 5,
+                        "parent_id": 1,
+                        "value": "Categorias",
+                        "isSelected": false,
+                        "isNotVisible": false,
+                        "childParentList": [
+                            {
+                                "id": 1,
+                                "parent_id": 1,
+                                "parentChild_id": 1,
+                                "value": "Menu",
+                                "isSelected": false,
+                                "isNotVisible": false
+                            },
+                            {
+                                "id": 2,
+                                "parent_id": 1,
+                                "parentChild_id": 1,
+                                "value": "Crear",
+                                "isSelected": false,
+                                "isNotVisible": false
+                            },
+                            {
+                                "id": 3,
+                                "parent_id": 1,
+                                "parentChild_id": 1,
+                                "value": "Actualizar",
+                                "isSelected": false,
+                                "isNotVisible": false
+                            },
+                            {
+                                "id": 4,
+                                "parent_id": 1,
+                                "parentChild_id": 1,
+                                "value": "Eliminar",
+                                "isSelected": false,
+                                "isNotVisible": false
+                            },
+                            {
+                                "id": 5,
+                                "parent_id": 1,
+                                "parentChild_id": 1,
+                                "value": "Consultar",
+                                "isSelected": false,
+                                "isNotVisible": false
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": 3,
+                "value": "Historial",
+                "isSelected": false,
+                "isClosed": false,
+                "isNotVisible": false
+            },
+            {
+                "id": 4,
+                "value": "Reportes",
+                "isSelected": false,
+                "isClosed": false,
+                "isNotVisible": false,
+                "childList": [
+                    {
+                        "id": 1,
+                        "parent_id": 1,
+                        "value": "Productos Consultados",
+                        "isSelected": false,
+                        "isNotVisible": false,
+                        "childParentList": [
+                            {
+                                "id": 1,
+                                "parent_id": 1,
+                                "parentChild_id": 1,
+                                "value": "Menu",
+                                "isSelected": false,
+                                "isNotVisible": false
+                            },
+                            {
+                                "id": 2,
+                                "parent_id": 1,
+                                "parentChild_id": 1,
+                                "value": "Crear",
+                                "isSelected": false,
+                                "isNotVisible": true
+                            },
+                            {
+                                "id": 3,
+                                "parent_id": 1,
+                                "parentChild_id": 1,
+                                "value": "Actualizar",
+                                "isSelected": false,
+                                "isNotVisible": true
+                            },
+                            {
+                                "id": 4,
+                                "parent_id": 1,
+                                "parentChild_id": 1,
+                                "value": "Eliminar",
+                                "isSelected": false,
+                                "isNotVisible": true
+                            },
+                            {
+                                "id": 5,
+                                "parent_id": 1,
+                                "parentChild_id": 1,
+                                "value": "Consultar",
+                                "isSelected": false,
+                                "isNotVisible": true
+                            }
+                        ]
+                    },
+                    {
+                        "id": 2,
+                        "parent_id": 1,
+                        "value": "Productos Vendidos",
+                        "isSelected": false,
+                        "isNotVisible": false,
+                        "childParentList": [
+                            {
+                                "id": 1,
+                                "parent_id": 1,
+                                "parentChild_id": 1,
+                                "value": "Menu",
+                                "isSelected": false,
+                                "isNotVisible": false
+                            },
+                            {
+                                "id": 2,
+                                "parent_id": 1,
+                                "parentChild_id": 1,
+                                "value": "Crear",
+                                "isSelected": false,
+                                "isNotVisible": true
+                            },
+                            {
+                                "id": 3,
+                                "parent_id": 1,
+                                "parentChild_id": 1,
+                                "value": "Actualizar",
+                                "isSelected": false,
+                                "isNotVisible": true
+                            },
+                            {
+                                "id": 4,
+                                "parent_id": 1,
+                                "parentChild_id": 1,
+                                "value": "Eliminar",
+                                "isSelected": false,
+                                "isNotVisible": true
+                            },
+                            {
+                                "id": 5,
+                                "parent_id": 1,
+                                "parentChild_id": 1,
+                                "value": "Consultar",
+                                "isSelected": false,
+                                "isNotVisible": true
+                            }
+                        ]
+                    },
+                    {
+                        "id": 3,
+                        "parent_id": 1,
+                        "value": "Venta por Compradores y Producto",
+                        "isSelected": false,
+                        "isNotVisible": false,
+                        "childParentList": [
+                            {
+                                "id": 1,
+                                "parent_id": 1,
+                                "parentChild_id": 1,
+                                "value": "Menu",
+                                "isSelected": false,
+                                "isNotVisible": false
+                            },
+                            {
+                                "id": 2,
+                                "parent_id": 1,
+                                "parentChild_id": 1,
+                                "value": "Crear",
+                                "isSelected": false,
+                                "isNotVisible": true
+                            },
+                            {
+                                "id": 3,
+                                "parent_id": 1,
+                                "parentChild_id": 1,
+                                "value": "Actualizar",
+                                "isSelected": false,
+                                "isNotVisible": true
+                            },
+                            {
+                                "id": 4,
+                                "parent_id": 1,
+                                "parentChild_id": 1,
+                                "value": "Eliminar",
+                                "isSelected": false,
+                                "isNotVisible": true
+                            },
+                            {
+                                "id": 5,
+                                "parent_id": 1,
+                                "parentChild_id": 1,
+                                "value": "Consultar",
+                                "isSelected": false,
+                                "isNotVisible": true
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }

@@ -1,0 +1,199 @@
+<div class="custom-bar">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-12 text-center">
+        <div class="input-group">
+          <div class="input-group-append bg-white rounded">
+            <img src="assets/images/logo.png" alt="Enel Ecommerce" class="removeLink imgNav" />
+          </div>
+          <div class="input-group-prepend ml-5 centerNav">
+            <select class="form-control custom-select-search" [(ngModel)]="cat">
+              <option *ngFor="let d of data" [value]="d.id">
+                {{d.categoria | translate}}
+              </option>
+            </select>
+            <input type="text" class="form-control custom-input-search inputNav" placeholder="{{'Buscar incidencias' | translate }}" ngDefaultControl list="staticUserIds"> 
+            <datalist id="staticUserIds">
+              <option>{{'Coimas' | translate}}</option>
+              <option>{{'Abuso de Poder' | translate}}</option>
+            </datalist>
+          </div>
+          <div class="input-group-append">
+            <button class="btn custom-button-search" type="button">
+              <i class="fa fa-search"></i>
+            </button>
+          </div>
+          <div class="input-group-append rightNav ml-5">
+            <div class="text-right pr-0">
+              <button type="button" class="btn btn-light" [routerLink]="['/catalogo/register']" [routerLinkActive]="['router-link-active']">{{'Crear una cuenta' | translate}}</button>
+              <button type="button" class="btn btn-light" routerLink="/login">{{'Iniciar sesión' | translate}}</button>
+            </div>
+          </div>
+          <!--Perfil de usuario-->
+          <div class="input-group-append">
+              <li class="nav-item dropdown list-unstyled navPerfilUsuario" ngbDropdown>
+                <a href="javascript:void(0)" ngbDropdownToggle>
+                    <i class="fa fa-user" style="font-size: 190%; color: white"></i>
+                    <!-- <span class="ml-2">Juan Pérez</span>             -->
+                </a>
+                <div class="dropdown-menu-right" ngbDropdownMenu>
+                    <a class="dropdown-item" [routerLink]="['/admin']">
+                        <i class="fa fa-fw fa-user"></i> {{ 'Mi Cuenta' | translate }}
+                    </a>
+                    <!-- <a class="dropdown-item" href="javascript:void(0)">
+                        <i class="fa fa-fw fa-gear"></i> {{ 'Configuración' | translate }}
+                    </a> -->
+                    <a class="dropdown-item" [routerLink]="['/login']" (click)="onLoggedout()">
+                        <i class="fa fa-fw fa-power-off"></i> {{ 'Cerrar Sesión' | translate }}
+                    </a>
+                </div>
+            </li>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container pt-5">
+  <div class="row">
+    <div class="col-lg-3">
+
+      <div class="col-sm-12">
+        <label>{{'FILTROS' | translate}}</label>
+      </div>
+
+      <br>
+      <div class="col-sm-12">
+        <h5>{{'Condición Repuesto' | translate}}</h5>
+        <div class="pb-4">
+          <ul class="list-group">
+              <label class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let order of condicion">
+                  {{order.categoria | translate}} <input type="checkbox" class="align-items-right">
+              </label>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="col-sm-12">
+      <h5>{{'Categoria' | translate}}</h5>
+        <div class="input-group-prepend">
+            <select class="form-control custom-select-search" [(ngModel)]="cat">
+                <option *ngFor="let d of data" [value]="d.id">
+                  {{d.categoria | translate}}
+                </option>
+              </select>
+        </div>
+      </div>
+
+    </div>
+    
+    <div class="col-lg-9">
+
+    <!-- Start Bootstrap Slider BODY section -->
+    <!-- <owl-carousel [options]="carouselOptions" [items]="images" [carouselClasses]="['owl-theme', 'row', 'sliding']">
+        <div class="item" *ngFor="let image of images;let i= index">
+          <a href="https://www.google.fr/?q={{image.text}}" class="text-dark btn text-left" target="_blank" rel="nofollow noopener noreferrer">
+            <img class="slide-image" src="{{image.image}}" >
+            <div class="slide-text">
+                <br>
+                <h4>{{image.text | translate}}</h4>
+                <h4>{{image.precio | translate}}</h4> 
+            </div>
+          </a>                
+        </div>
+      </owl-carousel>      -->
+    
+    <!-- End Bootstrap Slider BODY section -->
+
+      <div class="row">
+
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="card h-100">
+            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+            <div class="card-body">
+              <h4 class="card-title">
+                <a href="#">{{'Producto Uno' | translate}}</a>
+              </h4>
+              <h5>S/. 24.99</h5>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="card h-100">
+            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+            <div class="card-body">
+              <h4 class="card-title">
+                <a href="#">Producto Dos</a>
+              </h4>
+              <h5>S/. 24.99</h5>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor sit amet.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="card h-100">
+            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+            <div class="card-body">
+              <h4 class="card-title">
+                <a href="#">Producto Tres</a>
+              </h4>
+              <h5>S/. 24.99</h5>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="card h-100">
+            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+            <div class="card-body">
+              <h4 class="card-title">
+                <a href="#">Producto Cuatro</a>
+              </h4>
+              <h5>S/. 24.99</h5>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="card h-100">
+            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+            <div class="card-body">
+              <h4 class="card-title">
+                <a href="#">Producto Cinco</a>
+              </h4>
+              <h5>S/. 24.99</h5>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor sit amet.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="card h-100">
+            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+            <div class="card-body">
+              <h4 class="card-title">
+                <a href="#">Producto Seis</a>
+              </h4>
+              <h5>S/. 24.99</h5>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+   
+  </div>
+  
+</div>
+
+<footer class="py-3" style="background-color: #222">
+  <div class="container">
+    <p class="m-0 text-center text-white">© Enel Green Power - {{'Todos los derechos reservados' | translate}}</p>
+  </div>
+</footer>

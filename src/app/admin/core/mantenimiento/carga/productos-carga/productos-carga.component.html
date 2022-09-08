@@ -1,0 +1,131 @@
+<div class="row p-3 mb-3">
+  <div class="col-md-12 pl-0">
+    <h3>Módulo de Carga de Archivos</h3>
+  </div>
+</div>
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="productos-tab" [ngClass]="{ 'active': menu === 'productos' }" [routerLink]="['/admin/carga/productos']" aria-controls="productos" aria-selected="menu === 'productos'"><h4>{{'Productos' | translate }}</h4></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="fotografias-tab" [ngClass]="{ 'active': menu === 'fotografias' }" [routerLink]="['/admin/carga/fotografias']" aria-controls="fotografias" aria-selected="menu === 'fotografias'"><h4>{{'Fotografías' | translate }}</h4></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="doctecnicos-tab" [ngClass]="{ 'active': menu === 'doctecnicos' }" [routerLink]="['/admin/carga/doctecnicos']" aria-controls="doctecnicos" aria-selected="menu === 'doctecnicos'"><h4>{{'Detalle Técnico' | translate}}</h4></a>
+  </li>
+</ul>
+<div class="row p-3">
+    <!-- <div class="col col-lg-6 pl-0">
+      <h5><span class="mr-3">Carga Masiva</span>><span class="ml-3 text_underline">Productos</span></h5>
+    </div>
+    <div class="col col-lg-6 text-right">
+        <button class="btn btn-outline-primary" [routerLink]="['/admin/carga']" [routerLinkActive]="['router-link-active']">Regresar</button>
+    </div> -->
+  </div>
+  <div class="row">
+    <div class="col col-lg-6 col-md-6 col-sm-12">
+        <div class="card">
+          <div class="card-header">{{'Seleccione el archivo de carga' | translate}}</div>
+          <div class="card-body pt-2">
+              <div class="row mb-3">
+                  <div class="col col-lg-12">
+                      <button [disabled]="btnProcesarCarga" class="btn btn-success mr-3" (click)="fileInput.click()">{{'Cargar Archivo de Productos' | translate}}</button>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col col-lg-12">
+                      <input class="file-path form-control" 
+                              style="border: 0 !important; background-color: #fff;" 
+                              [(ngModel)]="archivoCargado" 
+                              type="text" 
+                              disabled>
+                      <input style="display: none" type="file" (change)="onFileChanged($event)" #fileInput>
+                  </div>
+                </div>
+          </div>
+        </div>
+    </div>
+    <div class="col col-lm-6 text-center m-5">
+        <button class="btn btn-outline-success" style="width: 150px;" (click)="descargarPlantilla()">{{'Descargar plantilla' | translate}}</button>
+    </div>
+  </div>
+  <!-- TABLA DE CARGA DE ARCHIVOS-->
+  <div class="row">
+      <div class="col col-lg-12 pt-3 pb-3">
+        <div class="card">
+          <div id="tabla" class="card-body table-responsive p-2">
+          <table class="table table-hover mb-0">
+            <thead>
+              <tr style="background-color: #cfd8dc!important">
+                <td class="text-center">N° {{'de Carga' | translate }}</td>
+                <td class="text-center">{{'Fecha' | translate}}</td>
+                <td class="text-center">{{'Estado' | translate}}</td>
+                <td class="text-center">{{'Usuario' | translate}}</td>
+                <td class="text-center">{{'Detalle' | translate}}</td>
+              </tr>
+            </thead>
+            <tbody *ngIf="archivoCarga; else noData">
+              <tr *ngFor="let archivoCargados of archivoCarga; trackBy: identify; index as i">
+                <!-- <th scope="row" class="text-center">{{i + 1}}</th>
+                <td>
+                    <div class="custom-control custom-radio">
+                        <input type="radio" 
+                               class="custom-control-input" 
+                               id="radio-{{i}}" 
+                               name="radio" 
+                               [value]="archivoCargados.codigo"
+                               [(ngModel)]="codigo"
+                               style="cursor: pointer"
+                               (change)="onSelectionChange(archivoCargados.codigo)">
+                        <label class="custom-control-label" for="radio-{{i}}"></label>
+                      </div>
+                </td> -->
+                <td class="text-center"><label for="radio-{{i}}" style="cursor: pointer;">{{archivoCargados?.id_carga }}</label></td>
+                <td class="text-center"><label for="radio-{{i}}" style="cursor: pointer;"></label>{{archivoCargados?.fecha | date:'dd/MM/yyyy' }}</td>
+                <td class="text-center"><label for="radio-{{i}}" style="cursor: pointer;"></label>{{archivoCargados?.estado | translate }}</td>
+                <td class="text-center"><label for="radio-{{i}}" style="cursor: pointer;"></label>{{archivoCargados?.usuario }}</td>
+                <td class="text-center"><label for="radio-{{i}}" style="cursor: pointer;"></label><i (click)="getDetalleProduct(archivoCargados?.id_carga)" class="fa fa-cloud-download detalle_button"></i></td>
+             </tr>
+            </tbody>
+        <ng-template #noData>
+          <tbody>
+            <tr>
+            <td colspan="7" class="text-center">{{'No se cargó correctamente la lista de archivos' | translate }}.</td>
+            </tr>
+          </tbody>
+        </ng-template>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div>
+    <button class="btn btn-outline-success m-5" style="display: none" id= "buttonOpenModal" (click)="openModal(info)">Abrir Modal</button>
+  </div>
+  <!--Modal for process to go up products-->
+  <ng-template #info let-modal>
+    <div class="modal-header text_underline">
+      <h4 class="modal-title">{{'Subir Productos' | translate }}</h4>
+      <button type="button" class="close" aria-label="Close" (click)="ocultarModal()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div *ngIf="validArchivo" class="text-center">
+        <i class="fa fa-check modalIconValid" aria-hidden="true"></i> <span class="modalText m-2">{{textModal | translate }}</span>
+      </div>
+      <div *ngIf="validArchivo" class="text-center">
+        <div class="loading-bro d-inline-flex">
+          <svg id="load" x="0px" y="0px" viewBox="0 0 150 150">
+            <circle id="loading-inner" cx="75" cy="75" r="60"/>
+          </svg>
+          <span class="modalText m-2">{{textModalProcess | translate }} ...</span>
+        </div>
+      </div>
+      <div *ngIf="!validArchivo" class="text-center">
+        <i class=	"fa fa-exclamation-triangle modalIconInvalid" aria-hidden="true"></i> <span class="modalText m-2">{{textModal | translate }}</span><a class="ml-5 text_underline_button" (click)="descargarCargaError()" >{{'Ver detalle' | translate }}</a>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="ocultarModal()">{{'Cerrar' | translate }}</button>
+    </div>
+  </ng-template>

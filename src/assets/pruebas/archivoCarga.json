@@ -1,0 +1,18 @@
+    [{
+        "id_carga": 1,
+        "fecha": "12/12/2018",
+        "estado": "COMPLETADO",
+        "usuario": "lortega@indracompany.com"
+    },
+	{
+        "id_carga": 2,
+        "fecha": "12/12/2018",
+        "estado": "COMPLETADO",
+        "usuario": "lortega@indracompany.com"
+    },
+	{
+        "id_carga": 3,
+        "fecha": "12/12/2018",
+        "estado": "COMPLETADO",
+        "usuario": "lortega@indracompany.com"
+    }]

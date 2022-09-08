@@ -1,0 +1,44 @@
+<div class="custom-bar">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-12 text-center pl-2">
+          <div class="input-group">
+            <div class="input-group-append bg-white rounded">
+              <img src="assets/images/logo.png" routerLink="/catalogo" alt="Enel Ecommerce" class="removeLink imgNav" />
+            </div>
+            <div class="input-group-prepend ml-5 centerNav"></div>
+            <div class="input-group-append rightNav ml-5">
+              <div class="text-right pr-0">
+                <button type="button" class="btn btn-light" [routerLink]="['/catalogo/register']" [routerLinkActive]="['router-link-active']">{{'Crear una cuenta' | translate}}</button>
+                <button type="button" class="btn btn-light" routerLink="/login">{{'Iniciar sesión' | translate}}</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="container pt-3 pb-3">
+    <div class="row mb-5">
+      <div>
+        <div class="col-md-12 text-center p-5">
+          <img src="assets/images/Green-Round-Tick.png" alt="" class="marginBImg">
+          <h2 class="mt-4"> ¡{{'Gracias por registrarte' | translate}}! </h2>
+        </div>
+        <div class="col-md-12 text-center mb-4">
+          <h3>{{'En breve estarás recibiendo un mensaje de confirmación en tu correo con los pasos para activar tu cuenta' | translate }}.</h3>
+        </div>
+      </div>
+      <div class="col-md-12 text-center mt-4">
+        <button class="btn btn-primary btn-lz mt-3 mb-3 p-3" routerLink="/catalogo" >{{'Ir a la Página Principal' | translate}}</button>
+        <!-- <button class="btn btn-success btn-lz mt-3 mb-3 ml-3 p-3" routerLink="/login" >Iniciar Sesión</button> -->
+      </div>
+    </div>
+  </div>
+  
+  <footer class="py-3" style="background-color: rgb(34, 34, 34)">
+    <div class="container">
+      <p class="m-0 text-center text-white">© Springfield - {{'Todos los derechos reservados' | translate}}</p>
+    </div>
+  </footer>

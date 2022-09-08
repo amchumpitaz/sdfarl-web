@@ -1,0 +1,315 @@
+{
+	"Acciones": "",
+	"Acero": "",
+	"Activo": "",
+	"Agregar Imágenes": "",
+	"Al registrarme estoy aceptando los ": "",
+	"Apellidos": "",
+	"Auto": "",
+	"Buscar": "",
+	"Cancelar": "",
+	"Cantidad": "",
+	"Carga Masiva": "",
+	"Cargar Archivo de Productos": "",
+	"Cargar Archivo de detalle técnico": "",
+	"Casa": "",
+	"Categoria": "",
+	"Categorias": "",
+	"Cerrar": "",
+	"Comida": "",
+	"Condición": "",
+	"Condición Repuesto": "",
+	"Confirma Contraseña": "",
+	"Confirma Email": "",
+	"Confirmar Nueva Contraseña": "",
+	"Contraseña": "",
+	"Contraseña Actual": "",
+	"Correo Contacto del Producto": "",
+	"Crear una cuenta": "",
+	"Código": "",
+	"Datos": "",
+	"Datos de Seguridad": "",
+	"Datos de la Empresa": "",
+	"Datos de la cuenta": "",
+	"Datos del Representante": "",
+	"Departamento": "",
+	"Descargar plantilla": "",
+	"Descripción": "",
+	"Deseo recibir notificaciones de productos": {
+		"": ""
+	},
+	"Detalle": "",
+	"Detalle Técnico": "",
+	"Detalles": "",
+	"Dirección": "",
+	"Distrito": "",
+	"Diversión": "",
+	"El apellido es un campo obligatorio": {
+		"": ""
+	},
+	"El campo cantidad es obligatorio": {
+		"": ""
+	},
+	"El correo contacto del producto debe ser un correo válido": {
+		"": ""
+	},
+	"El correo contacto del producto es obligatorio": {
+		"": ""
+	},
+	"El correo contacto del producto ingresado ya se encuentra registrado, por favor ingrese otro correo": {
+		"": ""
+	},
+	"El correo debe ser un correo válido": {
+		"": ""
+	},
+	"El correo es obligatorio": {
+		"": ""
+	},
+	"El correo ingresado ya se encuentra registrado, por favor ingrese otro correo": {
+		"": ""
+	},
+	"El código es obligatorio": {
+		"": ""
+	},
+	"El estado es obligatorio": {
+		"": ""
+	},
+	"El nombre contacto es obligatorio": {
+		"": ""
+	},
+	"El nombre es un campo obligatorio": {
+		"": ""
+	},
+	"El número de documento es un campo obligatorio": {
+		"": ""
+	},
+	"El perfil es obligatorio": {
+		"": ""
+	},
+	"El perfil ingresado ya existe, por favor eliga otro nombre": {
+		"": ""
+	},
+	"El precio es obligatorio": {
+		"": ""
+	},
+	"El teléfono es un campo obligatorio": {
+		"": ""
+	},
+	"El titulo es obligatorio": {
+		"": ""
+	},
+	"Eliminar": "",
+	"Email": "",
+	"Empresa": "",
+	"En breve estarás recibiendo un mensaje de confirmación en tu correo con los pasos para activar tu cuenta": {
+		"": ""
+	},
+	"English": "",
+	"Estado": "",
+	"FILTROS": "",
+	"Farsi": "",
+	"Fecha": "",
+	"Fotografías": "",
+	"French": "",
+	"German": "",
+	"Giro de Negocio": "",
+	"Graficos": "",
+	"Guardar": "",
+	"Guardar Cambios": "",
+	"Historial": "",
+	"In queue": "",
+	"Inactivo": "",
+	"Inbox": "",
+	"Ingrese una cantidad válida": {
+		"": ""
+	},
+	"Ingrese una precio válido": {
+		"": ""
+	},
+	"Inicia sesión o": "",
+	"Iniciar sesión": "",
+	"Inicio": "",
+	"Ir a la Página Principal": "",
+	"Italian": "",
+	"Juegos": "",
+	"La contraseña actual es obligatoria": {
+		"": ""
+	},
+	"La contraseña debe tener al menos 6 characteres": {
+		"": ""
+	},
+	"La contraseña es incorrecta": {
+		"": ""
+	},
+	"La contraseña es obligatoria": {
+		"": ""
+	},
+	"La dirección es un campo obligatorio": {
+		"": ""
+	},
+	"La nueva contraseña deben ser iguales": {
+		"": ""
+	},
+	"La nueva contraseña es obligatorio": {
+		"": ""
+	},
+	"La razón social es obligatoria": {
+		"": ""
+	},
+	"La respuesta a tu pregunta secreta es obligatoria": {
+		"": ""
+	},
+	"Language": "",
+	"Las contraseñas deben ser iguales": {
+		"": ""
+	},
+	"Limpiar Búsqueda": "",
+	"Lista Pedidos": "",
+	"Log Out": "",
+	"Los correos deben ser iguales": {
+		"": ""
+	},
+	"Lugar Recojo": "",
+	"Mail": "",
+	"Mantenimiento": "",
+	"Mi Contraseña": "",
+	"Mi Email": "",
+	"Mi Perfil": "",
+	"Mi Pregunta Secreta": "",
+	"Mis Datos": "",
+	"Mis Pedidos": "",
+	"Módulo de Carga de Archivos": "",
+	"Ningún registro que mostrar según sus criterios de búsqueda": {
+		"": ""
+	},
+	"No se cargó correctamente la lista de archivos": {
+		"": ""
+	},
+	"Nombre": "",
+	"Nombre Contacto": "",
+	"Nombre de usuario": "",
+	"Nro": {
+		" de Carga": ""
+	},
+	"Nueva Contraseña": "",
+	"Nuevo": "",
+	"Número de Documento": "",
+	"Olvidaste tu contraseña": "",
+	"Opciones": "",
+	"País": "",
+	"Pedidos": "",
+	"Pending Task": "",
+	"Perfil": "",
+	"Perfiles": "",
+	"Persona Natural": "",
+	"Pintura": "",
+	"Por favor acepte los términos y condiciones": {
+		"": ""
+	},
+	"Por favor compruebe que no es un robot": {
+		"": ""
+	},
+	"Por favor describa el perfil": {
+		"": ""
+	},
+	"Por favor describa el producto": {
+		"": ""
+	},
+	"Por favor ingrese al menos una imagen": {
+		"": ""
+	},
+	"Por favor seleccione el lugar de recojo": {
+		"": ""
+	},
+	"Por favor seleccione un archivo de detalle técnico": {
+		"": ""
+	},
+	"Por favor seleccione un departamento": {
+		"": ""
+	},
+	"Por favor seleccione un distrito": {
+		"": ""
+	},
+	"Por favor seleccione un giro de negocio": {
+		"": ""
+	},
+	"Por favor seleccione un país": {
+		"": ""
+	},
+	"Por favor seleccione un rol": {
+		"": ""
+	},
+	"Por favor seleccione un tipo de documento": {
+		"": ""
+	},
+	"Por favor seleccione un tipo de moneda": {
+		"": ""
+	},
+	"Por favor seleccione una categoría": {
+		"": ""
+	},
+	"Por favor seleccione una pregunta secreta": {
+		"": ""
+	},
+	"Por favor seleccione una provincia": {
+		"": ""
+	},
+	"Por favor seleccione una tecnología": {
+		"": ""
+	},
+	"Precio": "",
+	"Precio Unitario": "",
+	"Pregunta Secreta": "",
+	"Producto": "",
+	"Producto Destacado": "",
+	"Producto Uno": "",
+	"Productos": "",
+	"Productos Consultados": "",
+	"Productos Vendidos": "",
+	"Profile": "",
+	"Provincia": "",
+	"Razón Social": "",
+	"Recuperar Contraseña": "",
+	"Registrar": "",
+	"Registro": "",
+	"Reportes": "",
+	"Respuesta Secreta": "",
+	"Rol": "",
+	"Ropa": "",
+	"Search": "",
+	"Selecciona": "",
+	"Seleccione": "",
+	"Seleccione el archivo de carga": "",
+	"Settings": "",
+	"Simplified Chinese": "",
+	"Spanish": "",
+	"Subir D": {
+		" T": {
+			"": ""
+		}
+	},
+	"Subir Detalles Técnicos": "",
+	"Subir Fotografías": "",
+	"Subir Productos": "",
+	"Subir fotos": "",
+	"Submenu": "",
+	"Tecnología": "",
+	"Teléfono": "",
+	"Tipo de Documento": "",
+	"Titulo": "",
+	"Todos los derechos reservados": "",
+	"Términos y Condiciones": "",
+	"Urdu": "",
+	"Usuario": "",
+	"Usuario y/o contraseña incorrecta": {
+		" Por favor intentelo de nuevo": {
+			"": ""
+		}
+	},
+	"Usuarios": "",
+	"Ver detalle": "",
+	"View All": "",
+	"Zapato": "",
+	"crea una cuenta": "",
+	"¡Gracias por registrarte!": ""
+}

@@ -1,0 +1,118 @@
+<div class="container">
+  <div class="py-2 text-left">
+      <h2>{{'Mis Datos' | translate}}</h2>
+  </div>
+  <div class="row">
+    <div class="col-md-12 order-md-1">
+      <form [formGroup]="updateEmailForm" (ngSubmit)="onSubmit('updEmail')">
+        <!--Correo-->
+        <div class="py-2 pt-4 text-left text_underline">
+          <h4 class="mb-0">{{'Mi Email' | translate}}</h4>
+        </div>
+        <!--Cambio de Contraseña-->
+        <div class="row">
+          <div class="col-md-6">
+            <div class="dp-block p-2 mt-3">
+              <label for="email">{{'Email' | translate}}</label>
+              <input type="email" formControlName="email" name="email" class="form-control" id="email" [ngClass]="{ 'is-invalid': (updateEmailForm.get('email').dirty || updateEmailForm.get('email').touched || submittedUEF) && f1.email.errors }" placeholder="you@example.com" required>
+                <div *ngIf="updateEmailForm.get('email').errors && (updateEmailForm.get('email').dirty || updateEmailForm.get('email').touched || submittedUEF)" class="invalid-feedback">
+                  <div *ngIf="f1['email'].errors?.required">{{ 'El correo es obligatorio' | translate}}.</div>
+                  <div *ngIf="f1['email'].errors?.email">{{'El correo debe ser un correo válido' | translate}}.</div>
+                  <div *ngIf="f1['email'].errors?.emailExist">{{'El correo ingresado ya se encuentra registrado, por favor ingrese otro correo' | translate}}.</div>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6"></div>
+        <button id="saveEmail" name="saveEmail"  class="btn btn-primary btn-lz mt-3 mb-3" type="submit">{{'Guardar' | translate}}</button>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 order-md-1">
+      <form [formGroup]="updatePasswordForm" (ngSubmit)="onSubmit('updPassw')">
+        <!--Contraseña-->
+        <div class="py-2 pt-5 text-left text_underline">
+            <h4 class="mb-0">{{'Mi Contraseña' | translate}}</h4>
+        </div>
+        <!--Cambio de Contraseña-->
+        <div class="row">
+          <div class="col-md-6">
+            <div class="dp-block p-2 mt-3">
+              <label for="password">{{'Contraseña Actual' | translate}}</label>
+              <input type="password" formControlName="password" name="password" class="form-control" id="password" [ngClass]="{ 'is-invalid': (updatePasswordForm.get('password').dirty || updatePasswordForm.get('password').touched || submittedUPF) && f2.password.errors }" placeholder="{{'contraseña' | translate}}" required>
+                <div *ngIf="f2['password'].errors && (updatePasswordForm.get('password').dirty || updatePasswordForm.get('password').touched || submittedUPF)" class="invalid-feedback">
+                  <div *ngIf="f2['password'].errors?.required">{{'La contraseña actual es obligatoria' | translate}}.</div>
+                  <div *ngIf="f2['password'].errors?.passwordCorrect">{{'La contraseña es incorrecta' | translate}}.</div>
+                </div>
+            </div>
+          </div>
+          <div class="col-md-6"></div>
+          <!--Nueva Contraseña-->
+          <div class="col-md-6">
+            <div class="dp-block p-2">
+              <label for="newPassword">{{'Nueva Contraseña' | translate}}</label>
+              <input name="newPassword" formControlName="newPassword" type="password" class="form-control" id="newPassword" [ngClass]="{ 'is-invalid': (updatePasswordForm.get('newPassword').dirty || updatePasswordForm.get('newPassword').touched || submittedUPF) && f2.newPassword.errors }" placeholder="{{'nueva contraseña' | translate }}" value="" required>
+              <div *ngIf="f2['newPassword'].errors && (updatePasswordForm.get('newPassword').dirty || updatePasswordForm.get('newPassword').touched || submittedUPF) " class="invalid-feedback">
+                <div *ngIf="f2['newPassword'].errors?.required">{{'La nueva contraseña es obligatorio' | translate}}.</div>
+                <div *ngIf="f2['newPassword'].errors?.minlength">{{'La contraseña debe tener al menos 6 characteres' | translate}}.</div>
+                <div *ngIf="f2['newPassword'].errors?.mustMatch">{{'La nueva contraseña deben ser iguales' | translate}}.</div>
+              </div>
+            </div>
+          </div>
+          <!--Confirmar Nueva Contraseña-->
+          <div class="col-md-6">
+            <div class="dp-block p-2">
+              <label for="confirmNewPassword">{{'Confirmar Nueva Contraseña' | translate}}</label>
+              <input name="confirmNewPassword" formControlName="confirmNewPassword" type="password" class="form-control" id="confirmNewPassword" [ngClass]="{ 'is-invalid': (updatePasswordForm.get('confirmNewPassword').dirty || updatePasswordForm.get('confirmNewPassword').touched || submittedUPF) && f2.confirmNewPassword.errors }" placeholder="{{'nueva contraseña' | translate }}" value="" required>
+              <div *ngIf="  f2['confirmNewPassword'].errors && (updatePasswordForm.get('confirmNewPassword').dirty || updatePasswordForm.get('confirmNewPassword').touched || submittedUPF)" class="invalid-feedback">
+                <div *ngIf="f2['confirmNewPassword'].errors?.required">{{'La contraseña es obligatoria' | translate}}.</div>
+                <div *ngIf="f2['confirmNewPassword'].errors?.minlength">{{'La contraseña debe tener al menos 6 characteres' | translate}}.</div>
+                <div *ngIf="f2['confirmNewPassword'].errors?.mustMatch">{{'Las contraseñas deben ser iguales' | translate}}.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button id="savePassword" name="savePassword" class="btn btn-primary btn-lz mt-3 mb-3" type="submit">{{'Guardar' | translate}}</button>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 order-md-1">
+      <form [formGroup]="updateSecretQuestionForm" (ngSubmit)="onSubmit('updSQ')">
+          <!--Correo-->
+          <div class="py-2 pt-5 text-left text_underline">
+              <h4 class="mb-0">{{'Mi Pregunta Secreta' | translate}}</h4>
+          </div>
+          <!--Cambio de Pregunta Secreta-->
+          <div class="row">
+            <div class="col-md-6">
+              <div class="dp-block p-2 mt-3">
+                <label for="pregSec">{{'Pregunta Secreta' | translate}}</label>
+                <select name="pregSec" formControlName="pregSec" [ngClass]="{ 'is-invalid': (updateSecretQuestionForm.get('pregSec').dirty || updateSecretQuestionForm.get('pregSec').touched || submittedUSQF) && f3.pregSec.errors }" class="custom-select d-block w-100" id="pregSec" required>
+                  <option value="">{{'Seleccione' | translate}}...</option>
+                  <option *ngFor="let s of secretQuestion" [value]="s.id">
+                    {{s.descripcion | translate}}
+                  </option>
+                </select>
+                <div *ngIf="f3['pregSec'].errors && (updateSecretQuestionForm.get('pregSec').dirty || updateSecretQuestionForm.get('pregSec').touched || submittedUSQF)" class="invalid-feedback">
+                  <div *ngIf="f3['pregSec'].errors?.required">{{'Por favor seleccione una pregunta secreta' | translate}}.</div>
+                </div>
+              </div>
+            </div>
+            <!--Respuesta Secreta-->
+            <div class="col-md-6">
+              <div class="dp-block p-2 mt-3">
+                <label for="respSec">{{'Respuesta Secreta' | translate}}</label>
+                <input name="respSec" formControlName="respSec" type="text" class="form-control" id="respSec" [ngClass]="{ 'is-invalid': (updateSecretQuestionForm.get('respSec').dirty || updateSecretQuestionForm.get('respSec').touched || submittedUSQF) && f3.respSec.errors }" placeholder="" value="" required>
+                <div *ngIf="f3['respSec'].errors && (updateSecretQuestionForm.get('respSec').dirty || updateSecretQuestionForm.get('respSec').touched || submittedUSQF)" class="invalid-feedback">
+                  <div *ngIf="f3['respSec'].errors?.required">{{'La respuesta a tu pregunta secreta es obligatoria' | translate}}.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <button id="saveSecretPreg" name="saveSecretPreg"  class="btn btn-primary btn-lz mt-3 mb-3" type="submit">{{'Guardar' | translate}}</button>
+      </form>
+    </div>
+  </div>
+</div>

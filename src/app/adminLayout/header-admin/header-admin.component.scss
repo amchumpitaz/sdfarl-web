@@ -1,0 +1,158 @@
+// $topnav-background-color: rgb(21, 143, 31);
+$topnav-background-color: #55be5a;
+:host {
+    .navbar {
+        background-color: $topnav-background-color;
+        .navbar-brand {
+            color: #fff;
+        }
+        .nav-item > a {
+            color: #fff;
+            &:hover {
+                color: #fff;
+            }
+        }
+    }
+    .messages {
+        width: 300px;
+        .media {
+            border-bottom: 1px solid #fff;
+            padding: 5px 10px;
+            &:last-child {
+                border-bottom: none;
+            }
+        }
+        .media-body {
+            h5 {
+                font-size: 13px;
+                font-weight: 600;
+            }
+            .small {
+                margin: 0;
+            }
+            .last {
+                font-size: 12px;
+                margin: 0;
+            }
+        }
+    }
+}
+
+.imgNav {
+    height: 55px;
+}
+
+.boton-carrito-compras {
+    background: url('/assets/images/carrito_compra.png'); 
+    background-repeat: no-repeat;
+    background-size: 32px 32px;
+    height: 33px;
+    width: 32px;
+}
+
+.badge-notify{
+    background: rgb(144, 208, 71);
+    position: relative;
+    top: -9px;
+    left: -8px;
+    height: 16px;
+    color: white;
+    font-weight: 500;
+}
+
+
+//
+@media (min-width: 992px) {
+  .animate {
+    animation-duration: 0.3s;
+    -webkit-animation-duration: 0.3s;
+    animation-fill-mode: both;
+    -webkit-animation-fill-mode: both;
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateY(1rem);
+    opacity: 0;
+  }
+  100% {
+    transform:translateY(0rem);
+    opacity: 1;
+  }
+  0% {
+    transform: translateY(1rem);
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes slideIn {
+  0% {
+    -webkit-transform: transform;
+    -webkit-opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    -webkit-opacity: 1;
+  }
+  0% {
+    -webkit-transform: translateY(1rem);
+    -webkit-opacity: 0;
+  }
+}
+
+.slideIn {
+  -webkit-animation-name: slideIn;
+  animation-name: slideIn;
+}
+
+.sizeFont {
+  font-size: 20px;
+}
+
+/* Other styles for the page not related to the animated dropdown */
+
+.navPerfilUsuario {
+    width:39%;
+}
+
+.navBadge {
+    width:15%;
+}
+
+// .navGeneral {
+//     width: 23%;
+// }
+
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px) {
+  }
+  
+  // Small devices (landscape phones, 576px and up)
+  @media (min-width: 576px) and (max-width: 767.98px) {
+  }
+  
+  // Medium devices (tablets, 768px and up)
+  @media (min-width: 768px) and (max-width: 991.98px) {
+  }
+  
+  // Large devices (desktops, 992px and up)
+  @media (min-width: 992px) and (max-width: 1199.98px) {
+    // .navGeneral {
+    //     width: 38%;
+    // } 
+  }
+
+  // Extra large devices (large desktops, 1200px and up)
+  @media (min-width: 1200px) and (max-width: 1514.98px) {
+    // .navGeneral {
+    //     width: 31%;
+    // } 
+  }
+  
+  // Extra large devices (large desktops, 1200px and up)
+  @media (min-width: 1515px) {
+    .navGeneral {
+        width: 23%;
+    }
+}

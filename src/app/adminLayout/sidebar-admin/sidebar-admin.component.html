@@ -1,0 +1,102 @@
+<nav class="sidebar" [ngClass]="{sidebarPushRight: isActive, collapsed: collapsed}">
+    <div class="list-group mt-3">
+        <a routerLink="/admin" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-home"></i>
+            <span>{{ 'Inicio' | translate }}</span>
+        </a>
+        <!-- <a routerLink="/catalogo" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-home"></i>
+            <span>{{ 'Inicio' | translate }}</span>
+        </a> -->
+        <!-- <div class="nested-menu">
+            <a class="list-group-item" (click)="addExpandClass('entidad')">
+                <i class="fa fa-user"></i>
+                <span>{{ 'Mi Perfil' | translate }}</span>
+            </a>
+            <li class="nested" [class.expand]="showMenu === 'entidad'">
+                <ul class="submenu">
+                    <li>
+                        <a routerLink="/admin/datos" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                            <i class="fa fa-address-card"></i>
+                            <span>{{ 'Mis Datos' | translate }}</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </div> -->
+        <!-- <a routerLink="/admin/mispedidos" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-car"></i>
+            <span>{{ 'Mis Pedidos' | translate }}</span>
+        </a> -->
+        <a routerLink="/admin/movimiento" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-cogs"></i>
+            <span>{{ 'Evaluar Movimiento' | translate }}</span>
+        </a>
+        <!-- <div class="nested-menu">
+            <a class="list-group-item" (click)="addExpandClass('pages')">
+                <i class="fa fa-car"></i>
+                <span>{{ 'Lista Incidencias' | translate }}</span>
+            </a>
+            <li class="nested" [class.expand]="showMenu === 'pages'">
+                <ul class="submenu">
+                    <li>
+                        <a routerLink="/admin/incidencia" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                            <i class="fa fa-monument"></i>
+                            <span>{{ 'Incidencias' | translate }}</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </div> -->
+        <!-- Graficos -->
+        <!-- <div class="nested-menu">
+            <a class="list-group-item" (click)="addExpandClass('chart')">
+                <i class="fa fa-area-chart"></i>
+                <span>{{ 'Graficos' | translate }}</span>
+            </a>
+            <li class="nested" [class.expand]="showMenu === 'chart'">
+                <ul class="submenu">
+                    <li>
+                        <a href="javascript:void(0)" class="list-group-item">
+                            <i class="fa fa-monument"></i>
+                            <span>{{ 'Submenu' | translate }}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" class="list-group-item">
+                            <i class="fa fa-monument"></i>
+                            <span>{{ 'Submenu' | translate }}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" class="list-group-item">
+                            <i class="fa fa-monument"></i>
+                            <span>{{ 'Submenu' | translate }}</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </div> -->
+        <div class="header-fields">
+            <div class="nested-menu">
+                <a class="list-group-item" (click)="addExpandClass('profile')">
+                    <span><i class="fa fa-user"></i>&nbsp; Lincoln Ortega</span>
+                </a>
+                <li class="nested" [class.expand]="showMenu === 'profile'">
+                    <ul class="submenu">
+                        <li>
+                            <a href="javascript:void(0)">
+                                <span><i class="fa fa-fw fa-user"></i> {{ 'Mi Cuenta' | translate }}</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a [routerLink]="['/login']" (click)="onLoggedout()">
+                                <span><i class="fa fa-fw fa-power-off"></i> {{ 'Cerrar Sesión' | translate }}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </div>
+        </div>
+    </div>
+</nav>
