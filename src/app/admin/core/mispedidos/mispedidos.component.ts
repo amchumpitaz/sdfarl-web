@@ -12,6 +12,7 @@ import { ProductoService } from '../mantenimiento/productos/productos.service';
 import { MisPedidosService } from './mispedidos.service';
 import { Incidencia } from './incidencia.model';
 import { element } from '@angular/core/src/render3';
+import { NgbModal, NgbModalConfig, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-mispedidos',
@@ -53,6 +54,11 @@ export class MispedidosComponent implements OnInit, OnDestroy {
   isCleanField: boolean;
   incidencia: any;
 
+  casoFraude: any;
+  textModal: any;
+  textModalProcess: any;
+  modal: NgbModalRef;
+
   imgs: any;
 
   public imagePath;
@@ -68,6 +74,7 @@ export class MispedidosComponent implements OnInit, OnDestroy {
     private productoService: ProductoService,
     private misPedidosService: MisPedidosService,
     public notificationService: NotificationService,
+    private modalService: NgbModal,
     public router: Router) {
   }
 
@@ -417,6 +424,15 @@ export class MispedidosComponent implements OnInit, OnDestroy {
     this.limpiarCampos();
   }
 
+  openModal(info: any) {
+    this.modal = this.modalService.open(info, {size: 'lg'});
+  }
+
+  ocultarModal(): void {
+    this.modal.close();
+  }
+
+
   // convenience getter for easy access to form fields
   get f() {
     return this.registerForm.controls;
@@ -457,22 +473,15 @@ export class MispedidosComponent implements OnInit, OnDestroy {
       this.misPedidosService.createIncidencia(this.incidencia).subscribe(
         (data) => {
           console.log(data);
-          // console.log(data['codigo']);
-          // this.filesList.forEach(element => {
-          //   const formData = new FormData();
-          //   // formData.append('file', this.filesList[0]);
-          //   formData.append('file', element);
-          //   console.log(formData);
-          //   this.misPedidosService.saveimages(formData, data['codigo']).subscribe(
-          //     (data2) => {
-          //       console.log(data2);
-          //     }, (error) => {
-          //       console.log(JSON.stringify(error, null, 2));
-          //       this.notificationService.showError('Hubo un error en el registro', '');
-          //     }
-          //   );
-          // });
-          // this.notificationService.showSuccess('Se registro la incidencia con éxito', '');
+          console.log(data['predictions']['predictions'][0]);
+          document.getElementById('buttonOpenModal').click();
+          this.textModal = data['predictions']['predictions'][0];
+          this.textModal = (Math.round(this.textModal * 100) / 100) * 100;
+          this.casoFraude = this.textModal < 40 ? 0 : this.textModal < 60 ? 1 : 2;
+          this.casoFraude = data['predictions']['predictions'][0] > 0.5 ? true : false;
+          console.log(data['predictions']['predictions'][0]);
+          console.log(this.textModal);
+          console.log(this.casoFraude);
         }, (error) => {
           console.log(JSON.stringify(error, null, 2));
           this.notificationService.showError('Hubo un error en el registro', '');

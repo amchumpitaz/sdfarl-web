@@ -130,7 +130,8 @@ export class CatalogoComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.route.navigate(['/catalogo/register']);
+    // this.route.navigate(['/catalogo/register']);
+    this.route.navigate(['/login']);
     this.data =  [{
       id: 1,
       categoria: this.translate.instant('Todos')

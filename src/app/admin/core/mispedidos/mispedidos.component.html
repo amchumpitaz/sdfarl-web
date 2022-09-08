@@ -281,11 +281,48 @@
             </div>
           </div>
           <div class="row">
-            <button class="btn btn-primary btn-lz mt-3 mb-3" type="submit">{{'Evaluar' | translate }}</button>
+            <button class="btn btn-primary btn-lz mt-3 mb-3" type="submit" data-toggle="modal" data-target=".bd-example-modal-sm">{{'Evaluar' | translate }}</button>
           </div>
         </div>
         </div>
       </form>
+  </div>
+</div>
+<div>
+  <button class="btn btn-outline-success m-5" style="display: none" id= "buttonOpenModal" (click)="openModal(info)">Abrir Modal</button>
+</div>
+ <!--Modal for process to go up products-->
+<ng-template #info let-modal>
+  <div class="modal-header text_underline">
+    <h4 class="modal-title">{{'Análisis de caso de fraude' | translate }}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="ocultarModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="text-center">
+      <div *ngIf="casoFraude == 0" class="text-center">
+        <i class="fa fa-check modalIconValid" aria-hidden="true"></i> 
+        <span class="modalText m-2">Bajo riesgo potencial de fraude</span>
+      </div>
+      <div *ngIf="casoFraude == 2" class="text-center">
+        <i class="fa fa-check modalIconInvalid" aria-hidden="true"></i> 
+        <span class="modalText m-2">Alto riesgo potencial caso de fraude</span>
+      </div>
+      <div *ngIf="casoFraude == 1" class="text-center">
+        <i class="fa fa-check modalIconModerado" aria-hidden="true"></i> 
+        <span class="modalText m-2">Riesgo moderado como potencial caso de fraude</span>
+      </div>
+      <div class="loading-bro d-inline-flex">
+        <!-- <svg id="load" x="0px" y="0px" viewBox="0 0 150 150">
+          <circle id="loading-inner" cx="75" cy="75" r="60"/>
+        </svg> -->
+        <span class="modalText m-2">La probabilidad es del: {{textModal}} %</span>
+      </div>
     </div>
   </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="ocultarModal()">{{'Cerrar' | translate }}</button>
+  </div>
+</ng-template>
 </div>

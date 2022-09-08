@@ -23,7 +23,7 @@
           <div class="row align-items-center h-100" style="margin-right: 0; margin-left: 0; font-size: 1rem; font-weight: 300">
             <div class="col-lg-4 col-md-6 col-sm-10 mx-auto pb-5 card p-4">
                 <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
-                    <h5 class="pt-4">{{'Inicia sesión o' | translate }} <a [routerLink]="['/catalogo/register']" style="text-decoration: underline">{{'crea una cuenta' | translate }}</a></h5>
+                    <!-- <h5 class="pt-4">{{'Inicia sesión o' | translate }} <a [routerLink]="['/catalogo/register']" style="text-decoration: underline">{{'crea una cuenta' | translate }}</a></h5> -->
                     <div *ngIf="f.submitted && isLoginFailed" class="alert alert-danger">
                         {{'Usuario y/o contraseña incorrecta' | translate }}. {{'Por favor intentelo de nuevo' | translate }}.
                     </div>
