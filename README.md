@@ -1,5 +1,4 @@
 # Desarrollado en Angular 7 y Bootstrap 4
-# Alan Morón 08/02/2019 - Indra
 
 *   boostrap-v4.0.0
 *   angular-v7.0.2
