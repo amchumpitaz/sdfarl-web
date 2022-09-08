@@ -477,8 +477,7 @@ export class MispedidosComponent implements OnInit, OnDestroy {
           document.getElementById('buttonOpenModal').click();
           this.textModal = data['predictions']['predictions'][0];
           this.textModal = (Math.round(this.textModal * 100) / 100) * 100;
-          this.casoFraude = this.textModal < 40 ? 0 : this.textModal < 60 ? 1 : 2;
-          this.casoFraude = data['predictions']['predictions'][0] > 0.5 ? true : false;
+          this.casoFraude = (this.textModal < 40) ? 0 : (this.textModal < 60) ? 1 : 2;
           console.log(data['predictions']['predictions'][0]);
           console.log(this.textModal);
           console.log(this.casoFraude);
