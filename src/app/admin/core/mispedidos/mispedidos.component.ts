@@ -13,6 +13,7 @@ import { MisPedidosService } from './mispedidos.service';
 import { Incidencia } from './incidencia.model';
 import { element } from '@angular/core/src/render3';
 import { NgbModal, NgbModalConfig, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-mispedidos',
@@ -54,7 +55,11 @@ export class MispedidosComponent implements OnInit, OnDestroy {
   isCleanField: boolean;
   incidencia: any;
 
+  operadores: any;
+  bodyOp: any;
+
   casoFraude: any;
+  id_movimiento: any;
   textModal: any;
   textModalProcess: any;
   modal: NgbModalRef;
@@ -75,6 +80,7 @@ export class MispedidosComponent implements OnInit, OnDestroy {
     private misPedidosService: MisPedidosService,
     public notificationService: NotificationService,
     private modalService: NgbModal,
+    private spinner: NgxSpinnerService,
     public router: Router) {
   }
 
@@ -91,6 +97,7 @@ export class MispedidosComponent implements OnInit, OnDestroy {
   console.log(this.tokenStorage.getAuthorities());
   console.log(this.user);
   this.loadAduanas();
+  this.obtenerOperadores();
   // console.log(this.categorias);
   // Condicions for test
     this.condicions = [{
@@ -478,6 +485,7 @@ export class MispedidosComponent implements OnInit, OnDestroy {
           this.textModal = data['predictions']['predictions'][0];
           this.textModal = (Math.round(this.textModal * 100) / 100) * 100;
           this.casoFraude = (this.textModal < 40) ? 0 : (this.textModal < 60) ? 1 : 2;
+          this.id_movimiento = data['movimiento'];
           console.log(data['predictions']['predictions'][0]);
           console.log(this.textModal);
           console.log(this.casoFraude);
@@ -491,6 +499,25 @@ export class MispedidosComponent implements OnInit, OnDestroy {
       console.log(this.registerForm.value);
     }
     // this.router.navigate(['/admin/productos']);
+  }
+
+  // OBTENER LA VISUALIZACION DE LOS OPERADORES
+  obtenerOperadores(): void {
+    this.bodyOp = {rol_funcional: 'OPERADOR'};
+    this.misPedidosService.getObtenerOperadores(this.bodyOp)
+      .subscribe((data: any) => {
+        this.operadores = data.user;
+      }, (error: any) => {
+        this.spinner.hide();
+        this.notificationService.showError(this.translate.instant('Ocurrió un error al obtener los archivos de carga'), '');
+        console.log(JSON.stringify(error, null, 2));
+      });
+  }
+
+  asignarMovimiento(usuario: String) {
+    console.log('entrando a asignar movimiento...');
+    console.log(usuario);
+    console.log(this.id_movimiento);
   }
 
   // METODO QUE PERMITE OBTENER EL ARCHIVO SELECCIONADO

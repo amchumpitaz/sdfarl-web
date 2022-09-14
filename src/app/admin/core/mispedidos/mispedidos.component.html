@@ -319,6 +319,61 @@
         </svg> -->
         <span class="modalText m-2">La probabilidad es del: {{textModal}} %</span>
       </div>
+      <br>
+      <div class="loading-bro d-inline-flex">
+        <!-- <svg id="load" x="0px" y="0px" viewBox="0 0 150 150">
+          <circle id="loading-inner" cx="75" cy="75" r="60"/>
+        </svg> -->
+        <span class="modalText m-2">Asignar movimiento:</span>
+      </div>
+      <div id="tabla" class="card-body table-responsive p-2">
+        <table class="table table-hover mb-0">
+          <thead>
+            <tr style="background-color: #cfd8dc!important">
+              <td class="text-center">N° {{'Usuario' }}</td>
+              <td class="text-center">{{'Nombre'}}</td>
+              <td class="text-center">{{'Apellido'}}</td>
+              <td class="text-center">{{'Correo'}}</td>
+              <td class="text-center">{{'Asignar'}}</td>
+            </tr>
+          </thead>
+          <tbody *ngIf="operadores; else noData">
+            <tr *ngFor="let operador of operadores; trackBy: identify; index as i">
+              <!-- <th scope="row" class="text-center">{{i + 1}}</th>
+              <td>
+                  <div class="custom-control custom-radio">
+                      <input type="radio" 
+                             class="custom-control-input" 
+                             id="radio-{{i}}" 
+                             name="radio" 
+                             [value]="archivoCargados.codigo"
+                             [(ngModel)]="codigo"
+                             style="cursor: pointer"
+                             (change)="onSelectionChange(archivoCargados.codigo)">
+                      <label class="custom-control-label" for="radio-{{i}}"></label>
+                    </div>
+              </td> -->
+              <td class="text-center"><label for="radio-{{i}}" style="cursor: pointer;">{{operador?.usuario }}</label></td>
+              <td class="text-center"><label for="radio-{{i}}" style="cursor: pointer;"></label>{{operador?.nombres }}</td>
+              <td class="text-center"><label for="radio-{{i}}" style="cursor: pointer;"></label>{{operador?.ape_paterno }}</td>
+              <td class="text-center"><label for="radio-{{i}}" style="cursor: pointer;"></label>{{operador?.email }}</td>
+              <td class="text-center"><label for="radio-{{i}}" style="cursor: pointer;"></label>
+                <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Asignar movimiento">
+                  <button (click)="asignarMovimiento(operador?.usuario)" class="fa fa-check detalle_button text-success rounded-circle border-0 p-2">
+                  </button>
+                </span>
+              </td>
+           </tr>
+          </tbody>
+        <ng-template #noData>
+          <tbody>
+            <tr>
+            <td colspan="7" class="text-center">{{'No se cargó correctamente la lista de operadores' | translate }}.</td>
+            </tr>
+          </tbody>
+        </ng-template>
+        </table>
+      </div>
     </div>
   </div>
   <div class="modal-footer">

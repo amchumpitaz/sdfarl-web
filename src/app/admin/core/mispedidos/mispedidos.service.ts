@@ -16,6 +16,11 @@ export class MisPedidosService {
     private baseUrlMaintTable = SERVER_API_URL + 'api/auth/maintable';
     constructor(private http: HttpClient) { }
 
+    // SDFARL
+    getObtenerOperadores(body): Observable<any> {
+      return this.http.post(`${this.baseUrl}/security/consultar_rol_usuario`, body);
+    }
+
     // UPC
     getTipoDeIncidencia(): Observable<any> {
       return this.http.get(`${this.baseUrl}/tiposIncidencia/listar`);
