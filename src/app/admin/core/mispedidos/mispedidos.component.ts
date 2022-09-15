@@ -55,6 +55,7 @@ export class MispedidosComponent implements OnInit, OnDestroy {
   isCleanField: boolean;
   incidencia: any;
 
+  asignacion: any;
   operadores: any;
   bodyOp: any;
 
@@ -491,7 +492,7 @@ export class MispedidosComponent implements OnInit, OnDestroy {
           console.log(this.casoFraude);
         }, (error) => {
           console.log(JSON.stringify(error, null, 2));
-          this.notificationService.showError('Hubo un error en el registro', '');
+          this.notificationService.showError('Ocurrió un erro al validar el movimiento aduanero', '');
         }
       );
 
@@ -509,7 +510,7 @@ export class MispedidosComponent implements OnInit, OnDestroy {
         this.operadores = data.user;
       }, (error: any) => {
         this.spinner.hide();
-        this.notificationService.showError(this.translate.instant('Ocurrió un error al obtener los archivos de carga'), '');
+        this.notificationService.showError(this.translate.instant('Ocurrió un error al obtener los operadores'), '');
         console.log(JSON.stringify(error, null, 2));
       });
   }
@@ -518,6 +519,19 @@ export class MispedidosComponent implements OnInit, OnDestroy {
     console.log('entrando a asignar movimiento...');
     console.log(usuario);
     console.log(this.id_movimiento);
+
+    this.bodyOp = {usuario: usuario, movimiento: this.id_movimiento};
+    this.misPedidosService.asignarOperadores(this.bodyOp)
+      .subscribe((data: any) => {
+        console.log(data);
+        this.asignacion = data;
+        this.notificationService.showSuccess(this.translate.instant('Movimiento asignado correctamente'), '');
+        this.ocultarModal();
+      }, (error: any) => {
+        this.spinner.hide();
+        this.notificationService.showError(this.translate.instant('Ocurrió un error al asignar el movimiento'), '');
+        console.log(JSON.stringify(error, null, 2));
+      });
   }
 
   // METODO QUE PERMITE OBTENER EL ARCHIVO SELECCIONADO

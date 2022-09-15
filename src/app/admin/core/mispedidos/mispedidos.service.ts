@@ -21,6 +21,10 @@ export class MisPedidosService {
       return this.http.post(`${this.baseUrl}/security/consultar_rol_usuario`, body);
     }
 
+    asignarOperadores(body): Observable<any> {
+      return this.http.post(`${this.baseUrl}/security/asignar_movimiento_usuario`, body);
+    }
+
     // UPC
     getTipoDeIncidencia(): Observable<any> {
       return this.http.get(`${this.baseUrl}/tiposIncidencia/listar`);
