@@ -46,12 +46,12 @@ export class ProductosComponent implements OnInit {
     }
 
   ngOnInit() {
-    this.misPedidosService.getIncidencias().subscribe(
+    this.misPedidosService.getControles().subscribe(
       (data) => {
         console.log(data);
         this.productos = data;
         // console.log(data[0]['imagenes'][0]['archivo']);
-        let base64 =  data[0]['imagenes'][0]['archivo'];
+        /* const base64 =  data[0]['imagenes'][0]['archivo'];
         const date = new Date().valueOf();
         let text = '';
         const possibleText = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -70,13 +70,13 @@ export class ProductosComponent implements OnInit {
         reader.readAsDataURL(imageFile);
         reader.onload = (_event) => {
           this.imgURL = reader.result;
-        };
+        }; */
 
         // Set background to image preview to box of each element
         // reader.onloadend = (_event) => {
         //   this.imgs[index].img = this.imgURL;
         // };
-        console.log(imageFile);
+        // console.log(imageFile);
       }, (error) => {
         console.log(JSON.stringify(error, null, 2));
       }
@@ -89,8 +89,8 @@ export class ProductosComponent implements OnInit {
 
   limpiarBusqueda() {
     this.producto = {
-      categoria: null,
-      titulo: null
+      id: null,
+      nivel_riesgo: null
     };
   }
 

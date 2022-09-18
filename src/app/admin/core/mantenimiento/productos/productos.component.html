@@ -2,10 +2,10 @@
   <div class="row py-3 pt-5 text-left text_underline">
     <div class="col col-lg-6 pl-0">
       <i class="icon fa fa-shopping-cart"></i>
-      <h2>Incidencias</h2>
+      <h2>Controles de Riesgo</h2>
     </div>
     <div class="col col-lg-6 text-right">
-      <button class="btn btn-outline-primary" [routerLink]="['/admin/incidencia/mantenimiento']"
+      <button class="btn btn-outline-primary" [routerLink]="['/admin/controles/mantenimiento']"
         [routerLinkActive]="['router-link-active']">
         <span class="fa fa-plus fa-lg" aria-hidden="true"></span>
         {{'Nuevo' | translate }}
@@ -57,12 +57,14 @@
                   <label class="custom-control-label" for="customCheck"></label>
                 </div>
               </td> -->
-              <td class="text-center">Código</td>
-              <td class="text-center">Tipo</td>
+              <td class="text-center">Id</td>
+              <td class="text-center">Nivel Riesgo</td>
               <td class="text-center">Descripción</td>
-              <td class="text-center">Distrito</td>
-              <td class="text-center">Dirección</td>
-              <td class="text-center">Acciones</td>
+              <td class="text-center">Estado</td>
+              <td class="text-center">Fec. Creación</td>
+              <td class="text-center">Usr. Crea</td>
+              <td class="text-center">Fec. Modificación</td>
+              <td class="text-center">Usr. Modifica</td>
             </tr>
           </thead>
           <tbody *ngIf="productos; else noData">
@@ -74,17 +76,20 @@
                   <label class="custom-control-label" attr.for="customCheck{{i}}"></label>
                 </div>
               </th> -->
-              <td class="text-center">{{ producto?.codigo }}</td>
-              <td class="text-center">{{ producto?.tipo.descripcion }}</td>
+              <td class="text-center">{{ producto?.id }}</td>
+              <td class="text-center">{{ producto?.nivel_riesgo }}</td>
               <td class="text-center">{{ producto?.descripcion }}</td>
-              <td class="text-center">{{ producto?.distrito }}</td>
-              <td class="text-center">{{ producto?.direccion }}</td>
+              <td class="text-center">{{ producto?.estado }}</td>
+              <td class="text-center">{{ producto?.fec_crea }}</td>
+              <td class="text-center">{{ producto?.usr_crea }}</td>
+              <td class="text-center">{{ producto?.fec_modifica }}</td>
+              <td class="text-center">{{ producto?.usr_modifica }}</td>
               <td class="text-center">
                 <div class="btn-group" role="group">
-                  <button type="button" class="btn btn-outline-dark" (click)="getProductoById(producto.codigo)"><span class="fa fa-pencil fa-lg"
+                  <button type="button" class="btn btn-outline-dark" (click)="getProductoById(producto.id)"><span class="fa fa-pencil fa-lg"
                       aria-hidden="true"></span></button>
                   <button type="button" class="btn btn-outline-danger"
-                    (click)="modalEliminarProducto(producto.codigo)"><span class="fa fa-trash fa-lg"
+                    (click)="modalEliminarProducto(producto.id)"><span class="fa fa-trash fa-lg"
                       aria-hidden="true"></span></button>
                 </div>
               </td>
@@ -93,7 +98,7 @@
           <ng-template #noData>
             <tbody>
               <tr>
-                <td colspan="4" class="text-center">{{'Ningún registro que mostrar según sus criterios de búsqueda' | translate }}.</td>
+                <td colspan="8" class="text-center">{{'Ningún registro que mostrar según sus criterios de búsqueda' | translate }}.</td>
               </tr>
             </tbody>
           </ng-template>

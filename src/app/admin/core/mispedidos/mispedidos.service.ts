@@ -25,6 +25,14 @@ export class MisPedidosService {
       return this.http.post(`${this.baseUrl}/security/asignar_movimiento_usuario`, body);
     }
 
+    getControles(): Observable<any> {
+      return this.http.get(`${this.baseUrl}/controles`);
+    }
+
+    getNivelesRiesgo(): Observable<any> {
+      return this.http.get(`${this.baseUrl}/nivelesRiesgo`);
+    }
+
     // UPC
     getTipoDeIncidencia(): Observable<any> {
       return this.http.get(`${this.baseUrl}/tiposIncidencia/listar`);

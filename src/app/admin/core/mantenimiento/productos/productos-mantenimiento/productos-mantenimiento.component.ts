@@ -34,7 +34,7 @@ export class ProductosMantenimientoComponent implements OnInit, OnDestroy {
   registerForm: FormGroup;
   submitted: boolean;
 
-  categorias: any;
+  nivelesRiesgo: any;
   tecnologias: any;
   lugarrecojos: any;
   tipoMonedas: any;
@@ -153,8 +153,8 @@ export class ProductosMantenimientoComponent implements OnInit, OnDestroy {
 
     this.registerForm = this.formBuilder.group({
       descripcion: ['', Validators.required],
-      direccion : ['', Validators.required],
-      tipo : ['', Validators.required],
+      id : ['', Validators.required],
+      nivel_riesgo : ['', Validators.required],
       distrito: ['', Validators.required],
       provincia: ['', Validators.required],
       pais: ['', Validators.required],
@@ -196,7 +196,7 @@ export class ProductosMantenimientoComponent implements OnInit, OnDestroy {
             console.log(element);
             console.log(this.model['imagenes'].indexOf(element));
 
-            let base64 =  element['archivo'];
+            const base64 =  element['archivo'];
             const date = new Date().valueOf();
             let text = '';
             const possibleText = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -354,7 +354,7 @@ export class ProductosMantenimientoComponent implements OnInit, OnDestroy {
 
   cancelarOperacion() {
     this.limpiarCampos();
-    this.router.navigate(['admin/incidencia']);
+    this.router.navigate(['admin/controles']);
   }
 
   preview(files: Blob[], index: any) {
@@ -393,10 +393,10 @@ export class ProductosMantenimientoComponent implements OnInit, OnDestroy {
   }
 
   loadCategorias() {
-    this.categorias = [];
-    this.misPedidosService.getTipoDeIncidencia().subscribe(
+    this.nivelesRiesgo = [];
+    this.misPedidosService.getNivelesRiesgo().subscribe(
       (data) => {
-        this.categorias = data;
+        this.nivelesRiesgo = data;
       },
       error => {
         console.log(error);

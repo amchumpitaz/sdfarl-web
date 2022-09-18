@@ -1,25 +1,38 @@
 <div class="container">
   <div class="py-3 pt-5 text-left text_underline">
     <i class="icon fa fa-user"></i>
-    <h2>Evaluar Movimientos Aduaneros</h2>
+    <h2>Registro de Control de Riesgo</h2>
   </div>
   <div class="row">
     <div class="col-md-12 order-md-1">
       <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
         <div class="row">
           <div class="col-md-6 pl-0">
-            <!--Categoria-->
+            <!--ID-->
             <div class="col-md-12 mb-3 mt-3">
-              <label for="tipo">Tipo de Incidencia</label>
-              <select name="tipo" formControlName="tipo" [ngClass]="{ 'is-invalid': (registerForm.get('tipo').dirty || registerForm.get('tipo').touched || submitted) && f.tipo.errors }"
-                class="custom-select d-block w-100" id="tipo" required>
+              <label for="id">ID</label>
+              <input name="id" formControlName="id" type="text" class="form-control"
+                id="id"
+                [ngClass]="{ 'is-invalid': (registerForm.get('id').dirty || registerForm.get('id').touched || submitted) && f.id.errors }"
+                placeholder="" value="" readonly>
+              <div
+                *ngIf="(registerForm.get('id').dirty || registerForm.get('id').touched || submitted) && f['id'].errors"
+                class="invalid-feedback">
+                <div *ngIf="f['id'].errors?.required"> {{'La dirección es obligatoria' | translate }}.</div>
+              </div>
+            </div>
+            <!--Nivel de riesgo-->
+            <div class="col-md-12 mb-3 mt-3">
+              <label for="nivel_riesgo">Nivel de Riesgo</label>
+              <select name="nivel_riesgo" formControlName="nivel_riesgo" [ngClass]="{ 'is-invalid': (registerForm.get('nivel_riesgo').dirty || registerForm.get('nivel_riesgo').touched || submitted) && f.nivel_riesgo.errors }"
+                class="custom-select d-block w-100" id="nivel_riesgo" required>
                 <option value="">---{{'Seleccione' | translate }}---</option>
-                <option *ngFor="let p of categorias" [value]="p.codigo">
+                <option *ngFor="let p of nivelesRiesgo" [value]="p.codigo">
                   {{p.descripcion}}
                 </option>
               </select>
-              <div *ngIf="(registerForm.get('tipo').dirty || registerForm.get('tipo').touched || submitted) && f['tipo'].errors" class="invalid-feedback">
-                <div *ngIf="f['tipo'].errors?.required">Por favor seleccione un tipo.</div>
+              <div *ngIf="(registerForm.get('nivel_riesgo').dirty || registerForm.get('nivel_riesgo').touched || submitted) && f['nivel_riesgo'].errors" class="invalid-feedback">
+                <div *ngIf="f['nivel_riesgo'].errors?.required">Por favor seleccione el nivel de riesgo.</div>
               </div>
             </div>
             <!--Descripcion-->
@@ -28,12 +41,12 @@
               <div class="mb-3 mt-3 form-group shadow-textarea">
                 <textarea name="descripcion" type="textarea" formControlName="descripcion" [ngClass]="{ 'is-invalid': (registerForm.get('descripcion').dirty || registerForm.get('descripcion').touched || submitted) && f.descripcion.errors }"  class="form-control" id="descripcion" rows="3" placeholder="Detalle del producto..." maxlength="100" required></textarea>
                 <div *ngIf="(registerForm.get('descripcion').dirty || registerForm.get('descripcion').touched || submitted) && f['descripcion'].errors" class="invalid-feedback">
-                  <div *ngIf="f['descripcion'].errors?.required">{{'Por favor describa el producto' | translate}}.</div>
+                  <div *ngIf="f['descripcion'].errors?.required">{{'Por favor describa el control' | translate}}.</div>
                 </div>
               </div>
             </div>
             <!--Nombre Contacto-->
-            <div class="col-md-12 mb-3 mt-3">
+            <!-- <div class="col-md-12 mb-3 mt-3">
                 <label for="direccion">Dirección</label>
                 <input name="direccion" formControlName="direccion" type="text" class="form-control"
                   id="direccion"
@@ -44,9 +57,9 @@
                   class="invalid-feedback">
                   <div *ngIf="f['direccion'].errors?.required"> {{'La dirección es obligatoria' | translate }}.</div>
                 </div>
-              </div>
+              </div> -->
             <!--Distrito del Producto-->
-            <div class="col-md-12 mb-3 mt-3">
+            <!-- <div class="col-md-12 mb-3 mt-3">
               <label for="distrito">Distrito</label>
               <input name="distrito" formControlName="distrito" type="text" class="form-control" id="distrito"
                 [ngClass]="{ 'is-invalid': (registerForm.get('distrito').dirty || registerForm.get('distrito').touched || submitted) && f.distrito.errors }"
@@ -56,9 +69,9 @@
                 class="invalid-feedback">
                 <div *ngIf="f['distrito'].errors?.required">El distrito es obligatorio.</div>
               </div>
-            </div>
+            </div> -->
            <!--Provincia-->
-           <div class="col-md-12 mb-3 mt-3">
+           <!-- <div class="col-md-12 mb-3 mt-3">
             <label for="provincia">Provincia</label>
             <input name="provincia" formControlName="provincia" type="text" class="form-control" id="provincia"
               [ngClass]="{ 'is-invalid': (registerForm.get('provincia').dirty || registerForm.get('provincia').touched || submitted) && f.provincia.errors }"
@@ -68,9 +81,9 @@
               class="invalid-feedback">
               <div *ngIf="f['provincia'].errors?.required">La provincia es obligatorio.</div>
             </div>
-          </div>
+          </div> -->
           <!--Pais-->
-          <div class="col-md-12 mb-3 mt-3">
+          <!-- <div class="col-md-12 mb-3 mt-3">
             <label for="pais">País</label>
             <input name="pais" formControlName="pais" type="text" class="form-control" id="pais"
               [ngClass]="{ 'is-invalid': (registerForm.get('pais').dirty || registerForm.get('pais').touched || submitted) && f.pais.errors }"
@@ -80,67 +93,8 @@
               class="invalid-feedback">
               <div *ngIf="f['pais'].errors?.required">El país es obligatorio.</div>
             </div>
-          </div>
-        </div>
-        <div class="col-md-6 pl-0">
-          <div class="col-md-12 pl-0">
-            <label class="pb-3">{{'Agregar Imágenes' | translate }}</label>
-            <div class="col-md-12 text-center mb-3 h-25 w-100 d-flex rounded">
-              <img *ngIf="!imgURL" src="assets/images/no-image.jpg" w-100 h-100 class="mx-auto d-block rounded" style="width: auto;">
-              <img [src]="imgURL" w-100 h-100 class="mx-auto d-block rounded" *ngIf="imgURL" style="width: 100%;">
-            </div>
-            <div *ngIf="submitted && f['img'].errors" class="invalid-feedback2">
-              <div *ngIf="f['img'].errors?.required">{{'Por favor ingrese al menos una imagen' | translate }}.</div>
-            </div>
-            <div class="row mt-5">
-              <div class="col-md-2 pr-2 pl-1 newWidth">
-                <span style="color:red;" *ngIf="message">{{message}}</span>
-                <div id="imgUp0" class="imgUp">
-                  <div id="imagePreview0" class="imagePreview" [style.backgroundImage]="'url('+ imgs[0].img +')'" (click) = "previewImgToBigPanel(0)"></div>
-                  <label class="btn btn-secondary"><i class="fa fa-cloud-upload"></i>
-                    <input #file0 type="file" (change)="preview(file0.files, 0)" accept='image/*' class="uploadFile img" value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;">
-                  </label>
-                </div>
-              </div>
-              <div class="col-md-2 pr-2 pl-1 newWidth">
-                <span style="color:red;" *ngIf="message">{{message}}</span>
-                <div id="imgUp1" class="imgUp">
-                  <div id="imagePreview1" class="imagePreview" [style.backgroundImage]="'url('+ imgs[1].img +')'" (click) = "previewImgToBigPanel(1)"></div>
-                  <label class="btn btn-secondary"><i class="fa fa-cloud-upload"></i>
-                    <input #file1 type="file" (change)="preview(file1.files, 1)" accept='image/*' class="uploadFile img" value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;">
-                  </label>
-                </div>
-              </div>
-              <div class="col-md-2 pr-2 pl-1 newWidth">
-                <span style="color:red;" *ngIf="message">{{message}}</span>
-                <div id="imgUp2" class="imgUp">
-                  <div id="imagePreview2" class="imagePreview" [style.backgroundImage]="'url('+ imgs[2].img +')'" (click) = "previewImgToBigPanel(2)"></div>
-                  <label class="btn btn-secondary"><i class="fa fa-cloud-upload"></i>
-                    <input #file2 type="file" (change)="preview(file2.files, 2)" accept='image/*' class="uploadFile img" value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;">
-                  </label>
-                </div>
-              </div>
-              <div class="col-md-2 pr-2 pl-1 newWidth">
-                <span style="color:red;" *ngIf="message">{{message}}</span>
-                <div id="imgUp3" class="imgUp">
-                  <div id="imagePreview3" class="imagePreview" [style.backgroundImage]="'url('+ imgs[3].img +')'" (click) = "previewImgToBigPanel(3)"></div>
-                  <label class="btn btn-secondary"><i class="fa fa-cloud-upload"></i>
-                    <input #file3 type="file" (change)="preview(file3.files, 3)" accept='image/*' class="uploadFile img" value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;">
-                  </label>
-                </div>
-              </div>
-              <div class="col-md-2 pr-2 pl-1 newWidth">
-                <span style="color:red;" *ngIf="message">{{message}}</span>
-                <div id="imgUp4" class="imgUp">
-                  <div id="imagePreview4" class="imagePreview" [style.backgroundImage]="'url('+ imgs[4].img +')'" (click) = "previewImgToBigPanel(4)"></div>
-                  <label class="btn btn-secondary"><i class="fa fa-cloud-upload"></i>
-                    <input #file4 type="file" (change)="preview(file4.files, 4)" class="uploadFile img" value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;">
-                  </label>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+          </div> -->
+          </div>        
         </div>
         <div class="row">
           <!-- <button class="btn btn-primary btn-lz mt-3 mb-3" type="submit">{{'Registrar' | translate }}</button> -->

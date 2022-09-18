@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class ProductoService {
 
-    private baseUrl = SERVER_API_URL + 'api/producto';
+    private baseUrl = SERVER_API_URL + 'api/controles';
     // variable de transferencia
     private messages: number;
     constructor(private http: HttpClient) { }
