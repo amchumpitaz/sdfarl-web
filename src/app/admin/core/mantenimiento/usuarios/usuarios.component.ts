@@ -6,7 +6,11 @@ import { NotificationService } from 'src/app/shared/services';
 import { NgbModalRef, NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UsuarioService } from './usuarios.service';
 import { TranslateService } from '@ngx-translate/core';
-
+import { ModalService } from 'src/app/shared/alert/modal.service';
+import { CategoriaService } from '../categorias/categoria.service';
+import { MisPedidosService } from '../../mispedidos/mispedidos.service';
+import { TokenStorageService } from 'src/app/shared/auth/token-storage.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 @Component({
   selector: 'app-usuarios',
   templateUrl: './usuarios.component.html',
@@ -15,128 +19,150 @@ import { TranslateService } from '@ngx-translate/core';
 
 export class UsuariosComponent implements OnInit {
 
-  nrodocumento: any;
-  documento: any;
+  categorias: any;
+  textCategoria: string;
 
-  perfiles: any;
-  perfil: any;
+  username: any;
+  body: any;
+  movimientosAsignados: any;
+  movimientosAsignadosActivos: any = [];
 
-  usuarios: any;
-  usuariosActivos: any = [];
-
-  usuario: Usuario = new Usuario();
+  registerForm: FormGroup;
+  submitted: boolean;
   modal: NgbModalRef;
-  constructor(private router: Router,
-    private translate: TranslateService,
+
+  imgs: any;
+
+  public imagePath;
+  imgURL: any;
+  public message: string;
+  public filesList: Array<File> = [];
+
+  constructor(
     public modalDialogService: AdminModalService,
     public notificationService: NotificationService,
-    public usuarioService: UsuarioService) {
-  }
+    private translate: TranslateService,
+    private tokenStorage: TokenStorageService,
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private usuarioService: UsuarioService,
+    private misPedidosService: MisPedidosService,
+    public categoriaService: CategoriaService) {
+    }
 
   ngOnInit() {
-    this.nrodocumento = [{
-      id: 1,
-      nombre: 'DNI'
-    },
-    {
-      id: 2,
-      nombre: 'Carnet Extranjeria'
-    },
-    {
-      id: 3,
-      nombre: 'Pasaporte'
-    }];
+    this.username = this.tokenStorage.getUsername();
 
-    this.perfiles = [{
-      id: 1,
-      nombre: 'Administrador'
-    },
-    {
-      id: 2,
-      nombre: 'Comprador'
-    },
-    {
-      id: 3,
-      nombre: 'Cobrador'
-    }];
+    this.body = {
+      'usuario': this.username
+    };
 
-    this.usuario.perfil = null;
-    this.usuario.tipodocumento = null;
+    this.misPedidosService.getListaMovimientosAsignados(this.body).subscribe(
+      (data) => {
+        console.log(data);
+        this.movimientosAsignados = data.asig_movs;
+        // console.log(data[0]['imagenes'][0]['archivo']);
+        /* const base64 =  data[0]['imagenes'][0]['archivo'];
+        const date = new Date().valueOf();
+        let text = '';
+        const possibleText = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        for (let i = 0; i < 5; i++) {
+          text += possibleText.charAt(Math.floor(Math.random() * possibleText.length));
+        }
+        // Replace extension according to your media type
+        const imageName = date + '.' + text + '.jpeg';
+        // call method that creates a blob from dataUri
+        const imageBlob = this.dataURItoBlob(base64);
+        const imageFile = new File([imageBlob], imageName, { type: 'image/jpeg' });
 
-    // Tabla
-    this.usuarios = [{
-      id: 1,
-      perfil: 'Administrador',
-      usuario: 'aa@enel.com',
-      nombre: 'Juan',
-      apellidopaterno: 'Perez',
-      apellidomaterno: 'Aruba',
-      tipodocumento: 'DNI',
-      nrodocumento: '43412230',
-      nacionalidad: 'Peruana',
-      empresa: 'Indra'
-    },
-    {
-      id: 2,
-      perfil: 'Aprobador',
-      usuario: 'zz@enel.com',
-      nombre: 'Marco',
-      apellidopaterno: 'Prieto',
-      apellidomaterno: 'Armado',
-      tipodocumento: 'DNI',
-      nrodocumento: '74345050',
-      nacionalidad: 'Peruana',
-      empresa: 'Enel'
-    }];
-  }
+        // Set last img selected to big IMG SHOW
+        const reader = new FileReader();
+        this.imagePath = imageFile;
+        reader.readAsDataURL(imageFile);
+        reader.onload = (_event) => {
+          this.imgURL = reader.result;
+        }; */
 
-  checkAll(ev) {
-    this.usuarios.forEach(x => x.state = ev.target.checked);
-  }
-
-  isAllChecked() {
-    return this.usuarios.every(_ => _.state);
-  }
-
-  eliminaMasiva() {
-    for (let index = 0; index < this.usuariosActivos.length; index++) {
-      this.usuariosActivos.splice(index);
-    }
-
-    for (const key in this.usuarios) {
-      if (this.usuarios[key]['state'] === true) {
-        this.usuariosActivos.push(this.usuarios[key]['id']);
+        // Set background to image preview to box of each element
+        // reader.onloadend = (_event) => {
+        //   this.imgs[index].img = this.imgURL;
+        // };
+        // console.log(imageFile);
+      }, (error) => {
+        console.log(JSON.stringify(error, null, 2));
       }
-    }
-    console.log(this.usuariosActivos);
+    );
   }
 
-  busquedaUsuarios(usuario: Usuario) {
-    console.log(usuario);
+  busquedaProductos(movimientosAsignados: any) {
+    console.log(movimientosAsignados);
   }
 
   limpiarBusqueda() {
-    this.usuario = {
-      perfil: null,
-      nombre: null,
-      apellidos: null,
-      empresa: null,
-      tipodocumento: null,
-      nrodocumento: null
+    this.movimientosAsignados = {
+      id: null,
+      nivel_riesgo: null
     };
   }
-  modalEliminarUsuario(id: number) {
-    this.modalDialogService.confirm('Eliminar Usuario', '¿Está seguro que desea eliminar el usuario?')
-      .then((confirmed) => { this.eliminarUsuario(id); })
+
+  modalEliminarProducto(id: number) {
+    this.modalDialogService.confirm(this.translate.instant('Eliminar Producto'),
+      this.translate.instant('¿Está seguro que desea eliminar el producto?'))
+      .then((confirmed) => { this.eliminarProducto(id); })
       .catch(() => console.log('Canceló la operación'));
   }
+
   // METODO PARA ELIMINAR LA VERSION
-  eliminarUsuario(idUsuarioEliminar: number) {
-    this.notificationService.showSuccess('Se elimino el usuario con id: ' + idUsuarioEliminar, '');
+  eliminarProducto(idProductoEliminar: number) {
+    this.notificationService.showSuccess(this.translate.instant('Se eliminó el producto con id') + ': ' + idProductoEliminar, '');
     this.modal.close();
   }
-  getUsuarioById(id: number) {
-    this.usuarioService.add(id);
-    this.router.navigate(['admin/usuarios/mantenimiento']);
+
+  checkAll(ev) {
+    this.movimientosAsignados.forEach(x => x.state = ev.target.checked);
   }
+
+  isAllChecked() {
+    return this.movimientosAsignados.every(_ => _.state);
+  }
+
+  eliminaMasiva() {
+    for (let index = 0; index < this.movimientosAsignadosActivos.length; index++) {
+      this.movimientosAsignadosActivos.splice(index);
+    }
+
+    for (const key in this.movimientosAsignados) {
+      if (this.movimientosAsignados[key]['state'] === true) {
+        this.movimientosAsignadosActivos.push(this.movimientosAsignados[key]['id']);
+      }
+    }
+    console.log(this.movimientosAsignadosActivos);
+  }
+
+  getCategoriaById(id: number) {
+    this.textCategoria = '';
+    for (const key in this.categorias) {
+      if (this.categorias[key]['id'] === id) {
+        this.textCategoria = this.categorias[key]['titulo'];
+      }
+    }
+    return this.textCategoria;
+  }
+
+  getProductoById(id: number) {
+    this.usuarioService.add(id);
+    this.body = {'movimiento' : id};
+    this.router.navigate(['admin/movimientosAsignados/mantenimiento']);
+  }
+
+  dataURItoBlob(dataURI) {
+    const byteString = window.atob(dataURI);
+    const arrayBuffer = new ArrayBuffer(byteString.length);
+    const int8Array = new Uint8Array(arrayBuffer);
+    for (let i = 0; i < byteString.length; i++) {
+      int8Array[i] = byteString.charCodeAt(i);
+    }
+    const blob = new Blob([int8Array], { type: 'image/jpeg' });
+    return blob;
+ }
 }

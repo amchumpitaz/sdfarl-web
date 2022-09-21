@@ -345,23 +345,6 @@ export class MispedidosComponent implements OnInit, OnDestroy {
         descripcion: 'México'
       }];
 
-    // Load default IMGS
-    this.imgs = [{
-      img: 'assets/images/no-image.jpg'
-    },
-    {
-      img: 'assets/images/no-image.jpg'
-    },
-    {
-      img: 'assets/images/no-image.jpg'
-    },
-    {
-      img: 'assets/images/no-image.jpg'
-    },
-    {
-      img: 'assets/images/no-image.jpg'
-    }];
-
     this.registerForm = this.formBuilder.group({
       modalidad: ['', Validators.required],
       aduana: ['', Validators.required],

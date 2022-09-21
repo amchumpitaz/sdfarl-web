@@ -1,139 +1,113 @@
 <div class="container">
   <div class="row py-3 pt-5 text-left text_underline">
     <div class="col col-lg-6 pl-0">
-      <i class="icon fa fa-user"></i>
-      <h2>{{'Usuarios' | translate }}</h2>
+      <i class="icon fa fa-shopping-cart"></i>
+      <h2>Movimientos Asignados</h2>
     </div>
     <div class="col col-lg-6 text-right">
-      <button class="btn btn-outline-primary" [routerLink]="['/admin/usuarios/mantenimiento']"
+      <button class="btn btn-outline-primary" [routerLink]="['/admin/controles/mantenimiento']"
         [routerLinkActive]="['router-link-active']">
         <span class="fa fa-plus fa-lg" aria-hidden="true"></span>
         {{'Nuevo' | translate }}
       </button>
     </div>
   </div>
+  <!-- <div class="col-md-12 text-center mb-3 h-25 w-100 d-flex rounded">
+    <img *ngIf="!imgURL" src="assets/images/no-image.jpg" w-100 h-100 class="mx-auto d-block rounded" style="width: auto;">
+    <img [src]="imgURL" w-100 h-100 class="mx-auto d-block rounded" *ngIf="imgURL" style="width: 100%;">
+  </div> -->
+<!-- <div class="form-row mb-12 mt-3">
+  <div class="col-md-6 mb-3">
+    <label for="validationCustom01">{{'Categoria' | translate }}</label>
+    <select class="form-control custom-select-search" [(ngModel)]="producto.categoria">
+      <option [ngValue]="null">--{{'Selecciona' | translate }}--</option>
+      <option *ngFor="let d of categorias" [value]="d.id">
+        {{d.titulo | translate }}
+      </option>
+    <input >
+    </select>
+  </div>
 
-  <div class="form-row mb-3 mt-3">
-    <div class="col-md-4 mb-3">
-      <label for="validationCustom01">{{'Perfil' | translate }}</label>
-      <select class="form-control custom-select-search" [(ngModel)]="usuario.perfil">
-        <option [ngValue]="null">--{{'Selecciona' | translate }}--</option>
-        <option *ngFor="let d of perfiles" [value]="d.id">
-          {{d.nombre | translate }}
-        </option>
-      </select>
-    </div>
-    <div class="col-md-4 mb-3">
-      <label for="nombre">{{'Nombre' | translate }}</label>
-      <input type="text" class="form-control" id="nombre" [(ngModel)]="usuario.nombre">
-    </div>
-    <div class="col-md-4 mb-3">
-      <label for="apellidos">{{'Apellidos' | translate }}</label>
-      <input type="text" class="form-control" id="apellidos" [(ngModel)]="usuario.apellidos">
-    </div>
+  <div class="col-md-6 mb-3">
+    <label for="validationCustom01">{{'Titulo' | translate }}</label>
+    <input type="text" class="form-control" id="titulo" [(ngModel)]="producto.titulo">
   </div>
-  <div class="form-row">
-    <div class="col-md-4 mb-3">
-      <label for="empresa">{{'Empresa' | translate }}</label>
-      <input type="text" class="form-control" id="empresa" [(ngModel)]="usuario.empresa">
-    </div>
-    <div class="col-md-4 mb-3">
-      <label for="validationCustom04">{{'Tipo Documento' | translate }}</label>
-      <select class="form-control custom-select-search" [(ngModel)]="usuario.tipodocumento">
-        <option [ngValue]="null">--{{'Selecciona' | translate }}--</option>
-        <option *ngFor="let d of nrodocumento" [value]="d.id">
-          {{d.nombre | translate }}
-        </option>
-      </select>
-    </div>
-    <div class="col-md-4 mb-3">
-      <label for="nrodocumento">{{'Nro Documento' | translate }}</label>
-      <input type="text" class="form-control" id="nrodocumento" [(ngModel)]="usuario.nrodocumento">
-    </div>
+</div> -->
+<!-- <div class="form-group row">
+  <div class="col-sm-6">
+    <button type="submit" style="width: 150px;" class="btn btn-info"
+      (click)="busquedaProductos(producto)">{{'Buscar' | translate }}</button>
   </div>
-  <div class="form-group row">
-    <div class="col-sm-6">
-      <button type="submit" style="width: 150px;" class="btn btn-info"
-        (click)="busquedaUsuarios(usuario)">{{'Buscar' | translate }}</button>
-    </div>
-    <div class="col-sm-6">
-      <button type="submit" style="width: 150px;" class="btn btn-success float-right"
-        (click)="limpiarBusqueda()">{{'Limpiar Búsqueda' | translate }}</button>
-    </div>
+  <div class="col-sm-6">
+    <button type="submit" style="width: 150px;" class="btn btn-success float-right"
+      (click)="limpiarBusqueda()">{{'Limpiar Búsqueda' | translate }}</button>
   </div>
-  <div class="row">
-    <div class="col col-lg-12 pt-3 pb-3">
-      <div>
-        <div id="tabla" class="card-body table-responsive p-2">
-          <table class="table table-hover">
-            <thead>
-              <tr style="background-color: #cfd8dc !important">
-                <td class="text-center">
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" name="all" class="custom-control-input" id="customCheck"
-                      [checked]="isAllChecked()" (change)="checkAll($event)" />
-                    <label class="custom-control-label" for="customCheck"></label>
-                  </div>
-                </td>
-                <td>{{'Perfil' | translate }}</td>
-                <td>{{'Usuario' | translate }}</td>
-                <td>{{'Nombre' | translate }}</td>
-                <td>{{'Ap Paterno' | translate }}</td>
-                <td>{{'Ap Materno' | translate }}</td>
-                <td>{{'Tipo Documento' | translate }}</td>
-                <td>N° {{'Documento' | translate }}</td>
-                <td>{{'Nacionalidad' | translate }}</td>
-                <td>{{'Empresa' | translate }}</td>
-                <td class="text-center">{{'Acción' | translate }}</td>
-              </tr>
-            </thead>
-            <tbody *ngIf="usuarios; else noData">
-              <tr *ngFor="let usuario of usuarios; let i = index">
-                <th class="text-center">
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" name="usuariocb[]" class="custom-control-input" id="customCheck{{i}}"
-                      value="{{usuario.id}}" [(ngModel)]="usuario.state" />
-                    <label class="custom-control-label" attr.for="customCheck{{i}}"></label>
-                  </div>
-                </th>
-                <td hidden>{{ usuario?.id }}</td>
-                <td>{{ usuario?.perfil }}</td>
-                <td>{{ usuario?.usuario }}</td>
-                <td>{{ usuario?.nombre }}</td>
-                <td>{{ usuario?.apellidopaterno }}</td>
-                <td>{{ usuario?.apellidomaterno }}</td>
-                <td>{{ usuario?.tipodocumento }}</td>
-                <td>{{ usuario?.nrodocumento }}</td>
-                <td>{{ usuario?.nacionalidad }}</td>
-                <td>{{ usuario?.empresa }}</td>
-                <td>
-                  <div class="btn-group pull-right" role="group">
-                    <button type="button" class="btn btn-outline-dark" (click)="getUsuarioById(usuario.id)"><span class="fa fa-pencil fa-lg"
-                        aria-hidden="true"></span></button>
-                    <button type="button" class="btn btn-outline-danger"
-                      (click)="modalEliminarUsuario(usuario.id)"><span class="fa fa-trash fa-lg"
-                        aria-hidden="true"></span></button>
-                  </div>
-                </td>
+</div> -->
+<div class="row">
+  <div class="col col-lg-12 pt-3 pb-3">
+    <div>
+      <div id="tabla" class="card-body table-responsive p-2">
+        <table class="table table-hover">
+          <thead>
+            <tr style="background-color: #cfd8dc !important">
+              <!-- <td class="text-center">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" name="all" class="custom-control-input" id="customCheck"
+                    [checked]="isAllChecked()" (change)="checkAll($event)" />
+                  <label class="custom-control-label" for="customCheck"></label>
+                </div>
+              </td> -->
+              <td class="text-center">Id</td>
+              <td class="text-center">Identificador de movimiento</td>
+              <td class="text-center">Probabilidad</td>
+              <td class="text-center">Probabilidad redondeada</td>
+              <td class="text-center">Autor</td>
+              <td class="text-center">Fec. Creación</td>
+            </tr>
+          </thead>
+          <tbody *ngIf="movimientosAsignados; else noData">
+            <tr *ngFor="let producto of movimientosAsignados; let i = index">
+              <!-- <th class="text-center">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" name="productocb[]" class="custom-control-input" id="customCheck{{i}}"
+                    value="{{producto.codigo}}" [(ngModel)]="producto.state" />
+                  <label class="custom-control-label" attr.for="customCheck{{i}}"></label>
+                </div>
+              </th> -->
+              <td class="text-center">{{ producto?.id }}</td>
+              <td class="text-center">{{ producto?.movimiento }}</td>
+              <td class="text-center">{{ producto?.probabilidad }}</td>
+              <td class="text-center">{{ producto?.round_probabilidad }}</td>
+              <td class="text-center">{{ producto?.usr_crea }}</td>
+              <td class="text-center">{{ producto?.fec_crea }}</td>
+              <td class="text-center">
+                <div class="btn-group" role="group">
+                  <button type="button" class="btn btn-outline-dark" (click)="getProductoById(producto.movimiento)"><span class="fa fa-pencil fa-lg"
+                      aria-hidden="true"></span></button>
+                  <button type="button" class="btn btn-outline-danger"
+                    (click)="modalEliminarProducto(producto.id)"><span class="fa fa-trash fa-lg"
+                      aria-hidden="true"></span></button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+          <ng-template #noData>
+            <tbody>
+              <tr>
+                <td colspan="8" class="text-center">{{'Ningún registro que mostrar según sus criterios de búsqueda' | translate }}.</td>
               </tr>
             </tbody>
-            <ng-template #noData>
-              <tbody>
-                <tr>
-                  <td colspan="4" class="text-center">{{'Ningún registro que mostrar según sus criterios de búsqueda' | translate }}</td>
-                </tr>
-              </tbody>
-            </ng-template>
-          </table>
-        </div>
-        <br>
-        <div class="form-group row">
-          <div class="col-sm-10">
-            <button type="submit" style="width: 150px;" class="btn btn-danger"
-              (click)="eliminaMasiva()">{{'Eliminar' | translate }}</button>
-          </div>
+          </ng-template>
+        </table>
+      </div>
+      <br>
+      <div class="form-group row">
+        <div class="col-sm-10">
+          <!-- <button type="submit" style="width: 150px;" class="btn btn-danger"
+            (click)="eliminaMasiva()">{{'Eliminar' | translate }}</button> -->
         </div>
       </div>
     </div>
   </div>
+</div>
 </div>

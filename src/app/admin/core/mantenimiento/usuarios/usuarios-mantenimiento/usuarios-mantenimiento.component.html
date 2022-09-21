@@ -1,136 +1,291 @@
 <div class="container">
   <div class="py-3 pt-5 text-left text_underline">
     <i class="icon fa fa-user"></i>
-    <h2>{{'Usuarios' | translate }} | {{ title  | translate }}</h2>
+    <h2>Movimientos Aduanero</h2>
   </div>
   <div class="row">
     <div class="col-md-12 order-md-1">
       <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-        <!--Perfil del Usuario-->
-        <input name="usuarioid" formControlName="usuarioid" type="text" class="form-control" id="usuarioid" hidden>
-        <div class="col-md-6 mb-3 mt-3">
-          <label for="perfil">{{'Perfil' | translate }}</label>
-          <select name="perfil" formControlName="perfil" [ngClass]="{ 'is-invalid': submitted && f.perfil.errors }"
-            class="custom-select d-block w-100" id="perfil" required>
-            <option value="">---{{'Seleccione' | translate }}---</option>
-            <option *ngFor="let p of perfiles" [value]="p.nombre">
-              {{p.nombre | translate }}
-            </option>
-          </select>
-          <div *ngIf="submitted && f['perfil'].errors" class="invalid-feedback">
-            <div *ngIf="f['perfil'].errors?.required">{{'Por favor seleccione un perfil' | translate }}.</div>
+        <div class="row">
+          <div class="col-md-6 pl-0">
+            <!--MODALIDAD_ASOCIADA_AL_REGIMEN-->
+            <div class="col-md-12 mb-3 mt-3">
+              <label for="modalidad">Modalidad Asociada al Régimen</label>
+              <select name="modalidad" formControlName="modalidad" [ngClass]="{ 'is-invalid': (registerForm.get('modalidad').dirty || registerForm.get('modalidad').touched || submitted) && f.modalidad.errors }"
+                class="custom-select d-block w-100" id="modalidad" required>
+                <option value="0">---{{'Seleccione' | translate }}---</option>
+                <option *ngFor="let p of modalidad" [value]="p.id">
+                  {{p.descripcion}}
+                </option>
+              </select>
+              <div *ngIf="(registerForm.get('modalidad').dirty || registerForm.get('modalidad').touched || submitted) && f['modalidad'].errors" class="invalid-feedback">
+                <div *ngIf="f['modalidad'].errors?.required">Por favor seleccione una modalidad.</div>
+              </div>
+            </div>
+            <!--ADUANA-->
+            <div class="col-md-12 mb-3 mt-3">
+              <label for="aduana">Aduana</label>
+              <select name="aduana" formControlName="aduana" [ngClass]="{ 'is-invalid': (registerForm.get('aduana').dirty || registerForm.get('aduana').touched || submitted) && f.aduana.errors }"
+                class="custom-select d-block w-100" id="aduana" required>
+                <option value="0">---{{'Seleccione' | translate }}---</option>
+                <option *ngFor="let p of aduanas" [value]="p.id">
+                  {{p.descripcion}}
+                </option>
+              </select>
+              <div *ngIf="(registerForm.get('aduana').dirty || registerForm.get('aduana').touched || submitted) && f['aduana'].errors" class="invalid-feedback">
+                <div *ngIf="f['aduana'].errors?.required">Por favor seleccione una aduana.</div>
+              </div>
+            </div>
+            <!--IMPORTADOR_EXPORTADOR-->
+            <div class="col-md-12 mb-3 mt-3">
+              <label for="importador">Importador/Exportador</label>
+              <input name="importador" formControlName="importador" type="text" class="form-control"
+                id="importador"
+                [ngClass]="{ 'is-invalid': (registerForm.get('importador').dirty || registerForm.get('importador').touched || submitted) && f.importador.errors }"
+                placeholder="" value="" required>
+              <div
+                *ngIf="(registerForm.get('importador').dirty || registerForm.get('importador').touched || submitted) && f['importador'].errors"
+                class="invalid-feedback">
+                <div *ngIf="f['importador'].errors?.required"> {{'El importador es obligatorio' | translate }}.</div>
+              </div>
+            </div>
+            <!--CANTIDAD_DE_BULTOS_LINEA-->
+            <div class="col-md-12 mb-3 mt-3">
+              <label for="bultos">Cantidad de Bultos</label>
+              <input name="bultos" formControlName="bultos" type="text" class="form-control"
+                id="bultos"
+                [ngClass]="{ 'is-invalid': (registerForm.get('bultos').dirty || registerForm.get('bultos').touched || submitted) && f.bultos.errors }"
+                placeholder="" value="" required>
+              <div
+                *ngIf="(registerForm.get('bultos').dirty || registerForm.get('bultos').touched || submitted) && f['bultos'].errors"
+                class="invalid-feedback">
+                <div *ngIf="f['bultos'].errors?.required"> {{'La cantidad de bultos es obligatoria' | translate }}.</div>
+              </div>
+            </div>
+            <!--PESO_NETO_ITEM-->
+            <div class="col-md-12 mb-3 mt-3">
+              <label for="pesoneto">Peso Neto Item</label>
+              <input name="pesoneto" formControlName="pesoneto" type="text" class="form-control"
+                id="pesoneto"
+                [ngClass]="{ 'is-invalid': (registerForm.get('pesoneto').dirty || registerForm.get('pesoneto').touched || submitted) && f.pesoneto.errors }"
+                placeholder="" value="" required>
+              <div
+                *ngIf="(registerForm.get('pesoneto').dirty || registerForm.get('pesoneto').touched || submitted) && f['pesoneto'].errors"
+                class="invalid-feedback">
+                <div *ngIf="f['pesoneto'].errors?.required"> {{'El peso neto es obligatorio' | translate }}.</div>
+              </div>
+            </div>
+            <!--PESO_BRUTO_ITEM-->
+            <div class="col-md-12 mb-3 mt-3">
+              <label for="pesobruto">Peso Bruto Item</label>
+              <input name="pesobruto" formControlName="pesobruto" type="text" class="form-control"
+                id="pesobruto"
+                [ngClass]="{ 'is-invalid': (registerForm.get('pesobruto').dirty || registerForm.get('pesobruto').touched || submitted) && f.pesobruto.errors }"
+                placeholder="" value="" required>
+              <div
+                *ngIf="(registerForm.get('pesobruto').dirty || registerForm.get('pesobruto').touched || submitted) && f['pesobruto'].errors"
+                class="invalid-feedback">
+                <div *ngIf="f['pesobruto'].errors?.required"> {{'El peso bruto es obligatorio' | translate }}.</div>
+              </div>
+            </div>
+            <!--PAIS_ORIGEN-->
+            <div class="col-md-12 mb-3 mt-3">
+              <label for="paisorigen">Pais de Origen</label>
+              <select name="paisorigen" formControlName="paisorigen" [ngClass]="{ 'is-invalid': (registerForm.get('paisorigen').dirty || registerForm.get('paisorigen').touched || submitted) && f.paisorigen.errors }"
+                class="custom-select d-block w-100" id="paisorigen" required>
+                <option value="0">---{{'Seleccione' | translate }}---</option>
+                <option *ngFor="let p of paisorigen" [value]="p.id">
+                  {{p.descripcion}}
+                </option>
+              </select>
+              <div *ngIf="(registerForm.get('paisorigen').dirty || registerForm.get('paisorigen').touched || submitted) && f['paisorigen'].errors" class="invalid-feedback">
+                <div *ngIf="f['paisorigen'].errors?.required">Por favor seleccione un País Origen.</div>
+              </div>
+            </div>
+            <!--CAPITULO_2-->
+            <div class="col-md-12 mb-3 mt-3">
+              <label for="capitulo">Capitulo</label>
+              <select name="capitulo" formControlName="capitulo" [ngClass]="{ 'is-invalid': (registerForm.get('capitulo').dirty || registerForm.get('capitulo').touched || submitted) && f.capitulo.errors }"
+                class="custom-select d-block w-100" id="capitulo" required>
+                <option value="0">---{{'Seleccione' | translate }}---</option>
+                <option *ngFor="let p of capitulo" [value]="p.id">
+                  {{p.descripcion}}
+                </option>
+              </select>
+              <div *ngIf="(registerForm.get('capitulo').dirty || registerForm.get('capitulo').touched || submitted) && f['capitulo'].errors" class="invalid-feedback">
+                <div *ngIf="f['capitulo'].errors?.required">Por favor seleccione un capítulo.</div>
+              </div>
+            </div>
+            <!--PARTIDA_ARANCELARIA_4-->
+          <div class="col-md-12 mb-3 mt-3">
+            <label for="partidaarancelaria">Partida Arancelaria</label>
+            <input name="partidaarancelaria" formControlName="partidaarancelaria" type="text" class="form-control"
+              id="partidaarancelaria"
+              [ngClass]="{ 'is-invalid': (registerForm.get('partidaarancelaria').dirty || registerForm.get('partidaarancelaria').touched || submitted) && f.partidaarancelaria.errors }"
+              placeholder="" value="" required>
+            <div
+              *ngIf="(registerForm.get('partidaarancelaria').dirty || registerForm.get('partidaarancelaria').touched || submitted) && f['partidaarancelaria'].errors"
+              class="invalid-feedback">
+              <div *ngIf="f['partidaarancelaria'].errors?.required"> {{'La partida es obligatorio' | translate }}.</div>
+            </div>
+          </div>
+          <!--SUBPARTIDA_ARANCELARIA_6-->
+          <div class="col-md-12 mb-3 mt-3">
+            <label for="subpartidaarancelaria">Sub Partida Arancelaria</label>
+            <input name="subpartidaarancelaria" formControlName="subpartidaarancelaria" type="text" class="form-control"
+              id="subpartidaarancelaria"
+              [ngClass]="{ 'is-invalid': (registerForm.get('subpartidaarancelaria').dirty || registerForm.get('subpartidaarancelaria').touched || submitted) && f.subpartidaarancelaria.errors }"
+              placeholder="" value="" required>
+            <div
+              *ngIf="(registerForm.get('subpartidaarancelaria').dirty || registerForm.get('subpartidaarancelaria').touched || submitted) && f['subpartidaarancelaria'].errors"
+              class="invalid-feedback">
+              <div *ngIf="f['subpartidaarancelaria'].errors?.required"> {{'La sub-partida es obligatorio' | translate }}.</div>
+            </div>
           </div>
         </div>
-        <!--Pais del Usuario-->
-        <div class="col-md-6 mb-3 mt-3">
-          <label for="pais">{{'País' | translate }}</label>
-          <select name="pais" formControlName="pais" [ngClass]="{ 'is-invalid': submitted && f.pais.errors }"
-            class="custom-select d-block w-100" id="pais" required>
-            <option value="">---{{'Seleccione' | translate }}---</option>
-            <option *ngFor="let p of paises" [value]="p.nombre">
-              {{p.nombre | translate }}
-            </option>
-          </select>
-          <div *ngIf="submitted && f['pais'].errors" class="invalid-feedback">
-            <div *ngIf="f['pais'].errors?.required">{{'Por favor seleccione un país' | translate }}.</div>
+        <div class="col-md-6 pl-0">
+          <!--PARTIDA_REGIONAL-->
+          <div class="col-md-12 mb-3 mt-3">
+            <label for="partidaregional">Partida Regional</label>
+            <input name="partidaregional" formControlName="partidaregional" type="text" class="form-control"
+              id="partidaregional"
+              [ngClass]="{ 'is-invalid': (registerForm.get('partidaregional').dirty || registerForm.get('partidaregional').touched || submitted) && f.partidaregional.errors }"
+              placeholder="" value="" required>
+            <div
+              *ngIf="(registerForm.get('partidaregional').dirty || registerForm.get('partidaregional').touched || submitted) && f['partidaregional'].errors"
+              class="invalid-feedback">
+              <div *ngIf="f['partidaregional'].errors?.required"> {{'La partida regional es obligatorio' | translate }}.</div>
+            </div>
+          </div>
+          <!--APERTURA_NACIONAL_12-->
+          <div class="col-md-12 mb-3 mt-3">
+            <label for="aperturanacional">Apertura Nacional</label>
+            <input name="aperturanacional" formControlName="aperturanacional" type="text" class="form-control"
+              id="aperturanacional"
+              [ngClass]="{ 'is-invalid': (registerForm.get('aperturanacional').dirty || registerForm.get('aperturanacional').touched || submitted) && f.aperturanacional.errors }"
+              placeholder="" value="" required>
+            <div
+              *ngIf="(registerForm.get('aperturanacional').dirty || registerForm.get('aperturanacional').touched || submitted) && f['aperturanacional'].errors"
+              class="invalid-feedback">
+              <div *ngIf="f['aperturanacional'].errors?.required"> {{'La apertura nacional es obligatorio' | translate }}.</div>
+            </div>
+          </div>
+          <!--REGIMEN-->
+          <div class="col-md-12 mb-3 mt-3">
+            <label for="regimen">Régimen</label>
+            <select name="regimen" formControlName="regimen" [ngClass]="{ 'is-invalid': (registerForm.get('regimen').dirty || registerForm.get('regimen').touched || submitted) && f.regimen.errors }"
+              class="custom-select d-block w-100" id="regimen" required>
+              <option value="0">---{{'Seleccione' | translate }}---</option>
+              <option *ngFor="let p of regimen" [value]="p.id">
+                {{p.descripcion}}
+              </option>
+            </select>
+            <div *ngIf="(registerForm.get('regimen').dirty || registerForm.get('regimen').touched || submitted) && f['regimen'].errors" class="invalid-feedback">
+              <div *ngIf="f['regimen'].errors?.required">Por favor seleccione un régimen.</div>
+            </div>
+          </div>
+
+          <!--ADUANA_INGRESO/EGRESO-->
+          <div class="col-md-12 mb-3 mt-3">
+            <label for="aduanaingresoegreso">Aduana Ingreso/Egreso</label>
+            <select name="aduanaingresoegreso" formControlName="aduanaingresoegreso" [ngClass]="{ 'is-invalid': (registerForm.get('aduanaingresoegreso').dirty || registerForm.get('aduanaingresoegreso').touched || submitted) && f.aduanaingresoegreso.errors }"
+              class="custom-select d-block w-100" id="aduanaingresoegreso" required>
+              <option value="0">---{{'Seleccione' | translate }}---</option>
+              <option *ngFor="let p of aduanaingresoegreso" [value]="p.id">
+                {{p.descripcion}}
+              </option>
+            </select>
+            <div *ngIf="(registerForm.get('aduanaingresoegreso').dirty || registerForm.get('aduanaingresoegreso').touched || submitted) && f['aduanaingresoegreso'].errors" class="invalid-feedback">
+              <div *ngIf="f['aduanaingresoegreso'].errors?.required">Por favor seleccione un aduana de ingreso/egreso.</div>
+            </div>
+          </div>
+          <!--CODIGO_BANCO-->
+          <div class="col-md-12 mb-3 mt-3">
+            <label for="codigobanco">Codigo Banco</label>
+            <select name="codigobanco" formControlName="codigobanco" [ngClass]="{ 'is-invalid': (registerForm.get('codigobanco').dirty || registerForm.get('codigobanco').touched || submitted) && f.codigobanco.errors }"
+              class="custom-select d-block w-100" id="codigobanco" required>
+              <option value="0">---{{'Seleccione' | translate }}---</option>
+              <option *ngFor="let p of codigobanco" [value]="p.id">
+                {{p.descripcion}}
+              </option>
+            </select>
+            <div *ngIf="(registerForm.get('codigobanco').dirty || registerForm.get('codigobanco').touched || submitted) && f['codigobanco'].errors" class="invalid-feedback">
+              <div *ngIf="f['codigobanco'].errors?.required">Por favor seleccione un código de banco.</div>
+            </div>
+          </div>
+          <!--PAIS_PROCEDENCIA-->
+          <div class="col-md-12 mb-3 mt-3">
+            <label for="paisprocedencia">País Procedencia</label>
+            <select name="paisprocedencia" formControlName="paisprocedencia" [ngClass]="{ 'is-invalid': (registerForm.get('paisprocedencia').dirty || registerForm.get('paisprocedencia').touched || submitted) && f.paisprocedencia.errors }"
+              class="custom-select d-block w-100" id="paisprocedencia" required>
+              <option value="0">---{{'Seleccione' | translate }}---</option>
+              <option *ngFor="let p of paisprocedencia" [value]="p.id">
+                {{p.descripcion}}
+              </option>
+            </select>
+            <div *ngIf="(registerForm.get('paisprocedencia').dirty || registerForm.get('paisprocedencia').touched || submitted) && f['paisprocedencia'].errors" class="invalid-feedback">
+              <div *ngIf="f['paisprocedencia'].errors?.required">Por favor seleccione un país de procedencia.</div>
+            </div>
+          </div>
+          <!--SEGURO_ITEM-->
+          <div class="col-md-12 mb-3 mt-3">
+            <label for="seguroitem">Seguro Item</label>
+            <input name="seguroitem" formControlName="seguroitem" type="text" class="form-control"
+              id="seguroitem"
+              [ngClass]="{ 'is-invalid': (registerForm.get('seguroitem').dirty || registerForm.get('seguroitem').touched || submitted) && f.seguroitem.errors }"
+              placeholder="" value="" required>
+            <div
+              *ngIf="(registerForm.get('seguroitem').dirty || registerForm.get('seguroitem').touched || submitted) && f['seguroitem'].errors"
+              class="invalid-feedback">
+              <div *ngIf="f['seguroitem'].errors?.required"> {{'El seguro del item es obligatorio' | translate }}.</div>
+            </div>
+          </div>
+          <!--VALOR_EN_ADUANAS_SIN_AJUSTE_EN_USD_LINEA-->
+          <div class="col-md-12 mb-3 mt-3">
+            <label for="valoraduanausd">Valor en Aduanas sin ajuste en USD</label>
+            <input name="valoraduanausd" formControlName="valoraduanausd" type="text" class="form-control"
+              id="valoraduanausd"
+              [ngClass]="{ 'is-invalid': (registerForm.get('valoraduanausd').dirty || registerForm.get('valoraduanausd').touched || submitted) && f.valoraduanausd.errors }"
+              placeholder="" value="" required>
+            <div
+              *ngIf="(registerForm.get('valoraduanausd').dirty || registerForm.get('valoraduanausd').touched || submitted) && f['valoraduanausd'].errors"
+              class="invalid-feedback">
+              <div *ngIf="f['valoraduanausd'].errors?.required"> {{'El valor en aduana sin ajuste en USD es obligatorio' | translate }}.</div>
+            </div>
+          </div>
+          <!--AGENTE_DE_ADUANAS-->
+          <div class="col-md-12 mb-3 mt-3">
+            <label for="agenteaduana">Agente de Aduana</label>
+            <select name="agenteaduana" formControlName="agenteaduana" [ngClass]="{ 'is-invalid': (registerForm.get('agenteaduana').dirty || registerForm.get('agenteaduana').touched || submitted) && f.agenteaduana.errors }"
+              class="custom-select d-block w-100" id="agenteaduana" required>
+              <option value="0">---{{'Seleccione' | translate }}---</option>
+              <option *ngFor="let p of agenteaduana" [value]="p.id">
+                {{p.descripcion}}
+              </option>
+            </select>
+            <div *ngIf="(registerForm.get('agenteaduana').dirty || registerForm.get('agenteaduana').touched || submitted) && f['agenteaduana'].errors" class="invalid-feedback">
+              <div *ngIf="f['agenteaduana'].errors?.required">Por favor seleccione un país de procedencia.</div>
+            </div>
+          </div>
+          <!--TOTAL_VALOR_EN_ADUANA_USD-->
+          <div class="col-md-12 mb-3 mt-3">
+            <label for="valortotaladuanausd">Valor Total en Aduana (USD)</label>
+            <input name="valortotaladuanausd" formControlName="valortotaladuanausd" type="text" class="form-control"
+              id="valortotaladuanausd"
+              [ngClass]="{ 'is-invalid': (registerForm.get('valortotaladuanausd').dirty || registerForm.get('valortotaladuanausd').touched || submitted) && f.valortotaladuanausd.errors }"
+              placeholder="" value="" required>
+            <div
+              *ngIf="(registerForm.get('valortotaladuanausd').dirty || registerForm.get('valortotaladuanausd').touched || submitted) && f['valortotaladuanausd'].errors"
+              class="invalid-feedback">
+              <div *ngIf="f['valortotaladuanausd'].errors?.required"> {{'El valor total en aduana (USD) es obligatorio' | translate }}.</div>
+            </div>
+          </div>
+          <div class="row">
+            <button class="btn btn-primary btn-lz mt-3 mb-3" type="submit">{{ title  | translate }}</button>
+            <button class="btn btn-danger btn-lz mt-3 mb-3 ml-3" type="reset" (click)="cancelarOperacion()">{{'Cancelar' | translate }}</button>
           </div>
         </div>
-        <!--Empresa del Usuario-->
-        <div class="col-md-6 mb-3 mt-3">
-          <label for="empresa">{{'Empresa' | translate }}</label>
-          <input name="empresa" formControlName="empresa" type="text" class="form-control" id="empresa"
-            [ngClass]="{ 'is-invalid': (registerForm.get('empresa').dirty || registerForm.get('empresa').touched || submitted) && f.empresa.errors }"
-            placeholder="" value="" required>
-          <div
-            *ngIf="(registerForm.get('empresa').dirty || registerForm.get('empresa').touched || submitted) && f['empresa'].errors"
-            class="invalid-feedback">
-            <div *ngIf="f['empresa'].errors?.required">{{'La empresa es obligatoria' | translate }}.</div>
-          </div>
         </div>
-        <!--Nombre del Usuario-->
-        <div class="col-md-6 mb-3 mt-3">
-          <label for="nombre">{{'Nombre' | translate }}</label>
-          <input name="nombre" formControlName="nombre" type="text" class="form-control" id="nombre"
-            [ngClass]="{ 'is-invalid': (registerForm.get('nombre').dirty || registerForm.get('nombre').touched || submitted) && f.nombre.errors }"
-            placeholder="" value="" required>
-          <div
-            *ngIf="(registerForm.get('nombre').dirty || registerForm.get('nombre').touched || submitted) && f['nombre'].errors"
-            class="invalid-feedback">
-            <div *ngIf="f['nombre'].errors?.required">{{'El nombre es obligatorio' | translate }}.</div>
-          </div>
-        </div>
-        <!--Apellido Paterno del Usuario-->
-        <div class="col-md-6 mb-3 mt-3">
-          <label for="apellidoPatUsu">{{'Apellido Paterno' | translate }}</label>
-          <input name="apellidoPatUsu" formControlName="apellidoPatUsu" type="text" class="form-control"
-            id="apellidoPatUsu"
-            [ngClass]="{ 'is-invalid': (registerForm.get('apellidoPatUsu').dirty || registerForm.get('apellidoPatUsu').touched || submitted) && f.apellidoPatUsu.errors }"
-            placeholder="" value="" required>
-          <div
-            *ngIf="(registerForm.get('apellidoPatUsu').dirty || registerForm.get('apellidoPatUsu').touched || submitted) && f['apellidoPatUsu'].errors"
-            class="invalid-feedback">
-            <div *ngIf="f['apellidoPatUsu'].errors?.required">{{'El Apellido Paterno es obligatorio' | translate }}.</div>
-          </div>
-        </div>
-        <!--Apellido Materno del Usuario-->
-        <div class="col-md-6 mb-3 mt-3">
-          <label for="apellidoMatUsu">{{'Apellido Materno' | translate }}</label>
-          <input name="apellidoMatUsu" formControlName="apellidoMatUsu" type="text" class="form-control"
-            id="apellidoMatUsu"
-            [ngClass]="{ 'is-invalid': (registerForm.get('apellidoMatUsu').dirty || registerForm.get('apellidoMatUsu').touched || submitted) && f.apellidoMatUsu.errors }"
-            placeholder="" value="" required>
-          <div
-            *ngIf="(registerForm.get('apellidoMatUsu').dirty || registerForm.get('apellidoMatUsu').touched || submitted) && f['apellidoMatUsu'].errors"
-            class="invalid-feedback">
-            <div *ngIf="f['apellidoMatUsu'].errors?.required">{{'El Apellido Materno es obligatorio' | translate }}.</div>
-          </div>
-        </div>
-        <!--Email-->
-        <div class="col-md-6 mb-3 mt-3">
-          <label for="email">{{'Email' | translate }}</label>
-          <input name="email" formControlName="email" type="text" class="form-control" id="email"
-            [ngClass]="{ 'is-invalid': (registerForm.get('email').dirty || registerForm.get('email').touched || submitted) && f.email.errors }"
-            placeholder="" value="" required>
-          <div
-            *ngIf="(registerForm.get('email').dirty || registerForm.get('email').touched || submitted) && f['email'].errors"
-            class="invalid-feedback">
-            <div *ngIf="f['email'].errors?.required">{{'El correo es obligatorio' | translate }}.</div>
-            <div *ngIf="f['email'].errors?.email">{{'El correo debe ser un correo válido' | translate }}.</div>
-            <div *ngIf="f['email'].errors?.emailExist">{{'El correo ingresado ya se encuentra registrado, por favor ingrese
-              otro correo' | translate }}.</div>
-          </div>
-        </div>
-        <!--Tipo Documento-->
-        <div class="col-md-6 mb-3 mt-3">
-          <label for="tipoDocumento">{{'Tipo Documento' | translate }}</label>
-          <select name="tipoDocumento" formControlName="tipoDocumento"
-            [ngClass]="{ 'is-invalid': submitted && f.tipoDocumento.errors }" class="custom-select d-block w-100"
-            id="tipoDocumento" required>
-            <option value="">---{{'Seleccione' | translate }}---</option>
-            <option *ngFor="let t of tipodocumentos" [value]="t.nombre">
-              {{t.nombre | translate }}
-            </option>
-          </select>
-          <div *ngIf="submitted && f['tipoDocumento'].errors" class="invalid-feedback">
-            <div *ngIf="f['tipoDocumento'].errors?.required">{{'Por favor seleccione un tipo de documento' | translate }}.</div>
-          </div>
-        </div>
-        <!--Nro Documento-->
-        <div class="col-md-6 mb-3 mt-3">
-          <label for="nroDocumento">N° {{'Documento' | translate }}</label>
-          <input name="nroDocumento" formControlName="nroDocumento" type="text" class="form-control" id="nroDocumento"
-            [ngClass]="{ 'is-invalid': (registerForm.get('nroDocumento').dirty || registerForm.get('nroDocumento').touched || submitted) && f.nroDocumento.errors }"
-            placeholder="" value="" required>
-          <div
-            *ngIf="(registerForm.get('nroDocumento').dirty || registerForm.get('nroDocumento').touched || submitted) && f['nroDocumento'].errors"
-            class="invalid-feedback">
-            <div *ngIf="f['nroDocumento'].errors?.required">{{'El N° Documento es obligatorio' | translate }}.</div>
-            <div *ngIf="f['nroDocumento'].errors?.isNotNumber">{{'El N° Documento debe ser numérico' | translate }}.</div>
-          </div>
-        </div>
-        <button class="btn btn-primary btn-lz mt-3 mb-3" type="submit">{{ title  | translate }}</button>
-        <button class="btn btn-danger btn-lz mt-3 mb-3 ml-3" type="reset" (click)="cancelarOperacion()">{{'Cancelar' | translate }}</button>
       </form>
-    </div>
   </div>
 </div>
