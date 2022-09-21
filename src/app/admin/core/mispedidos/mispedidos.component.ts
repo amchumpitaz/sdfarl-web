@@ -473,6 +473,7 @@ export class MispedidosComponent implements OnInit, OnDestroy {
           console.log(data['predictions']['predictions'][0]);
           console.log(this.textModal);
           console.log(this.casoFraude);
+          this.limpiarCampos();
         }, (error) => {
           console.log(JSON.stringify(error, null, 2));
           this.notificationService.showError('Ocurrió un erro al validar el movimiento aduanero', '');
