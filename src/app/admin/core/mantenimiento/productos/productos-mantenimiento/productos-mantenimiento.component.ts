@@ -12,6 +12,7 @@ import { ERROR_INPUTS_REGISTER } from 'src/app/shared/constants/main.constants';
 import { MisPedidosService } from '../../../mispedidos/mispedidos.service';
 import { Incidencia } from '../../../mispedidos/incidencia.model';
 import { element } from '@angular/core/src/render3';
+import { $ } from 'protractor';
 
 
 @Component({
@@ -45,7 +46,6 @@ export class ProductosMantenimientoComponent implements OnInit, OnDestroy {
   condicions: any;
   isCleanField: boolean;
   incidencia: Incidencia;
-
   imgs: any;
 
   public imagePath;
@@ -153,12 +153,7 @@ export class ProductosMantenimientoComponent implements OnInit, OnDestroy {
 
     this.registerForm = this.formBuilder.group({
       descripcion: ['', Validators.required],
-      id : ['', Validators.required],
-      nivel_riesgo : ['', Validators.required],
-      distrito: ['', Validators.required],
-      provincia: ['', Validators.required],
-      pais: ['', Validators.required],
-      img: ['', Validators.required]
+      nivel_riesgo : ['', Validators.required]
     });
     this.submitted = false;
 
@@ -166,7 +161,7 @@ export class ProductosMantenimientoComponent implements OnInit, OnDestroy {
 
       this.idProducto = this.productoService.get();
 
-      this.misPedidosService.getIncidenciaId(this.idProducto).subscribe(
+      this.misPedidosService.getControlId(this.idProducto).subscribe(
         (data) => {
           console.log(data);
           this.model = data;
@@ -178,58 +173,11 @@ export class ProductosMantenimientoComponent implements OnInit, OnDestroy {
           // }
           // console.log(realKey);
           this.registerForm.setValue({
-            descripcion: this.model['descripcion'],
-            direccion : this.model['direccion'],
-            tipo : this.model['tipo']['codigo'],
-            distrito: this.model['distrito'],
-            provincia: this.model['provincia'],
-            pais: this.model['pais'],
-            img: this.model['imagenes']
+            id: this.model['id'],
+            nivel_riesgo : this.model['nivel_riesgo'],
+            descripcion : this.model['descripcion']
           });
-          // this.filesList = this.model['imagenes'];
-          console.log(this.model['imagenes']);
-          console.log(this.filesList);
-          this.model['imagenes'].forEach(element => {
-            // For pass validation form we set 'OK' when at least 1 img is selected
-            // this.registerForm.get('img').setValue('OK');
-            console.log(this.filesList);
-            console.log(element);
-            console.log(this.model['imagenes'].indexOf(element));
 
-            const base64 =  element['archivo'];
-            const date = new Date().valueOf();
-            let text = '';
-            const possibleText = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-            for (let i = 0; i < 5; i++) {
-              text += possibleText.charAt(Math.floor(Math.random() * possibleText.length));
-            }
-            // Replace extension according to your media type
-            const imageName = date + '.' + text + '.jpeg';
-            // call method that creates a blob from dataUri
-            const imageBlob = this.dataURItoBlob(base64);
-            const imageFile = new File([imageBlob], imageName, { type: 'image/jpeg' });
-            this.filesList['' + this.model['imagenes'].indexOf(element) + ''] = imageFile;
-            // Set last img selected to big IMG SHOW
-            const reader = new FileReader();
-            this.imagePath = imageFile;
-            reader.readAsDataURL(imageFile);
-            reader.onload = (_event) => {
-              this.imgURL = reader.result;
-            };
-
-            // Set last img selected to big IMG SHOW
-            // const reader = new FileReader();
-            // this.imagePath = element;
-            // reader.readAsDataURL(element[0]);
-            // reader.onload = (_event) => {
-            //   this.imgURL = reader.result;
-            // };
-
-            // Set background to image preview to box of each element
-            reader.onloadend = (_event) => {
-              this.imgs[this.model['imagenes'].indexOf(element)].img = this.imgURL;
-            };
-          });
         });
 
       console.log(this.productoService.get());
@@ -258,23 +206,25 @@ export class ProductosMantenimientoComponent implements OnInit, OnDestroy {
       this.notificationService.showError(this.translate.instant(ERROR_INPUTS_REGISTER), '');
       return;
     } else {
-      this.incidencia = new Incidencia(null,
-        {codigo: this.registerForm.get('tipo').value},
+      /* this.model = new Producto(null,
+        this.registerForm.get('nivel_riesgo').value,
         this.registerForm.get('descripcion').value,
-        this.registerForm.get('direccion').value,
-        this.registerForm.get('distrito').value,
-        this.registerForm.get('provincia').value,
-        this.registerForm.get('pais').value,
+        '',
         new Date(),
-        '1',
-        this.user);
+        'ADMIN'
+        ); */
+        let controlEntrada: any;
+        controlEntrada = {
+          nivel_riesgo: this.registerForm.get('nivel_riesgo').value,
+          descripcion: this.registerForm.get('descripcion').value,
+          usuario: 'ACHUMPITAZ'
+        };
       // Here go register service
-      console.log(this.incidencia);
-      this.misPedidosService.createIncidencia(this.incidencia).subscribe(
+      console.log(this.model);
+      this.misPedidosService.createControl(controlEntrada).subscribe(
         (data) => {
           console.log(data);
-          console.log(data['codigo']);
-          this.filesList.forEach(element => {
+          /* this.filesList.forEach(element => {
             const formData = new FormData();
             // formData.append('file', this.filesList[0]);
             formData.append('file', element);
@@ -287,8 +237,9 @@ export class ProductosMantenimientoComponent implements OnInit, OnDestroy {
                 this.notificationService.showError('Hubo un error en el registro', '');
               }
             );
-          });
-          this.notificationService.showSuccess('Se registro la incidencia con éxito', '');
+          }); */
+          document.getElementById('id').innerText = data['id'];
+          this.notificationService.showSuccess('Se registró el control con éxito', '');
         }, (error) => {
           console.log(JSON.stringify(error, null, 2));
           this.notificationService.showError('Hubo un error en el registro', '');

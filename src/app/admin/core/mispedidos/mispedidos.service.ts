@@ -33,6 +33,14 @@ export class MisPedidosService {
       return this.http.get(`${this.baseUrl}/nivelesRiesgo`);
     }
 
+    getControlId(id: number): Observable<any> {
+      return this.http.get(`${this.baseUrl}/control/${id}`);
+    }
+
+    createControl(data: any): Observable<any> {
+      return this.http.post(`${this.baseUrl}/control/add`, data);
+    }
+
     // UPC
     getTipoDeIncidencia(): Observable<any> {
       return this.http.get(`${this.baseUrl}/tiposIncidencia/listar`);

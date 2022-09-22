@@ -12,14 +12,12 @@
             <div class="col-md-12 mb-3 mt-3">
               <label for="id">ID</label>
               <input name="id" formControlName="id" type="text" class="form-control"
-                id="id"
-                [ngClass]="{ 'is-invalid': (registerForm.get('id').dirty || registerForm.get('id').touched || submitted) && f.id.errors }"
-                placeholder="" value="" readonly>
-              <div
+                id="id" placeholder="" value="" readonly>
+              <!-- <div
                 *ngIf="(registerForm.get('id').dirty || registerForm.get('id').touched || submitted) && f['id'].errors"
                 class="invalid-feedback">
                 <div *ngIf="f['id'].errors?.required"> {{'La dirección es obligatoria' | translate }}.</div>
-              </div>
+              </div> -->
             </div>
             <!--Nivel de riesgo-->
             <div class="col-md-12 mb-3 mt-3">
@@ -27,7 +25,7 @@
               <select name="nivel_riesgo" formControlName="nivel_riesgo" [ngClass]="{ 'is-invalid': (registerForm.get('nivel_riesgo').dirty || registerForm.get('nivel_riesgo').touched || submitted) && f.nivel_riesgo.errors }"
                 class="custom-select d-block w-100" id="nivel_riesgo" required>
                 <option value="">---{{'Seleccione' | translate }}---</option>
-                <option *ngFor="let p of nivelesRiesgo" [value]="p.codigo">
+                <option *ngFor="let p of nivelesRiesgo" [value]="p.id">
                   {{p.descripcion}}
                 </option>
               </select>
@@ -39,7 +37,7 @@
             <div class="col-md-12">
               <label for="descripcion">Descripción</label>
               <div class="mb-3 mt-3 form-group shadow-textarea">
-                <textarea name="descripcion" type="textarea" formControlName="descripcion" [ngClass]="{ 'is-invalid': (registerForm.get('descripcion').dirty || registerForm.get('descripcion').touched || submitted) && f.descripcion.errors }"  class="form-control" id="descripcion" rows="3" placeholder="Detalle del producto..." maxlength="100" required></textarea>
+                <textarea name="descripcion" type="textarea" formControlName="descripcion" [ngClass]="{ 'is-invalid': (registerForm.get('descripcion').dirty || registerForm.get('descripcion').touched || submitted) && f.descripcion.errors }"  class="form-control" id="descripcion" rows="3" placeholder="Detalle del control..." maxlength="100" required></textarea>
                 <div *ngIf="(registerForm.get('descripcion').dirty || registerForm.get('descripcion').touched || submitted) && f['descripcion'].errors" class="invalid-feedback">
                   <div *ngIf="f['descripcion'].errors?.required">{{'Por favor describa el control' | translate}}.</div>
                 </div>
@@ -97,7 +95,7 @@
           </div>        
         </div>
         <div class="row">
-          <!-- <button class="btn btn-primary btn-lz mt-3 mb-3" type="submit">{{'Registrar' | translate }}</button> -->
+          <button class="btn btn-primary btn-lz mt-3 mb-3" type="submit">{{'Registrar' | translate }}</button>
           <button class="btn btn-danger btn-lz mt-3 mb-3" (click)="cancelarOperacion()">Regresar</button>
         </div>
       </form>

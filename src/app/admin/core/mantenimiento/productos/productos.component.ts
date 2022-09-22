@@ -140,7 +140,7 @@ export class ProductosComponent implements OnInit {
 
   getProductoById(id: number) {
     this.productoService.add(id);
-    this.router.navigate(['admin/incidencia/mantenimiento']);
+    this.router.navigate(['admin/controles/mantenimiento']);
   }
 
   dataURItoBlob(dataURI) {
