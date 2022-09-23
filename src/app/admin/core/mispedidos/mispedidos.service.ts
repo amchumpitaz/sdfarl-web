@@ -8,6 +8,8 @@ import { SERVER_API_URL } from 'src/app/app.constants';
 })
 export class MisPedidosService {
 
+    messages: any;
+
     private baseUrl = SERVER_API_URL + 'api';
     private baseUrlCountry = SERVER_API_URL + 'api/country';
     private baseUrlDeparment = SERVER_API_URL + 'api/deparment';
@@ -39,6 +41,13 @@ export class MisPedidosService {
 
     createControl(data: any): Observable<any> {
       return this.http.post(`${this.baseUrl}/control/add`, data);
+    }
+    getmovimientoAsignado(body): Observable<any> {
+      return this.http.post(`${this.baseUrl}/mostrar/movimiento_asignado`, body);
+    }
+
+    getListaMovimientosAsignados(body): Observable<any> {
+      return this.http.post(`${this.baseUrl}/listar/movimientos_asignados`, body);
     }
 
     // UPC
@@ -129,5 +138,18 @@ export class MisPedidosService {
     // Update SQ
     updateSecretQuestion(data: any) {
       return this.http.put(`${this.baseUrl}/updateSQ`, data);
+    }
+
+     // Comunicacion entre componentes
+     add(message: number) {
+      this.messages = message;
+    }
+
+    get() {
+      return this.messages;
+    }
+
+    clear() {
+      this.messages = undefined;
     }
 }

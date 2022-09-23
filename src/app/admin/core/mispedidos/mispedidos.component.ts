@@ -345,23 +345,6 @@ export class MispedidosComponent implements OnInit, OnDestroy {
         descripcion: 'México'
       }];
 
-    // Load default IMGS
-    this.imgs = [{
-      img: 'assets/images/no-image.jpg'
-    },
-    {
-      img: 'assets/images/no-image.jpg'
-    },
-    {
-      img: 'assets/images/no-image.jpg'
-    },
-    {
-      img: 'assets/images/no-image.jpg'
-    },
-    {
-      img: 'assets/images/no-image.jpg'
-    }];
-
     this.registerForm = this.formBuilder.group({
       modalidad: ['', Validators.required],
       aduana: ['', Validators.required],
@@ -490,6 +473,7 @@ export class MispedidosComponent implements OnInit, OnDestroy {
           console.log(data['predictions']['predictions'][0]);
           console.log(this.textModal);
           console.log(this.casoFraude);
+          this.limpiarCampos();
         }, (error) => {
           console.log(JSON.stringify(error, null, 2));
           this.notificationService.showError('Ocurrió un erro al validar el movimiento aduanero', '');
