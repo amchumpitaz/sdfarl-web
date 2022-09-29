@@ -47,6 +47,10 @@ export class MisPedidosService {
       return this.http.put(`${this.baseUrl}/control/update`, data);
     }
 
+    deleteControlId(id: number): Observable<any> {
+      return this.http.delete(`${this.baseUrl}/control/${id}`);
+    }
+
     getmovimientoAsignado(body): Observable<any> {
       return this.http.post(`${this.baseUrl}/mostrar/movimiento_asignado`, body);
     }

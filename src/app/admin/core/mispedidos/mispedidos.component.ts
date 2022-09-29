@@ -88,13 +88,13 @@ export class MispedidosComponent implements OnInit, OnDestroy {
   ngOnInit() {
   // Setting TipDocsCompany
   this.user = this.tokenStorage.getAuthorities();
-  this.misPedidosService.getUser(this.tokenStorage.getUsername()).subscribe(
-    (data) => {
-      this.user = data;
-    }, (error) => {
-      console.log(JSON.stringify(error, null, 2));
-    }
-  );
+  // this.misPedidosService.getUser(this.tokenStorage.getUsername()).subscribe(
+  //   (data) => {
+  //     this.user = data;
+  //   }, (error) => {
+  //     console.log(JSON.stringify(error, null, 2));
+  //   }
+  // );
   console.log(this.tokenStorage.getAuthorities());
   console.log(this.user);
   this.loadAduanas();

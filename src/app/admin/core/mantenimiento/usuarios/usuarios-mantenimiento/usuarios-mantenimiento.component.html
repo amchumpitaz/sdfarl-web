@@ -13,7 +13,7 @@
               <label for="modalidad">Modalidad Asociada al Régimen</label>
               <select name="modalidad" formControlName="modalidad" [ngClass]="{ 'is-invalid': (registerForm.get('modalidad').dirty || registerForm.get('modalidad').touched || submitted) && f.modalidad.errors }"
                 class="custom-select d-block w-100" id="modalidad" required [(ngModel)]="registerForm.get('modalidad').value">
-                <option value="0">---{{'Seleccione' | translate }}---</option>
+                <option value="">---{{'Seleccione' | translate }}---</option>
                 <option *ngFor="let p of modalidad" [value]="p.id">
                   {{p.descripcion}}
                 </option>
@@ -26,8 +26,8 @@
             <div class="col-md-12 mb-3 mt-3">
               <label for="aduana">Aduana</label>
               <select name="aduana" formControlName="aduana" [ngClass]="{ 'is-invalid': (registerForm.get('aduana').dirty || registerForm.get('aduana').touched || submitted) && f.aduana.errors }"
-                class="custom-select d-block w-100" id="aduana" required [(ngModel)]="registerForm.get('aduana').value">
-                <option value="0">---{{'Seleccione' | translate }}---</option>
+                class="custom-select d-block w-100" id="aduana" required >
+                <option value="">---{{'Seleccione' | translate }}---</option>
                 <option *ngFor="let p of aduanas" [value]="p.id">
                   {{p.descripcion}}
                 </option>
@@ -93,7 +93,7 @@
               <label for="paisorigen">Pais de Origen</label>
               <select name="paisorigen" formControlName="paisorigen" [ngClass]="{ 'is-invalid': (registerForm.get('paisorigen').dirty || registerForm.get('paisorigen').touched || submitted) && f.paisorigen.errors }"
                 class="custom-select d-block w-100" id="paisorigen" required>
-                <option value="0">---{{'Seleccione' | translate }}---</option>
+                <option value="">---{{'Seleccione' | translate }}---</option>
                 <option *ngFor="let p of paisorigen" [value]="p.id">
                   {{p.descripcion}}
                 </option>
@@ -107,7 +107,7 @@
               <label for="capitulo">Capitulo</label>
               <select name="capitulo" formControlName="capitulo" [ngClass]="{ 'is-invalid': (registerForm.get('capitulo').dirty || registerForm.get('capitulo').touched || submitted) && f.capitulo.errors }"
                 class="custom-select d-block w-100" id="capitulo" required>
-                <option value="0">---{{'Seleccione' | translate }}---</option>
+                <option value="">---{{'Seleccione' | translate }}---</option>
                 <option *ngFor="let p of capitulo" [value]="p.id">
                   {{p.descripcion}}
                 </option>
@@ -175,7 +175,7 @@
             <label for="regimen">Régimen</label>
             <select name="regimen" formControlName="regimen" [ngClass]="{ 'is-invalid': (registerForm.get('regimen').dirty || registerForm.get('regimen').touched || submitted) && f.regimen.errors }"
               class="custom-select d-block w-100" id="regimen" required [(ngModel)]="registerForm.get('regimen').value">
-              <option value="0">---{{'Seleccione' | translate }}---</option>
+              <option value="">---{{'Seleccione' | translate }}---</option>
               <option *ngFor="let p of regimen" [value]="p.id">
                 {{p.descripcion}}
               </option>
@@ -190,7 +190,7 @@
             <label for="aduanaingresoegreso">Aduana Ingreso/Egreso</label>
             <select name="aduanaingresoegreso" formControlName="aduanaingresoegreso" [ngClass]="{ 'is-invalid': (registerForm.get('aduanaingresoegreso').dirty || registerForm.get('aduanaingresoegreso').touched || submitted) && f.aduanaingresoegreso.errors }"
               class="custom-select d-block w-100" id="aduanaingresoegreso" required [(ngModel)]="registerForm.get('aduanaingresoegreso').value">
-              <option value="0">---{{'Seleccione' | translate }}---</option>
+              <option value="">---{{'Seleccione' | translate }}---</option>
               <option *ngFor="let p of aduanaingresoegreso" [value]="p.id">
                 {{p.descripcion}}
               </option>
@@ -204,7 +204,7 @@
             <label for="codigobanco">Codigo Banco</label>
             <select name="codigobanco" formControlName="codigobanco" [ngClass]="{ 'is-invalid': (registerForm.get('codigobanco').dirty || registerForm.get('codigobanco').touched || submitted) && f.codigobanco.errors }"
               class="custom-select d-block w-100" id="codigobanco" required>
-              <option value="0">---{{'Seleccione' | translate }}---</option>
+              <option value="">---{{'Seleccione' | translate }}---</option>
               <option *ngFor="let p of codigobanco" [value]="p.id">
                 {{p.descripcion}}
               </option>
@@ -218,7 +218,7 @@
             <label for="paisprocedencia">País Procedencia</label>
             <select name="paisprocedencia" formControlName="paisprocedencia" [ngClass]="{ 'is-invalid': (registerForm.get('paisprocedencia').dirty || registerForm.get('paisprocedencia').touched || submitted) && f.paisprocedencia.errors }"
               class="custom-select d-block w-100" id="paisprocedencia" required [(ngModel)]="registerForm.get('paisprocedencia').value">
-              <option value="0">---{{'Seleccione' | translate }}---</option>
+              <option value="">---{{'Seleccione' | translate }}---</option>
               <option *ngFor="let p of paisprocedencia" [value]="p.id">
                 {{p.descripcion}}
               </option>
@@ -258,7 +258,7 @@
             <label for="agenteaduana">Agente de Aduana</label>
             <select name="agenteaduana" formControlName="agenteaduana" [ngClass]="{ 'is-invalid': (registerForm.get('agenteaduana').dirty || registerForm.get('agenteaduana').touched || submitted) && f.agenteaduana.errors }"
               class="custom-select d-block w-100" id="agenteaduana" required [(ngModel)]="registerForm.get('agenteaduana').value">
-              <option value="0">---{{'Seleccione' | translate }}---</option>
+              <option value="">---{{'Seleccione' | translate }}---</option>
               <option *ngFor="let p of agenteaduana" [value]="p.id">
                 {{p.descripcion}}
               </option>
@@ -285,7 +285,7 @@
             <label for="esfraude">Es fraude</label>
             <select name="esfraude" formControlName="esfraude" [ngClass]="{ 'is-invalid': (registerForm.get('esfraude').dirty || registerForm.get('esfraude').touched || submitted) && f.esfraude.errors }"
               class="custom-select d-block w-100" id="esfraude" required [(ngModel)]="registerForm.get('esfraude').value">
-              <option value="0">---{{'Seleccione' | translate }}---</option>
+              <option value="">---{{'Seleccione' | translate }}---</option>
               <option *ngFor="let p of esfraudelist" [value]="p.nombre">
                 {{p.nombre}}
               </option>

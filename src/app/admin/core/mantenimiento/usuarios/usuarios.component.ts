@@ -81,15 +81,15 @@ export class UsuariosComponent implements OnInit {
   }
 
   modalEliminarProducto(id: number) {
-    this.modalDialogService.confirm(this.translate.instant('Eliminar Producto'),
-      this.translate.instant('¿Está seguro que desea eliminar el producto?'))
+    this.modalDialogService.confirm(this.translate.instant('Eliminar Movimiento Aduanero'),
+      this.translate.instant('¿Está seguro que desea eliminar el Movimiento Aduanero?'))
       .then((confirmed) => { this.eliminarProducto(id); })
       .catch(() => console.log('Canceló la operación'));
   }
 
   // METODO PARA ELIMINAR LA VERSION
   eliminarProducto(idProductoEliminar: number) {
-    this.notificationService.showSuccess(this.translate.instant('Se eliminó el producto con id') + ': ' + idProductoEliminar, '');
+    this.notificationService.showSuccess(this.translate.instant('Se eliminó el movimiento aduanero con id') + ': ' + idProductoEliminar, '');
     this.modal.close();
   }
 

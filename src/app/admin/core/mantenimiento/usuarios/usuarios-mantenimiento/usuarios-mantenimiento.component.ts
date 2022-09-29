@@ -192,15 +192,15 @@ export class UsuariosMantenimientoComponent implements OnInit {
       descripcion: 'Santamaría'
     },
     {
-      id: 0.0,
+      id: 0.1,
       descripcion: 'Paso Canoas'
     },
     {
-      id: 0.0,
+      id: 0.2,
       descripcion: 'La Anexión'
     },
     {
-      id: 0.0,
+      id: 0.3,
       descripcion: 'Caldera'
     },
     {
@@ -212,7 +212,7 @@ export class UsuariosMantenimientoComponent implements OnInit {
       descripcion: 'Peñas Blancas'
     },
     {
-      id: 1.0,
+      id: 1.1,
       descripcion: 'Aduana Central'
     }];
 
