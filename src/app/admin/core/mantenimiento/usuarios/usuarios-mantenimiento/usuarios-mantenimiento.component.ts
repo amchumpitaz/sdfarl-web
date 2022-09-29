@@ -45,6 +45,18 @@ export class UsuariosMantenimientoComponent implements OnInit {
   lugarrecojos: any;
   tipoMonedas: any;
   condicions: any;
+  esfraudelist: any;
+
+  incidencia: any;
+
+  asignacion: any;
+  operadores: any;
+  bodyOp: any;
+
+  casoFraude: any;
+  id_movimiento: any;
+  textModal: any;
+  textModalProcess: any;
 
   constructor(
     private translate: TranslateService,
@@ -58,6 +70,13 @@ export class UsuariosMantenimientoComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.esfraudelist = [{
+      nombre: 'SI'
+    }, {
+      nombre: 'NO'
+    }];
+
     this.perfiles = [{
       id: 1,
       nombre: 'Administrador'
@@ -117,24 +136,9 @@ export class UsuariosMantenimientoComponent implements OnInit {
       seguroitem: ['', Validators.required],
       valoraduanausd: ['', Validators.required],
       agenteaduana: ['', Validators.required],
-      valortotaladuanausd: ['', Validators.required]
+      valortotaladuanausd: ['', Validators.required],
+      esfraude: ['', Validators.required]
     });
-
-    // this.registerForm = this.formBuilder.group({
-    //   usuarioid: [''],
-    //   perfil: ['', Validators.required],
-    //   pais: ['', Validators.required],
-    //   empresa: ['', Validators.required],
-    //   nombre: ['', Validators.required],
-    //   apellidoPatUsu: ['', Validators.required],
-    //   apellidoMatUsu: ['', Validators.required],
-    //   email: ['', [Validators.required, Validators.email]],
-    //   tipoDocumento: ['', Validators.required],
-    //   nroDocumento: ['', Validators.required]
-    // }, {
-    //     validators: [this.validEmailExist('email'),
-    //     this.validTypeDocumentExist('nroDocumento', 'tipoDocumento')]
-    //   });
 
     if (this.usuarioService.get() != null) {
 
@@ -146,8 +150,6 @@ export class UsuariosMantenimientoComponent implements OnInit {
           console.log(data);
           this.model = data.movimiento[0];
           console.log(this.model);
-          console.log(this.model['modalidad']);
-          console.log(data['movimiento'][0]['modalidad']);
           this.registerForm.setValue({
             modalidad: this.model['modalidad_asociada_al_regimen'],
             aduana: this.model['aduana'],
@@ -168,27 +170,11 @@ export class UsuariosMantenimientoComponent implements OnInit {
             seguroitem: this.model['seguro_item'],
             valoraduanausd: this.model['valor_en_aduanas_sin_ajuste_en_usd_linea'],
             agenteaduana: this.model['agente_de_aduanas'],
-            valortotaladuanausd: this.model['total_valor_en_aduana_usd']
+            valortotaladuanausd: this.model['total_valor_en_aduana_usd'],
+            esfraude: 0
           });
         }
       );
-
-      // this.usuarioService.getUsuarioById(1).subscribe(
-      //   (data) => {
-      //     this.model = data;
-      //     this.registerForm.setValue({
-      //       usuarioid: 1,
-      //       perfil: this.model.perfil,
-      //       pais: this.model.pais,
-      //       empresa: this.model.empresa,
-      //       nombre: this.model.nombre,
-      //       apellidoPatUsu: this.model.apellidopaterno,
-      //       apellidoMatUsu: this.model.apellidomaterno,
-      //       email: this.model.email,
-      //       tipoDocumento: this.model.tipodocumento,
-      //       nroDocumento: this.model.nrodocumento
-      //     });
-      //   });
 
       console.log(this.usuarioService.get());
       this.title = 'Actualizar';
@@ -492,11 +478,59 @@ export class UsuariosMantenimientoComponent implements OnInit {
     } else {
       // Here go register service
 
+      this.incidencia = new Array(
+        this.idUsuario,
+        parseFloat(this.registerForm.get('modalidad').value),
+        parseFloat(this.registerForm.get('aduana').value),
+        parseFloat(this.registerForm.get('importador').value),
+        parseFloat(this.registerForm.get('bultos').value),
+        parseFloat(this.registerForm.get('pesoneto').value),
+        parseFloat(this.registerForm.get('pesobruto').value),
+        parseFloat(this.registerForm.get('paisorigen').value),
+        parseFloat(this.registerForm.get('capitulo').value),
+        parseFloat(this.registerForm.get('partidaarancelaria').value),
+        parseFloat(this.registerForm.get('subpartidaarancelaria').value),
+        parseFloat(this.registerForm.get('partidaregional').value),
+        parseFloat(this.registerForm.get('aperturanacional').value),
+        parseFloat(this.registerForm.get('regimen').value),
+        parseFloat(this.registerForm.get('aduanaingresoegreso').value),
+        parseFloat(this.registerForm.get('codigobanco').value),
+        parseFloat(this.registerForm.get('paisprocedencia').value),
+        parseFloat(this.registerForm.get('seguroitem').value),
+        parseFloat(this.registerForm.get('valoraduanausd').value),
+        parseFloat(this.registerForm.get('agenteaduana').value),
+        parseFloat(this.registerForm.get('valortotaladuanausd').value),
+        this.registerForm.get('esfraude').value);
+      // Here go register service
+      console.log(this.incidencia);
+      this.misPedidosService.updateIncidencia(this.incidencia).subscribe(
+        (data) => {
+          console.log(data);
+          // console.log(data['predictions']['predictions'][0]);
+          // document.getElementById('buttonOpenModal').click();
+          // this.textModal = data['predictions']['predictions'][0];
+          // this.textModal = (Math.round(this.textModal * 100) / 100) * 100;
+          // this.casoFraude = (this.textModal < 40) ? 0 : (this.textModal < 60) ? 1 : 2;
+          // this.id_movimiento = data['movimiento'];
+          // console.log(data['predictions']['predictions'][0]);
+          // console.log(this.textModal);
+          // console.log(this.casoFraude);
+          this.notificationService.showSuccess('Se actualizó el movimiento aduanero', '');
+          this.limpiarCampos();
+        }, (error) => {
+          console.log(JSON.stringify(error, null, 2));
+          this.notificationService.showError('Ocurrió un error al actualizar el movimiento aduanero', '');
+        }
+      );
+
+      console.log('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value));
+      console.log(this.registerForm.value);
+
       console.log('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value));
       console.log(this.registerForm.value);
       this.limpiarCampos();
     }
-    this.router.navigate(['/admin/usuarios']);
+    this.router.navigate(['/admin/movimientosAsignados']);
   }
 
   validTypeDocumentExist(nroDocumento: string, tipodocumento: string) {

@@ -165,13 +165,6 @@ export class ProductosMantenimientoComponent implements OnInit, OnDestroy {
         (data) => {
           console.log(data);
           this.model = data;
-          // let realKey: string;
-          // for (const key in this.model) {
-          //   if (this.model[key]['codigo'] === this.idProducto) {
-          //     realKey = key;
-          //   }
-          // }
-          // console.log(realKey);
           this.registerForm.setValue({
             id: this.model['id'],
             nivel_riesgo : this.model['nivel_riesgo'],
@@ -217,7 +210,7 @@ export class ProductosMantenimientoComponent implements OnInit, OnDestroy {
         controlEntrada = {
           nivel_riesgo: this.registerForm.get('nivel_riesgo').value,
           descripcion: this.registerForm.get('descripcion').value,
-          usuario: 'ACHUMPITAZ'
+          usuario: this.tokenStorage.getUsername()
         };
       // Here go register service
       console.log(this.model);

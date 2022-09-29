@@ -4,13 +4,13 @@
       <i class="icon fa fa-shopping-cart"></i>
       <h2>Movimientos Asignados</h2>
     </div>
-    <div class="col col-lg-6 text-right">
+    <!-- <div class="col col-lg-6 text-right">
       <button class="btn btn-outline-primary" [routerLink]="['/admin/controles/mantenimiento']"
         [routerLinkActive]="['router-link-active']">
         <span class="fa fa-plus fa-lg" aria-hidden="true"></span>
         {{'Nuevo' | translate }}
       </button>
-    </div>
+    </div> -->
   </div>
   <!-- <div class="col-md-12 text-center mb-3 h-25 w-100 d-flex rounded">
     <img *ngIf="!imgURL" src="assets/images/no-image.jpg" w-100 h-100 class="mx-auto d-block rounded" style="width: auto;">
@@ -61,6 +61,8 @@
               <td class="text-center">Identificador de movimiento</td>
               <td class="text-center">Probabilidad</td>
               <td class="text-center">Probabilidad redondeada</td>
+              <td class="text-center">Usuario Asignado</td>
+              <td class="text-center">Fraude Evaluado</td>
               <td class="text-center">Autor</td>
               <td class="text-center">Fec. Creación</td>
             </tr>
@@ -78,6 +80,8 @@
               <td class="text-center">{{ producto?.movimiento }}</td>
               <td class="text-center">{{ producto?.probabilidad }}</td>
               <td class="text-center">{{ producto?.round_probabilidad }}</td>
+              <td class="text-center">{{ producto?.usuario }}</td>
+              <td class="text-center">{{ producto?.es_fraude }}</td>
               <td class="text-center">{{ producto?.usr_crea }}</td>
               <td class="text-center">{{ producto?.fec_crea }}</td>
               <td class="text-center">

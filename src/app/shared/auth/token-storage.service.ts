@@ -34,6 +34,15 @@ export class TokenStorageService {
     return sessionStorage.getItem(USERNAME_KEY);
   }
 
+  public saveNombres(username: string) {
+    window.sessionStorage.removeItem(NAME_KEY);
+    window.sessionStorage.setItem(NAME_KEY, username);
+  }
+
+  public getNombres(): string {
+    return sessionStorage.getItem(NAME_KEY);
+  }
+
   public saveData(data: any) {
     window.sessionStorage.removeItem('data');
     window.sessionStorage.setItem('data', JSON.stringify(data));
@@ -45,18 +54,21 @@ export class TokenStorageService {
 
   public saveAuthorities(authorities: any) {
     window.sessionStorage.removeItem(AUTHORITIES_KEY);
-    window.sessionStorage.setItem(AUTHORITIES_KEY, JSON.stringify(authorities));
+    window.sessionStorage.setItem(AUTHORITIES_KEY, authorities);
+    // window.sessionStorage.setItem(AUTHORITIES_KEY, JSON.stringify(authorities));
   }
 
   public getAuthorities(): any {
-    this.roles = [];
+    return sessionStorage.getItem(AUTHORITIES_KEY);
+    // this.roles = [];
 
-    if (sessionStorage.getItem(TOKEN_KEY)) {
-      JSON.parse(sessionStorage.getItem(AUTHORITIES_KEY)).forEach(authority => {
-        this.roles.push(authority.authority);
-      });
-    }
+    // if (sessionStorage.getItem(TOKEN_KEY)) {
+    //   JSON.parse(sessionStorage.getItem(AUTHORITIES_KEY)).forEach(authority => {
+    //     this.roles.push(authority.authority);
+    //   });
+    // }
 
-    return this.roles;
+    // return this.roles;
+
   }
 }

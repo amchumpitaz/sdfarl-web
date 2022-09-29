@@ -30,6 +30,7 @@ export class UsuariosComponent implements OnInit {
   registerForm: FormGroup;
   submitted: boolean;
   modal: NgbModalRef;
+  rol: any;
 
   imgs: any;
 
@@ -52,42 +53,16 @@ export class UsuariosComponent implements OnInit {
 
   ngOnInit() {
     this.username = this.tokenStorage.getUsername();
-
+    this.rol = this.tokenStorage.getAuthorities();
     this.body = {
-      'usuario': this.username
+      'usuario': this.rol === 'ADMIN' ?  null : this.username
     };
+    console.log(this.body);
 
     this.misPedidosService.getListaMovimientosAsignados(this.body).subscribe(
       (data) => {
         console.log(data);
         this.movimientosAsignados = data.asig_movs;
-        // console.log(data[0]['imagenes'][0]['archivo']);
-        /* const base64 =  data[0]['imagenes'][0]['archivo'];
-        const date = new Date().valueOf();
-        let text = '';
-        const possibleText = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-        for (let i = 0; i < 5; i++) {
-          text += possibleText.charAt(Math.floor(Math.random() * possibleText.length));
-        }
-        // Replace extension according to your media type
-        const imageName = date + '.' + text + '.jpeg';
-        // call method that creates a blob from dataUri
-        const imageBlob = this.dataURItoBlob(base64);
-        const imageFile = new File([imageBlob], imageName, { type: 'image/jpeg' });
-
-        // Set last img selected to big IMG SHOW
-        const reader = new FileReader();
-        this.imagePath = imageFile;
-        reader.readAsDataURL(imageFile);
-        reader.onload = (_event) => {
-          this.imgURL = reader.result;
-        }; */
-
-        // Set background to image preview to box of each element
-        // reader.onloadend = (_event) => {
-        //   this.imgs[index].img = this.imgURL;
-        // };
-        // console.log(imageFile);
       }, (error) => {
         console.log(JSON.stringify(error, null, 2));
       }

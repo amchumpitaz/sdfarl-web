@@ -53,7 +53,8 @@ export class LoginComponent implements OnInit {
             console.log(data);
             if (data != null) {
               this.tokenStorage.saveUsername(data.user.usuario);
-              this.tokenStorage.saveAuthorities(data.roles); // HERE FOR ROLES
+              this.tokenStorage.saveNombres(data.user.nombres + ' ' + data.user.ape_paterno);
+              this.tokenStorage.saveAuthorities(data.user.rol); // HERE FOR ROLES
               this.isLoginFailed = false;
               this.isLoggedIn = true;
               this.roles = this.tokenStorage.getAuthorities();

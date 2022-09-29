@@ -1,7 +1,7 @@
 <div class="container">
   <div class="py-3 pt-5 text-left text_underline">
     <i class="icon fa fa-user"></i>
-    <h2>Movimientos Aduanero</h2>
+    <h2>Movimiento Aduanero</h2>
   </div>
   <div class="row">
     <div class="col-md-12 order-md-1">
@@ -12,7 +12,7 @@
             <div class="col-md-12 mb-3 mt-3">
               <label for="modalidad">Modalidad Asociada al Régimen</label>
               <select name="modalidad" formControlName="modalidad" [ngClass]="{ 'is-invalid': (registerForm.get('modalidad').dirty || registerForm.get('modalidad').touched || submitted) && f.modalidad.errors }"
-                class="custom-select d-block w-100" id="modalidad" required>
+                class="custom-select d-block w-100" id="modalidad" required [(ngModel)]="registerForm.get('modalidad').value">
                 <option value="0">---{{'Seleccione' | translate }}---</option>
                 <option *ngFor="let p of modalidad" [value]="p.id">
                   {{p.descripcion}}
@@ -26,7 +26,7 @@
             <div class="col-md-12 mb-3 mt-3">
               <label for="aduana">Aduana</label>
               <select name="aduana" formControlName="aduana" [ngClass]="{ 'is-invalid': (registerForm.get('aduana').dirty || registerForm.get('aduana').touched || submitted) && f.aduana.errors }"
-                class="custom-select d-block w-100" id="aduana" required>
+                class="custom-select d-block w-100" id="aduana" required [(ngModel)]="registerForm.get('aduana').value">
                 <option value="0">---{{'Seleccione' | translate }}---</option>
                 <option *ngFor="let p of aduanas" [value]="p.id">
                   {{p.descripcion}}
@@ -174,7 +174,7 @@
           <div class="col-md-12 mb-3 mt-3">
             <label for="regimen">Régimen</label>
             <select name="regimen" formControlName="regimen" [ngClass]="{ 'is-invalid': (registerForm.get('regimen').dirty || registerForm.get('regimen').touched || submitted) && f.regimen.errors }"
-              class="custom-select d-block w-100" id="regimen" required>
+              class="custom-select d-block w-100" id="regimen" required [(ngModel)]="registerForm.get('regimen').value">
               <option value="0">---{{'Seleccione' | translate }}---</option>
               <option *ngFor="let p of regimen" [value]="p.id">
                 {{p.descripcion}}
@@ -189,7 +189,7 @@
           <div class="col-md-12 mb-3 mt-3">
             <label for="aduanaingresoegreso">Aduana Ingreso/Egreso</label>
             <select name="aduanaingresoegreso" formControlName="aduanaingresoegreso" [ngClass]="{ 'is-invalid': (registerForm.get('aduanaingresoegreso').dirty || registerForm.get('aduanaingresoegreso').touched || submitted) && f.aduanaingresoegreso.errors }"
-              class="custom-select d-block w-100" id="aduanaingresoegreso" required>
+              class="custom-select d-block w-100" id="aduanaingresoegreso" required [(ngModel)]="registerForm.get('aduanaingresoegreso').value">
               <option value="0">---{{'Seleccione' | translate }}---</option>
               <option *ngFor="let p of aduanaingresoegreso" [value]="p.id">
                 {{p.descripcion}}
@@ -217,7 +217,7 @@
           <div class="col-md-12 mb-3 mt-3">
             <label for="paisprocedencia">País Procedencia</label>
             <select name="paisprocedencia" formControlName="paisprocedencia" [ngClass]="{ 'is-invalid': (registerForm.get('paisprocedencia').dirty || registerForm.get('paisprocedencia').touched || submitted) && f.paisprocedencia.errors }"
-              class="custom-select d-block w-100" id="paisprocedencia" required>
+              class="custom-select d-block w-100" id="paisprocedencia" required [(ngModel)]="registerForm.get('paisprocedencia').value">
               <option value="0">---{{'Seleccione' | translate }}---</option>
               <option *ngFor="let p of paisprocedencia" [value]="p.id">
                 {{p.descripcion}}
@@ -257,7 +257,7 @@
           <div class="col-md-12 mb-3 mt-3">
             <label for="agenteaduana">Agente de Aduana</label>
             <select name="agenteaduana" formControlName="agenteaduana" [ngClass]="{ 'is-invalid': (registerForm.get('agenteaduana').dirty || registerForm.get('agenteaduana').touched || submitted) && f.agenteaduana.errors }"
-              class="custom-select d-block w-100" id="agenteaduana" required>
+              class="custom-select d-block w-100" id="agenteaduana" required [(ngModel)]="registerForm.get('agenteaduana').value">
               <option value="0">---{{'Seleccione' | translate }}---</option>
               <option *ngFor="let p of agenteaduana" [value]="p.id">
                 {{p.descripcion}}
@@ -278,6 +278,20 @@
               *ngIf="(registerForm.get('valortotaladuanausd').dirty || registerForm.get('valortotaladuanausd').touched || submitted) && f['valortotaladuanausd'].errors"
               class="invalid-feedback">
               <div *ngIf="f['valortotaladuanausd'].errors?.required"> {{'El valor total en aduana (USD) es obligatorio' | translate }}.</div>
+            </div>
+          </div>
+          <!--ES_FRAUDE-->
+          <div class="col-md-12 mb-3 mt-3">
+            <label for="esfraude">Es fraude</label>
+            <select name="esfraude" formControlName="esfraude" [ngClass]="{ 'is-invalid': (registerForm.get('esfraude').dirty || registerForm.get('esfraude').touched || submitted) && f.esfraude.errors }"
+              class="custom-select d-block w-100" id="esfraude" required [(ngModel)]="registerForm.get('esfraude').value">
+              <option value="0">---{{'Seleccione' | translate }}---</option>
+              <option *ngFor="let p of esfraudelist" [value]="p.nombre">
+                {{p.nombre}}
+              </option>
+            </select>
+            <div *ngIf="(registerForm.get('esfraude').dirty || registerForm.get('esfraude').touched || submitted) && f['esfraude'].errors" class="invalid-feedback">
+              <div *ngIf="f['esfraude'].errors?.required">Por favor seleccione una opción.</div>
             </div>
           </div>
           <div class="row">

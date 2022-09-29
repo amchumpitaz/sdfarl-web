@@ -504,7 +504,7 @@ export class MispedidosComponent implements OnInit, OnDestroy {
     console.log(usuario);
     console.log(this.id_movimiento);
 
-    this.bodyOp = {usuario: usuario, movimiento: this.id_movimiento};
+    this.bodyOp = {usuario: usuario, movimiento: this.id_movimiento, autor: this.tokenStorage.getUsername()};
     this.misPedidosService.asignarOperadores(this.bodyOp)
       .subscribe((data: any) => {
         console.log(data);

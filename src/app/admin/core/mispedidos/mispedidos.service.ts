@@ -54,13 +54,17 @@ export class MisPedidosService {
       return this.http.get(`${this.baseUrl}/security/get_acceso/${usuario}`);
     }
 
+    createIncidencia(data: any): Observable<any> {
+      return this.http.post(`${this.baseUrl}/inference`, data);
+    }
+
+    updateIncidencia(data: any): Observable<any> {
+      return this.http.post(`${this.baseUrl}/actualizarMovimiento`, data);
+    }
+
     // UPC
     getTipoDeIncidencia(): Observable<any> {
       return this.http.get(`${this.baseUrl}/tiposIncidencia/listar`);
-    }
-
-    createIncidencia(data: any): Observable<any> {
-      return this.http.post(`${this.baseUrl}/inference`, data);
     }
 
     getIncidencias(): Observable<any> {

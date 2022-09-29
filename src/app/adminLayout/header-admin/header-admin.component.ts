@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Router, NavigationEnd } from '@angular/router';
+import { TokenStorageService } from 'src/app/shared/auth/token-storage.service';
 
 @Component({
   selector: 'app-header-admin',
@@ -10,7 +11,7 @@ import { Router, NavigationEnd } from '@angular/router';
 export class HeaderAdminComponent implements OnInit {
 
   public pushRightClass: string;
-  constructor(private translate: TranslateService, public router: Router) {
+  constructor(private translate: TranslateService, public router: Router, private tokenStorage: TokenStorageService) {
     this.router.events.subscribe(val => {
       if (
         val instanceof NavigationEnd &&
