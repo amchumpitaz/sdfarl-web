@@ -50,33 +50,6 @@ export class ProductosComponent implements OnInit {
       (data) => {
         console.log(data);
         this.productos = data;
-        // console.log(data[0]['imagenes'][0]['archivo']);
-        /* const base64 =  data[0]['imagenes'][0]['archivo'];
-        const date = new Date().valueOf();
-        let text = '';
-        const possibleText = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-        for (let i = 0; i < 5; i++) {
-          text += possibleText.charAt(Math.floor(Math.random() * possibleText.length));
-        }
-        // Replace extension according to your media type
-        const imageName = date + '.' + text + '.jpeg';
-        // call method that creates a blob from dataUri
-        const imageBlob = this.dataURItoBlob(base64);
-        const imageFile = new File([imageBlob], imageName, { type: 'image/jpeg' });
-
-        // Set last img selected to big IMG SHOW
-        const reader = new FileReader();
-        this.imagePath = imageFile;
-        reader.readAsDataURL(imageFile);
-        reader.onload = (_event) => {
-          this.imgURL = reader.result;
-        }; */
-
-        // Set background to image preview to box of each element
-        // reader.onloadend = (_event) => {
-        //   this.imgs[index].img = this.imgURL;
-        // };
-        // console.log(imageFile);
       }, (error) => {
         console.log(JSON.stringify(error, null, 2));
       }
@@ -139,6 +112,7 @@ export class ProductosComponent implements OnInit {
   }
 
   getProductoById(id: number) {
+    this.productos = null;
     this.productoService.add(id);
     this.router.navigate(['admin/controles/mantenimiento']);
   }

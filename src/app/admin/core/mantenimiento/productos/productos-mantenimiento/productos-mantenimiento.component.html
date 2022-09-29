@@ -1,7 +1,7 @@
 <div class="container">
   <div class="py-3 pt-5 text-left text_underline">
     <i class="icon fa fa-user"></i>
-    <h2>Registro de Control de Riesgo</h2>
+    <h2>{{ this.title }} | Control de Riesgo</h2>
   </div>
   <div class="row">
     <div class="col-md-12 order-md-1">
@@ -12,7 +12,7 @@
             <div class="col-md-12 mb-3 mt-3">
               <label for="id">ID</label>
               <input name="id" formControlName="id" type="text" class="form-control"
-                id="id" placeholder="" value="" readonly>
+                id="id" placeholder="" value="{{registerForm.get('id').value}}" readonly>
               <!-- <div
                 *ngIf="(registerForm.get('id').dirty || registerForm.get('id').touched || submitted) && f['id'].errors"
                 class="invalid-feedback">
@@ -95,7 +95,7 @@
           </div>        
         </div>
         <div class="row">
-          <button class="btn btn-primary btn-lz mt-3 mb-3" type="submit">{{'Registrar' | translate }}</button>
+          <button class="btn btn-primary btn-lz mt-3 mb-3" type="submit">{{this.title | translate }}</button>
           <button class="btn btn-danger btn-lz mt-3 mb-3" (click)="cancelarOperacion()">Regresar</button>
         </div>
       </form>

@@ -152,6 +152,7 @@ export class ProductosMantenimientoComponent implements OnInit, OnDestroy {
     }];
 
     this.registerForm = this.formBuilder.group({
+      id: [''],
       descripcion: ['', Validators.required],
       nivel_riesgo : ['', Validators.required]
     });
@@ -199,50 +200,55 @@ export class ProductosMantenimientoComponent implements OnInit, OnDestroy {
       this.notificationService.showError(this.translate.instant(ERROR_INPUTS_REGISTER), '');
       return;
     } else {
-      /* this.model = new Producto(null,
-        this.registerForm.get('nivel_riesgo').value,
-        this.registerForm.get('descripcion').value,
-        '',
-        new Date(),
-        'ADMIN'
-        ); */
+
+      if (this.productoService.get() != null) {
+        // Update
+        let controlEntrada: any;
+        controlEntrada = {
+          id: this.productoService.get(),
+          nivel_riesgo: this.registerForm.get('nivel_riesgo').value,
+          descripcion: this.registerForm.get('descripcion').value,
+          usuario: this.tokenStorage.getUsername()
+        };
+        // Here go register service
+        console.log(this.model);
+        this.misPedidosService.updateControl(controlEntrada).subscribe(
+          (data) => {
+            console.log(data);
+            this.notificationService.showSuccess('Se actualizó el control con éxito', '');
+            // this.limpiarCampos();
+          }, (error) => {
+            console.log(JSON.stringify(error, null, 2));
+            this.notificationService.showError('Hubo un error en el registro', '');
+          }
+        );
+      } else {
+        // Save
         let controlEntrada: any;
         controlEntrada = {
           nivel_riesgo: this.registerForm.get('nivel_riesgo').value,
           descripcion: this.registerForm.get('descripcion').value,
           usuario: this.tokenStorage.getUsername()
         };
-      // Here go register service
-      console.log(this.model);
-      this.misPedidosService.createControl(controlEntrada).subscribe(
-        (data) => {
-          console.log(data);
-          /* this.filesList.forEach(element => {
-            const formData = new FormData();
-            // formData.append('file', this.filesList[0]);
-            formData.append('file', element);
-            console.log(formData);
-            this.misPedidosService.saveimages(formData, data['codigo']).subscribe(
-              (data2) => {
-                console.log(data2);
-              }, (error) => {
-                console.log(JSON.stringify(error, null, 2));
-                this.notificationService.showError('Hubo un error en el registro', '');
-              }
-            );
-          }); */
-          document.getElementById('id').innerText = data['id'];
-          this.notificationService.showSuccess('Se registró el control con éxito', '');
-        }, (error) => {
-          console.log(JSON.stringify(error, null, 2));
-          this.notificationService.showError('Hubo un error en el registro', '');
-        }
-      );
-
+        // Here go register service
+        console.log(this.model);
+        this.misPedidosService.createControl(controlEntrada).subscribe(
+          (data) => {
+            console.log(data);
+            document.getElementById('id').innerText = data['id'];
+            this.notificationService.showSuccess('Se registró el control con éxito', '');
+            this.limpiarCampos();
+            this.router.navigate(['/admin/controles']);
+          }, (error) => {
+            console.log(JSON.stringify(error, null, 2));
+            this.notificationService.showError('Hubo un error en el registro', '');
+          }
+        );
+      }
       console.log('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value));
       console.log(this.registerForm.value);
     }
-    // this.router.navigate(['/admin/productos']);
+    // this.router.navigate(['/admin/controles']);
   }
 
   // METODO QUE PERMITE OBTENER EL ARCHIVO SELECCIONADO

@@ -42,6 +42,11 @@ export class MisPedidosService {
     createControl(data: any): Observable<any> {
       return this.http.post(`${this.baseUrl}/control/add`, data);
     }
+
+    updateControl(data: any): Observable<any> {
+      return this.http.put(`${this.baseUrl}/control/update`, data);
+    }
+
     getmovimientoAsignado(body): Observable<any> {
       return this.http.post(`${this.baseUrl}/mostrar/movimiento_asignado`, body);
     }
