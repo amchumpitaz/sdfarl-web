@@ -1,6 +1,9 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Router, NavigationEnd } from '@angular/router';
+import { Menu } from './menu';
+import { MisPedidosService } from '../../admin/core/mispedidos/mispedidos.service';
+import { TokenStorageService } from 'src/app/shared/auth/token-storage.service';
 
 @Component({
   selector: 'app-sidebar-admin',
@@ -13,9 +16,14 @@ export class SidebarAdminComponent implements OnInit {
   collapsed: boolean;
   showMenu: string;
   pushRightClass: string;
+  menus: any;
 
   @Output() collapsedEvent = new EventEmitter<boolean>();
-  constructor(private translate: TranslateService, public router: Router) {
+  constructor(private translate: TranslateService,
+      public router: Router,
+      private misPedidosService: MisPedidosService,
+      private tokenStorage: TokenStorageService
+    ) {
     this.router.events.subscribe(val => {
       if (
         val instanceof NavigationEnd &&
@@ -33,6 +41,14 @@ export class SidebarAdminComponent implements OnInit {
     // Valid if exist menu item before refreshin page
     this.showMenu = sessionStorage.getItem('menuActive') !== null ? sessionStorage.getItem('menuActive') : '';
     this.pushRightClass = 'push-right';
+    this.misPedidosService.getRecursos(this.tokenStorage.getUsername()).subscribe(
+      (data) => {
+        console.log(data);
+        this.menus = data;
+      }, (error) => {
+        console.log(JSON.stringify(error, null, 2));
+      }
+    );
   }
 
 

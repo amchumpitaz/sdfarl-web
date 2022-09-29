@@ -24,7 +24,7 @@
                 </ul>
             </li>
         </div> -->
-        <a routerLink="/admin/controles" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <!-- <a routerLink="/admin/controles" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-car"></i>
             <span>{{ 'Gestión de Controles' | translate }}</span>
         </a>
@@ -35,6 +35,10 @@
         <a routerLink="/admin/movimientosAsignados" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-car"></i>
             <span>{{ 'Movimientos Asignados' | translate }}</span>
+        </a> -->
+        <a *ngFor="let menu of menus; let i = index" routerLink={{menu.url}} [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class={{menu.imagen}}></i>
+            <span>{{ menu.descripcion | translate }}</span>
         </a>
         <!-- <div class="nested-menu">
             <a class="list-group-item" (click)="addExpandClass('pages')">

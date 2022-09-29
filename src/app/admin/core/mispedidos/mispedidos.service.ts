@@ -50,6 +50,10 @@ export class MisPedidosService {
       return this.http.post(`${this.baseUrl}/listar/movimientos_asignados`, body);
     }
 
+    getRecursos(usuario: string): Observable<any> {
+      return this.http.get(`${this.baseUrl}/security/get_acceso/${usuario}`);
+    }
+
     // UPC
     getTipoDeIncidencia(): Observable<any> {
       return this.http.get(`${this.baseUrl}/tiposIncidencia/listar`);
