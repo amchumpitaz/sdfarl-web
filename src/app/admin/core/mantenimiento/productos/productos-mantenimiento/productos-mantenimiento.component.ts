@@ -217,7 +217,7 @@ export class ProductosMantenimientoComponent implements OnInit, OnDestroy {
         controlEntrada = {
           nivel_riesgo: this.registerForm.get('nivel_riesgo').value,
           descripcion: this.registerForm.get('descripcion').value,
-          usuario: 'ACHUMPITAZ'
+          usuario: this.tokenStorage.getUsername()
         };
       // Here go register service
       console.log(this.model);
