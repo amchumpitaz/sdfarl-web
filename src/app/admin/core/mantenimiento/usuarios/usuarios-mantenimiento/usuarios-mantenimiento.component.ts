@@ -57,6 +57,12 @@ export class UsuariosMantenimientoComponent implements OnInit {
   id_movimiento: any;
   textModal: any;
   textModalProcess: any;
+  catRiesgo: any;
+  nivelDeRiesgo: any;
+  lstNivelDeRiesgo: any;
+
+  prob_riesgo: any;
+  cat_riesgo: any;
 
   constructor(
     private translate: TranslateService,
@@ -171,8 +177,17 @@ export class UsuariosMantenimientoComponent implements OnInit {
             valoraduanausd: this.model['valor_en_aduanas_sin_ajuste_en_usd_linea'],
             agenteaduana: this.model['agente_de_aduanas'],
             valortotaladuanausd: this.model['total_valor_en_aduana_usd'],
-            esfraude: 0
+            esfraude: this.model['es_fraude']
           });
+          // this.catRiesgo = (Math.round(parseFloat(this.model['probabilidad']) * 100) / 100) * 100;
+
+          this.catRiesgo = (parseFloat(this.model['probabilidad']) * 100).toFixed(2);
+          this.nivelDeRiesgo = (this.catRiesgo < 40) ? 1 : (this.catRiesgo < 60) ? 2 : 3;
+
+          this.prob_riesgo = this.catRiesgo;
+          this.cat_riesgo = this.nivelDeRiesgo;
+          // Llamar a los controles
+          this.cargarControlPorNiveldeRiesgo(this.nivelDeRiesgo);
         }
       );
 
@@ -574,6 +589,16 @@ export class UsuariosMantenimientoComponent implements OnInit {
           });
       }
     };
+  }
+
+  cargarControlPorNiveldeRiesgo(nivelDeRiesgo: string) {
+      this.misPedidosService.getNivelRiesgoByProbabilidad(nivelDeRiesgo).subscribe(
+        (data) => {
+          console.log(data);
+          console.log(data[0]);
+          this.lstNivelDeRiesgo = data;
+        }
+      );
   }
 
   limpiarCampos() {

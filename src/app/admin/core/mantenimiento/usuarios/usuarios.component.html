@@ -59,8 +59,8 @@
               </td> -->
               <td class="text-center">Id</td>
               <td class="text-center">Identificador de movimiento</td>
-              <td class="text-center">Probabilidad</td>
-              <td class="text-center">Probabilidad redondeada</td>
+              <td class="text-center">Probabilidad de Fraude</td>
+              <td class="text-center">Nivel de Riesgo</td>
               <td class="text-center">Usuario Asignado</td>
               <td class="text-center">Fraude Evaluado</td>
               <td class="text-center">Autor</td>
@@ -78,8 +78,10 @@
               </th> -->
               <td class="text-center">{{ producto?.id }}</td>
               <td class="text-center">{{ producto?.movimiento }}</td>
-              <td class="text-center">{{ producto?.probabilidad }}</td>
-              <td class="text-center">{{ producto?.round_probabilidad }}</td>
+              <td class="text-center">{{ getPercentFraude(producto?.probabilidad) }}%</td>
+              <td class="text-center"><i *ngIf="getNivelRiesgo(producto?.probabilidad) === 1" class="fa fa-circle" style="font-size:24px; color: green"></i>
+                <i *ngIf="getNivelRiesgo(producto?.probabilidad) === 2" class="fa fa-circle" style="font-size:24px; color: yellow"></i>
+                <i *ngIf="getNivelRiesgo(producto?.probabilidad) === 3" class="fa fa-circle" style="font-size:24px; color: red"></i></td>
               <td class="text-center">{{ producto?.usuario }}</td>
               <td class="text-center">{{ producto?.es_fraude }}</td>
               <td class="text-center">{{ producto?.usr_crea }}</td>

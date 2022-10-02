@@ -142,6 +142,7 @@
               <div *ngIf="f['subpartidaarancelaria'].errors?.required"> {{'La sub-partida es obligatorio' | translate }}.</div>
             </div>
           </div>
+
         </div>
         <div class="col-md-6 pl-0">
           <!--PARTIDA_REGIONAL-->
@@ -280,6 +281,61 @@
               <div *ngIf="f['valortotaladuanausd'].errors?.required"> {{'El valor total en aduana (USD) es obligatorio' | translate }}.</div>
             </div>
           </div>
+        </div>
+        <div class="col-md-12 pl-3">
+          <h3>Probabilidad de Riesgo</h3><br>
+          <p style="font-style: bold;">{{prob_riesgo}}%</p>
+          <br>
+        </div>
+        <div class="col-md-12 pl-3 pb-3">
+          <h3>Nivel de Riesgo</h3>
+          <!-- <p style="font-style: bold;">{{cat_riesgo}}</p> -->
+          <i *ngIf="cat_riesgo === 1" class="fa fa-circle" style="font-size:55px; color: green"></i>
+                <i *ngIf="cat_riesgo === 2" class="fa fa-circle" style="font-size:55px; color: yellow"></i>
+                <i *ngIf="cat_riesgo === 3" class="fa fa-circle" style="font-size:55px; color: red"></i>
+          <br>
+        </div>
+        <div></div>
+          <h3>Controles de Riesgo</h3>
+          <div id="tabla" class="card-body table-responsive p-2">
+            <table class="table table-hover">
+              <thead>
+                <tr style="background-color: #cfd8dc !important">
+                  <!-- <td class="text-center">
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" name="all" class="custom-control-input" id="customCheck"
+                        [checked]="isAllChecked()" (change)="checkAll($event)" />
+                      <label class="custom-control-label" for="customCheck"></label>
+                    </div>
+                  </td> -->
+                  <td class="text-center">Nivel Riesgo</td>
+                  <td class="text-center">Descripción</td>
+                </tr>
+              </thead>
+              <tbody *ngIf="lstNivelDeRiesgo; else noData">
+                <tr *ngFor="let producto of lstNivelDeRiesgo; let i = index">
+                  <!-- <th class="text-center">
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" name="productocb[]" class="custom-control-input" id="customCheck{{i}}"
+                        value="{{producto.codigo}}" [(ngModel)]="producto.state" />
+                      <label class="custom-control-label" attr.for="customCheck{{i}}"></label>
+                    </div>
+                  </th> -->
+                  <td class="text-center">{{ producto?.nivel_riesgo }}</td>
+                  <td class="text-center">{{ producto?.descripcion }}</td>
+                  <td class="text-center">
+                  </td>
+                </tr>
+              </tbody>
+              <ng-template #noData>
+                <tbody>
+                  <tr>
+                    <td colspan="8" class="text-center">{{'Ningún registro que mostrar según sus criterios de búsqueda' | translate }}.</td>
+                  </tr>
+                </tbody>
+              </ng-template>
+            </table>
+          </div>
           <!--ES_FRAUDE-->
           <div class="col-md-12 mb-3 mt-3">
             <label for="esfraude">Es fraude</label>
@@ -298,7 +354,6 @@
             <button class="btn btn-primary btn-lz mt-3 mb-3" type="submit">{{ title  | translate }}</button>
             <button class="btn btn-danger btn-lz mt-3 mb-3 ml-3" type="reset" (click)="cancelarOperacion()">{{'Cancelar' | translate }}</button>
           </div>
-        </div>
         </div>
       </form>
   </div>

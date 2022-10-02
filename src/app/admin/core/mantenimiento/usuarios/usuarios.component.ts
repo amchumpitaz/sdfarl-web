@@ -130,6 +130,14 @@ export class UsuariosComponent implements OnInit {
     this.router.navigate(['admin/movimientosAsignados/mantenimiento']);
   }
 
+  getPercentFraude(probabilidad: string) {
+    return (parseFloat(probabilidad) * 100).toFixed(2);
+  }
+
+  getNivelRiesgo(probabilidad: string) {
+    return ((parseFloat(probabilidad) * 100) < 40) ? 1 : ((parseFloat(probabilidad) * 100) < 60) ? 2 : 3;
+  }
+
   dataURItoBlob(dataURI) {
     const byteString = window.atob(dataURI);
     const arrayBuffer = new ArrayBuffer(byteString.length);
