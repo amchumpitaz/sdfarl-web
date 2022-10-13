@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Router, CanActivateChild } from '@angular/router';
 import { Permit } from '../auth/permit';
-import * as CryptoJS from 'crypto-js';
+// import * as CryptoJS from 'crypto-js';
 
 const PERMISSIONS_KEY = 'AuthPermissions';
 const CRYPTO_KEY = '3*+Zzb*hb]8{{8{fn]nKeb&#AwA:!wEaZ5bEcH8^3yYDpf$TV74"Ht<F;&ju%6)';
@@ -14,14 +14,14 @@ export class ProfileGuard implements CanActivateChild {
 
   constructor(public router: Router) {
     this.permissions = [];
-    if (sessionStorage.getItem(TOKEN_KEY)) {
-      const bytes = CryptoJS.AES.decrypt(sessionStorage.getItem(PERMISSIONS_KEY), CRYPTO_KEY);
-      const decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-      let permit: Permit;
-      decryptedData.forEach(permit => {
-        this.permissions.push(permit);
-      });
-    }
+    // if (sessionStorage.getItem(TOKEN_KEY)) {
+    //   const bytes = CryptoJS.AES.decrypt(sessionStorage.getItem(PERMISSIONS_KEY), CRYPTO_KEY);
+    //   const decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+    //   let permit: Permit;
+    //   decryptedData.forEach(permit => {
+    //     this.permissions.push(permit);
+    //   });
+    // }
   }
   canActivateChild(route: ActivatedRouteSnapshot): boolean {
     const nameComponent = route.data.nameComponent;

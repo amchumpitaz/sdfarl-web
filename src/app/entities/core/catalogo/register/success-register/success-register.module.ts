@@ -13,6 +13,6 @@ import { SuccessRegisterComponent } from './success-register.component';
       FormsModule,
       ReactiveFormsModule
       ],
-  declarations: [SuccessRegisterComponent]
+  declarations: [/*SuccessRegisterComponent*/]
 })
 export class RegisterModule { }

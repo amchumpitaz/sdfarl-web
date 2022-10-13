@@ -51,14 +51,9 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   constructor(
       private translate: TranslateService,
-      private authService: AuthService,
-      private tokenStorage: TokenStorageService,
       private formBuilder: FormBuilder,
       private serviceRegister: RegisterService,
       public notificationService: NotificationService,
-      private cdr: ChangeDetectorRef,
-      private config: NgbModalConfig,
-      private modalDialogService: ModalService,
       private modalService: NgbModal,
       public router: Router
       ) {

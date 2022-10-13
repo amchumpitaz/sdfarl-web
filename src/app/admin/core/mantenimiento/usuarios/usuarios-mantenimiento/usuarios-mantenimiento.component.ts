@@ -203,7 +203,7 @@ export class UsuariosMantenimientoComponent implements OnInit {
 
   loadData() {
     this.aduanas = [{
-      id: 0.0,
+      id: 0,
       descripcion: 'Santamaría'
     },
     {
@@ -233,11 +233,11 @@ export class UsuariosMantenimientoComponent implements OnInit {
 
     // Condicions for test
     this.condicions = [{
-      id: '1.0',
+      id: '1',
       descripcion: 'Santamaría'
     },
     {
-      id: '1.0',
+      id: '2',
       descripcion: 'Paso Canoas'
     },
     {
@@ -245,33 +245,33 @@ export class UsuariosMantenimientoComponent implements OnInit {
       descripcion: 'La Anexión'
     },
     {
-      id: '0.66666667',
+      id: '0.66',
       descripcion: 'Caldera'
     },
     {
-      id: '0.0',
+      id: '0.1',
       descripcion: 'Limón'
     },
     {
-      id: '0.0',
+      id: '0',
       descripcion: 'Peñas Blancas'
     },
     {
-      id: '0.0',
+      id: '0.2',
       descripcion: 'Aduana Central'
     }];
 
     // modalidad for test
     this.modalidad = [{
-      id: '0.0',
+      id: '0',
       descripcion: 'Importación para el Consumo'
     },
     {
-      id: '0.0',
+      id: '0.1',
       descripcion: 'Admisión Temporal para Reexportación en el Mismo Estado'
     },
     {
-      id: '0.0',
+      id: '0.4',
       descripcion: 'Admisión Temporal para Perfeccionamiento Activo'
     },
     {
@@ -279,15 +279,15 @@ export class UsuariosMantenimientoComponent implements OnInit {
       descripcion: 'Reimportación en el mismo estado'
     },
     {
-      id: '0.28571429',
+      id: '0.285',
       descripcion: 'Deposito Aduanero'
     },
     {
-      id: '0.28571429',
+      id: '0.2857',
       descripcion: 'Tránsito aduanero'
     },
     {
-      id: '1.0',
+      id: '1',
       descripcion: 'Reembarque'
     }];
 
@@ -393,7 +393,7 @@ export class UsuariosMantenimientoComponent implements OnInit {
     }];
 
     this.regimen = [{
-      id: '0.0',
+      id: '0',
       descripcion: 'Aduanero'
     }];
 
@@ -407,11 +407,11 @@ export class UsuariosMantenimientoComponent implements OnInit {
       descripcion: 'Limón'
     },
     {
-      id: '1.0',
+      id: '1',
       descripcion: 'Peñas Blancas'
     },
     {
-      id: '0.0',
+      id: '0',
       descripcion: 'Aduana Central'
     }];
 
@@ -439,7 +439,7 @@ export class UsuariosMantenimientoComponent implements OnInit {
         descripcion: '0.04'
       },
       {
-        id: '0.0',
+        id: '0',
         descripcion: '0.0'
       },
       {
@@ -456,7 +456,7 @@ export class UsuariosMantenimientoComponent implements OnInit {
       }];
 
       this.paisprocedencia = [{
-        id: '1.0',
+        id: '1',
         descripcion: 'Costa Rica'
       },
       {
@@ -464,7 +464,7 @@ export class UsuariosMantenimientoComponent implements OnInit {
         descripcion: 'El Salvador'
       },
       {
-        id: '0.0',
+        id: '0',
         descripcion: 'Perú'
       },
       {

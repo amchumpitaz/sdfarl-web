@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
+import { HistorialComponent } from './historial.component';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { CommonModule, DatePipe } from '@angular/common';
     HistorialRoutingModule,
     ScrollToModule.forRoot(),
   ],
+  declarations: [HistorialComponent],
   providers: [DatePipe, ModalService]
 })
 export class HistorialModule { }

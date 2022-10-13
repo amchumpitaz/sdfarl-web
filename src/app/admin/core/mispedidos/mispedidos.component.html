@@ -338,8 +338,8 @@
             </tr>
           </thead>
           <tbody *ngIf="operadores; else noData">
-            <tr *ngFor="let operador of operadores; trackBy: identify; index as i">
-              <!-- <th scope="row" class="text-center">{{i + 1}}</th>
+            <tr *ngFor="let operador of operadores; trackBy: 0; index as i">
+              <!-- identify en vez 0 <th scope="row" class="text-center">{{i + 1}}</th>
               <td>
                   <div class="custom-control custom-radio">
                       <input type="radio" 

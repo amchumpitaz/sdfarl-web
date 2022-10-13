@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
+import { VentasCompradoresComponent } from './ventas-compradores.component';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { CommonModule, DatePipe } from '@angular/common';
     VentasCompradoresRoutingModule,
     ScrollToModule.forRoot(),
   ],
+  declarations: [VentasCompradoresComponent],
   providers: [DatePipe, ModalService]
 })
 export class TiempoPublicacionModule { }

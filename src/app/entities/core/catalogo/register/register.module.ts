@@ -20,8 +20,8 @@ import { NgbModalBackdrop } from '@ng-bootstrap/ng-bootstrap/modal/modal-backdro
       NgxCaptchaModule,
       NgbModule
       ],
-  declarations: [RegisterComponent, SuccessRegisterComponent],
-  providers: [NgbModalConfig, NgbModal, ModalService],
-  entryComponents: [NgbModalBackdrop]
+  declarations: [/*RegisterComponent, SuccessRegisterComponent*/],
+  providers: [NgbModalConfig, NgbModal, ModalService]/*,
+  entryComponents: [NgbModalBackdrop]*/
 })
 export class RegisterModule { }

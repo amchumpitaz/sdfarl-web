@@ -24,7 +24,7 @@ import { DocTecnicosCargaComponent } from './docTecnicos-carga/docTecnicos-carga
     CargaRoutingModule,
     ScrollToModule.forRoot(),
   ],
-  declarations: [CargaComponent, ProductosCargaComponent, FotografiaCargaComponent, DocTecnicosCargaComponent],
+  declarations: [CargaComponent, /*ProductosCargaComponent, FotografiaCargaComponent, */DocTecnicosCargaComponent],
   providers: [DatePipe, ModalService, NgbModule, NgbModal, NgbModalConfig]
 })
 export class CargaModule { }

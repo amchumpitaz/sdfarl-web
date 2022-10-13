@@ -21,7 +21,7 @@ import { NgbModalBackdrop } from '@ng-bootstrap/ng-bootstrap/modal/modal-backdro
       ],
   declarations: [ProductosCargaComponent],
   providers: [NgbModalConfig, NgbModal, ModalService],
-  bootstrap: [ProductosCargaComponent],
-  entryComponents: [NgbModalBackdrop]
+  bootstrap: [ProductosCargaComponent]/*,
+  entryComponents: [NgbModalBackdrop]*/
 })
 export class ProductosCargaModule { }

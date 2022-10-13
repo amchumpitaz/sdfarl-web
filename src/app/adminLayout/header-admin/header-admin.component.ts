@@ -11,7 +11,7 @@ import { TokenStorageService } from 'src/app/shared/auth/token-storage.service';
 export class HeaderAdminComponent implements OnInit {
 
   public pushRightClass: string;
-  constructor(private translate: TranslateService, public router: Router, private tokenStorage: TokenStorageService) {
+  constructor(private translate: TranslateService, public router: Router, public tokenStorage: TokenStorageService) {
     this.router.events.subscribe(val => {
       if (
         val instanceof NavigationEnd &&

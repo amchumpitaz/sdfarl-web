@@ -22,7 +22,7 @@ import { ProductosMantenimientoComponent } from './productos-mantenimiento/produ
     ProductosRoutingModule,
     ScrollToModule.forRoot(),
   ],
-  declarations: [ProductosComponent, ProductosMantenimientoComponent],
+  declarations: [/*ProductosComponent, ProductosMantenimientoComponent*/],
   providers: [DatePipe, ModalService]
 })
 export class UsuariosModule { }

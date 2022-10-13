@@ -12,8 +12,8 @@
             <div class="col-md-12 mb-3 mt-3">
               <label for="modalidad">Modalidad Asociada al Régimen</label>
               <select name="modalidad" formControlName="modalidad" [ngClass]="{ 'is-invalid': (registerForm.get('modalidad').dirty || registerForm.get('modalidad').touched || submitted) && f.modalidad.errors }"
-                class="custom-select d-block w-100" id="modalidad" required [(ngModel)]="registerForm.get('modalidad').value">
-                <option value="">---{{'Seleccione' | translate }}---</option>
+                class="custom-select d-block w-100" id="modalidad" required >
+                <option value="">---{{'Seleccione'}}---</option>
                 <option *ngFor="let p of modalidad" [value]="p.id">
                   {{p.descripcion}}
                 </option>
@@ -27,7 +27,7 @@
               <label for="aduana">Aduana</label>
               <select name="aduana" formControlName="aduana" [ngClass]="{ 'is-invalid': (registerForm.get('aduana').dirty || registerForm.get('aduana').touched || submitted) && f.aduana.errors }"
                 class="custom-select d-block w-100" id="aduana" required >
-                <option value="">---{{'Seleccione' | translate }}---</option>
+                <option value="">---{{'Seleccione'}}---</option>
                 <option *ngFor="let p of aduanas" [value]="p.id">
                   {{p.descripcion}}
                 </option>
@@ -46,7 +46,7 @@
               <div
                 *ngIf="(registerForm.get('importador').dirty || registerForm.get('importador').touched || submitted) && f['importador'].errors"
                 class="invalid-feedback">
-                <div *ngIf="f['importador'].errors?.required"> {{'El importador es obligatorio' | translate }}.</div>
+                <div *ngIf="f['importador'].errors?.required"> {{'El importador es obligatorio'}}.</div>
               </div>
             </div>
             <!--CANTIDAD_DE_BULTOS_LINEA-->
@@ -59,7 +59,7 @@
               <div
                 *ngIf="(registerForm.get('bultos').dirty || registerForm.get('bultos').touched || submitted) && f['bultos'].errors"
                 class="invalid-feedback">
-                <div *ngIf="f['bultos'].errors?.required"> {{'La cantidad de bultos es obligatoria' | translate }}.</div>
+                <div *ngIf="f['bultos'].errors?.required"> {{'La cantidad de bultos es obligatoria'}}.</div>
               </div>
             </div>
             <!--PESO_NETO_ITEM-->
@@ -72,7 +72,7 @@
               <div
                 *ngIf="(registerForm.get('pesoneto').dirty || registerForm.get('pesoneto').touched || submitted) && f['pesoneto'].errors"
                 class="invalid-feedback">
-                <div *ngIf="f['pesoneto'].errors?.required"> {{'El peso neto es obligatorio' | translate }}.</div>
+                <div *ngIf="f['pesoneto'].errors?.required"> {{'El peso neto es obligatorio'}}.</div>
               </div>
             </div>
             <!--PESO_BRUTO_ITEM-->
@@ -85,7 +85,7 @@
               <div
                 *ngIf="(registerForm.get('pesobruto').dirty || registerForm.get('pesobruto').touched || submitted) && f['pesobruto'].errors"
                 class="invalid-feedback">
-                <div *ngIf="f['pesobruto'].errors?.required"> {{'El peso bruto es obligatorio' | translate }}.</div>
+                <div *ngIf="f['pesobruto'].errors?.required"> {{'El peso bruto es obligatorio'}}.</div>
               </div>
             </div>
             <!--PAIS_ORIGEN-->
@@ -93,7 +93,7 @@
               <label for="paisorigen">Pais de Origen</label>
               <select name="paisorigen" formControlName="paisorigen" [ngClass]="{ 'is-invalid': (registerForm.get('paisorigen').dirty || registerForm.get('paisorigen').touched || submitted) && f.paisorigen.errors }"
                 class="custom-select d-block w-100" id="paisorigen" required>
-                <option value="">---{{'Seleccione' | translate }}---</option>
+                <option value="">---{{'Seleccione'}}---</option>
                 <option *ngFor="let p of paisorigen" [value]="p.id">
                   {{p.descripcion}}
                 </option>
@@ -107,7 +107,7 @@
               <label for="capitulo">Capitulo</label>
               <select name="capitulo" formControlName="capitulo" [ngClass]="{ 'is-invalid': (registerForm.get('capitulo').dirty || registerForm.get('capitulo').touched || submitted) && f.capitulo.errors }"
                 class="custom-select d-block w-100" id="capitulo" required>
-                <option value="">---{{'Seleccione' | translate }}---</option>
+                <option value="">---{{'Seleccione'}}---</option>
                 <option *ngFor="let p of capitulo" [value]="p.id">
                   {{p.descripcion}}
                 </option>
@@ -126,7 +126,7 @@
             <div
               *ngIf="(registerForm.get('partidaarancelaria').dirty || registerForm.get('partidaarancelaria').touched || submitted) && f['partidaarancelaria'].errors"
               class="invalid-feedback">
-              <div *ngIf="f['partidaarancelaria'].errors?.required"> {{'La partida es obligatorio' | translate }}.</div>
+              <div *ngIf="f['partidaarancelaria'].errors?.required"> {{'La partida es obligatorio'}}.</div>
             </div>
           </div>
           <!--SUBPARTIDA_ARANCELARIA_6-->
@@ -139,7 +139,7 @@
             <div
               *ngIf="(registerForm.get('subpartidaarancelaria').dirty || registerForm.get('subpartidaarancelaria').touched || submitted) && f['subpartidaarancelaria'].errors"
               class="invalid-feedback">
-              <div *ngIf="f['subpartidaarancelaria'].errors?.required"> {{'La sub-partida es obligatorio' | translate }}.</div>
+              <div *ngIf="f['subpartidaarancelaria'].errors?.required"> {{'La sub-partida es obligatorio'}}.</div>
             </div>
           </div>
 
@@ -155,7 +155,7 @@
             <div
               *ngIf="(registerForm.get('partidaregional').dirty || registerForm.get('partidaregional').touched || submitted) && f['partidaregional'].errors"
               class="invalid-feedback">
-              <div *ngIf="f['partidaregional'].errors?.required"> {{'La partida regional es obligatorio' | translate }}.</div>
+              <div *ngIf="f['partidaregional'].errors?.required"> {{'La partida regional es obligatorio'}}.</div>
             </div>
           </div>
           <!--APERTURA_NACIONAL_12-->
@@ -168,15 +168,15 @@
             <div
               *ngIf="(registerForm.get('aperturanacional').dirty || registerForm.get('aperturanacional').touched || submitted) && f['aperturanacional'].errors"
               class="invalid-feedback">
-              <div *ngIf="f['aperturanacional'].errors?.required"> {{'La apertura nacional es obligatorio' | translate }}.</div>
+              <div *ngIf="f['aperturanacional'].errors?.required"> {{'La apertura nacional es obligatorio'}}.</div>
             </div>
           </div>
           <!--REGIMEN-->
           <div class="col-md-12 mb-3 mt-3">
             <label for="regimen">Régimen</label>
             <select name="regimen" formControlName="regimen" [ngClass]="{ 'is-invalid': (registerForm.get('regimen').dirty || registerForm.get('regimen').touched || submitted) && f.regimen.errors }"
-              class="custom-select d-block w-100" id="regimen" required [(ngModel)]="registerForm.get('regimen').value">
-              <option value="">---{{'Seleccione' | translate }}---</option>
+              class="custom-select d-block w-100" id="regimen" required>
+              <option value="">---{{'Seleccione'}}---</option>
               <option *ngFor="let p of regimen" [value]="p.id">
                 {{p.descripcion}}
               </option>
@@ -190,8 +190,8 @@
           <div class="col-md-12 mb-3 mt-3">
             <label for="aduanaingresoegreso">Aduana Ingreso/Egreso</label>
             <select name="aduanaingresoegreso" formControlName="aduanaingresoegreso" [ngClass]="{ 'is-invalid': (registerForm.get('aduanaingresoegreso').dirty || registerForm.get('aduanaingresoegreso').touched || submitted) && f.aduanaingresoegreso.errors }"
-              class="custom-select d-block w-100" id="aduanaingresoegreso" required [(ngModel)]="registerForm.get('aduanaingresoegreso').value">
-              <option value="">---{{'Seleccione' | translate }}---</option>
+              class="custom-select d-block w-100" id="aduanaingresoegreso" required>
+              <option value="">---{{'Seleccione'}}---</option>
               <option *ngFor="let p of aduanaingresoegreso" [value]="p.id">
                 {{p.descripcion}}
               </option>
@@ -205,7 +205,7 @@
             <label for="codigobanco">Codigo Banco</label>
             <select name="codigobanco" formControlName="codigobanco" [ngClass]="{ 'is-invalid': (registerForm.get('codigobanco').dirty || registerForm.get('codigobanco').touched || submitted) && f.codigobanco.errors }"
               class="custom-select d-block w-100" id="codigobanco" required>
-              <option value="">---{{'Seleccione' | translate }}---</option>
+              <option value="">---{{'Seleccione'}}---</option>
               <option *ngFor="let p of codigobanco" [value]="p.id">
                 {{p.descripcion}}
               </option>
@@ -218,8 +218,8 @@
           <div class="col-md-12 mb-3 mt-3">
             <label for="paisprocedencia">País Procedencia</label>
             <select name="paisprocedencia" formControlName="paisprocedencia" [ngClass]="{ 'is-invalid': (registerForm.get('paisprocedencia').dirty || registerForm.get('paisprocedencia').touched || submitted) && f.paisprocedencia.errors }"
-              class="custom-select d-block w-100" id="paisprocedencia" required [(ngModel)]="registerForm.get('paisprocedencia').value">
-              <option value="">---{{'Seleccione' | translate }}---</option>
+              class="custom-select d-block w-100" id="paisprocedencia" required >
+              <option value="">---{{'Seleccione'}}---</option>
               <option *ngFor="let p of paisprocedencia" [value]="p.id">
                 {{p.descripcion}}
               </option>
@@ -238,7 +238,7 @@
             <div
               *ngIf="(registerForm.get('seguroitem').dirty || registerForm.get('seguroitem').touched || submitted) && f['seguroitem'].errors"
               class="invalid-feedback">
-              <div *ngIf="f['seguroitem'].errors?.required"> {{'El seguro del item es obligatorio' | translate }}.</div>
+              <div *ngIf="f['seguroitem'].errors?.required"> {{'El seguro del item es obligatorio'}}.</div>
             </div>
           </div>
           <!--VALOR_EN_ADUANAS_SIN_AJUSTE_EN_USD_LINEA-->
@@ -251,15 +251,15 @@
             <div
               *ngIf="(registerForm.get('valoraduanausd').dirty || registerForm.get('valoraduanausd').touched || submitted) && f['valoraduanausd'].errors"
               class="invalid-feedback">
-              <div *ngIf="f['valoraduanausd'].errors?.required"> {{'El valor en aduana sin ajuste en USD es obligatorio' | translate }}.</div>
+              <div *ngIf="f['valoraduanausd'].errors?.required"> {{'El valor en aduana sin ajuste en USD es obligatorio'}}.</div>
             </div>
           </div>
           <!--AGENTE_DE_ADUANAS-->
           <div class="col-md-12 mb-3 mt-3">
             <label for="agenteaduana">Agente de Aduana</label>
             <select name="agenteaduana" formControlName="agenteaduana" [ngClass]="{ 'is-invalid': (registerForm.get('agenteaduana').dirty || registerForm.get('agenteaduana').touched || submitted) && f.agenteaduana.errors }"
-              class="custom-select d-block w-100" id="agenteaduana" required [(ngModel)]="registerForm.get('agenteaduana').value">
-              <option value="">---{{'Seleccione' | translate }}---</option>
+              class="custom-select d-block w-100" id="agenteaduana" required >
+              <option value="">---{{'Seleccione'}}---</option>
               <option *ngFor="let p of agenteaduana" [value]="p.id">
                 {{p.descripcion}}
               </option>
@@ -278,7 +278,7 @@
             <div
               *ngIf="(registerForm.get('valortotaladuanausd').dirty || registerForm.get('valortotaladuanausd').touched || submitted) && f['valortotaladuanausd'].errors"
               class="invalid-feedback">
-              <div *ngIf="f['valortotaladuanausd'].errors?.required"> {{'El valor total en aduana (USD) es obligatorio' | translate }}.</div>
+              <div *ngIf="f['valortotaladuanausd'].errors?.required"> {{'El valor total en aduana (USD) es obligatorio' }}.</div>
             </div>
           </div>
         </div>
@@ -330,7 +330,7 @@
               <ng-template #noData>
                 <tbody>
                   <tr>
-                    <td colspan="8" class="text-center">{{'Ningún registro que mostrar según sus criterios de búsqueda' | translate }}.</td>
+                    <td colspan="8" class="text-center">{{'Ningún registro que mostrar según sus criterios de búsqueda'}}.</td>
                   </tr>
                 </tbody>
               </ng-template>
@@ -340,8 +340,8 @@
           <div class="col-md-12 mb-3 mt-3">
             <label for="esfraude">Es fraude</label>
             <select name="esfraude" formControlName="esfraude" [ngClass]="{ 'is-invalid': (registerForm.get('esfraude').dirty || registerForm.get('esfraude').touched || submitted) && f.esfraude.errors }"
-              class="custom-select d-block w-100" id="esfraude" required [(ngModel)]="registerForm.get('esfraude').value">
-              <option value="">---{{'Seleccione' | translate }}---</option>
+              class="custom-select d-block w-100" id="esfraude" required >
+              <option value="">---{{'Seleccione'}}---</option>
               <option *ngFor="let p of esfraudelist" [value]="p.nombre">
                 {{p.nombre}}
               </option>
@@ -351,8 +351,8 @@
             </div>
           </div>
           <div class="row">
-            <button class="btn btn-primary btn-lz mt-3 mb-3" type="submit">{{ title  | translate }}</button>
-            <button class="btn btn-danger btn-lz mt-3 mb-3 ml-3" type="reset" (click)="cancelarOperacion()">{{'Cancelar' | translate }}</button>
+            <button class="btn btn-primary btn-lz mt-3 mb-3" type="submit">{{ title }}</button>
+            <button class="btn btn-danger btn-lz mt-3 mb-3 ml-3" type="reset" (click)="cancelarOperacion()">{{'Cancelar'}}</button>
           </div>
         </div>
       </form>

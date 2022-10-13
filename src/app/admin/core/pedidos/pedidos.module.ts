@@ -7,6 +7,7 @@ import { PageHeaderModule } from '../../../shared/modules/page-header/page-heade
 import { ModalService } from '../../../shared/alert/modal.service';
 import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
+import { PedidosComponent } from './pedidos.component';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import { CommonModule, DatePipe } from '@angular/common';
     PedidosRoutingModule,
     ScrollToModule.forRoot(),
   ],
+  declarations: [PedidosComponent],
   providers: [DatePipe, ModalService]
 })
 export class PedidosModule { }

@@ -23,7 +23,7 @@ import { UsuariosMantenimientoComponent } from './usuarios-mantenimiento/usuario
     UsuariosRoutingModule,
     ScrollToModule.forRoot(),
   ],
-  declarations: [UsuariosComponent, UsuariosMantenimientoComponent],
+  declarations: [/*UsuariosComponent, UsuariosMantenimientoComponent*/],
   providers: [DatePipe, ModalService],
   bootstrap: [UsuariosComponent]
 })

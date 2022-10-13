@@ -24,6 +24,8 @@ import { UtilsService } from './shared/services/utils.service';
 import { DosDigitosDecimalesDirective } from './shared/directives/dos-digitos-decimales.directive';
 import { ValoresNumericosDirective } from './shared/directives/valores-numericos.directive';
 import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
+import { SidebarComponent } from './layout/sidebar/sidebar.component';
+import { HeaderComponent } from './layout/header/header.component';
 
 export const createTranslateLoader = (http: HttpClient) => {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -57,7 +59,9 @@ export const createTranslateLoader = (http: HttpClient) => {
                     HomeComponent,
                     UserComponent,
                     DosDigitosDecimalesDirective,
-                    ValoresNumericosDirective
+                    ValoresNumericosDirective,
+                    SidebarComponent,
+                    HeaderComponent
    ],
     exports: [ DosDigitosDecimalesDirective, ValoresNumericosDirective ],
     providers: [AuthGuard, UtilsService, httpInterceptorProviders, AdminAlertModule,

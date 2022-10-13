@@ -286,15 +286,15 @@ export class MispedidosComponent implements OnInit, OnDestroy {
 
     this.agenteaduana = [
       {
-        id: '1.59856326e-01',
+        id: '0.0159856326', // e-01
         descripcion: 'Velcon'
       },
       {
-        id: '2.03494333e-02',
+        id: '0.00203494333', // e-02
         descripcion: 'Fedex'
       },
       {
-        id: '7.65613292e-03',
+        id: '0.00765613292', // e-03
         descripcion: 'Sizou'
       },
       {
@@ -466,8 +466,9 @@ export class MispedidosComponent implements OnInit, OnDestroy {
           console.log(data);
           console.log(data['predictions']['predictions'][0]);
           document.getElementById('buttonOpenModal').click();
-          this.textModal = data['predictions']['predictions'][0];
-          this.textModal = (Math.round(this.textModal * 100) / 100) * 100;
+          // this.textModal = data['predictions']['predictions'][0];
+          this.textModal = (parseFloat(data['predictions']['predictions'][0]) * 100).toFixed(2);
+          // this.textModal = (Math.round(this.textModal * 100) / 100) * 100;
           this.casoFraude = (this.textModal < 40) ? 0 : (this.textModal < 60) ? 1 : 2;
           this.id_movimiento = data['movimiento'];
           console.log(data['predictions']['predictions'][0]);

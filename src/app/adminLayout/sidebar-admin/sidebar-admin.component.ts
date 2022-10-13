@@ -22,7 +22,7 @@ export class SidebarAdminComponent implements OnInit {
   constructor(private translate: TranslateService,
       public router: Router,
       private misPedidosService: MisPedidosService,
-      private tokenStorage: TokenStorageService
+      public tokenStorage: TokenStorageService
     ) {
     this.router.events.subscribe(val => {
       if (
