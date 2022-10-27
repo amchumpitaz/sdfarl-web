@@ -75,6 +75,14 @@ export class MisPedidosService {
       return this.http.get(`${this.baseUrl}/control/nivelRiesgo/${id}`);
     }
 
+    getPieDashboard(body): Observable<any> {
+      return this.http.post(`${this.baseUrl}/listar/pieDashboard`, body);
+    }
+
+    getbarDashboard(body): Observable<any> {
+      return this.http.post(`${this.baseUrl}/listar/barDashboard`, body);
+    }
+
     // UPC
     getTipoDeIncidencia(): Observable<any> {
       return this.http.get(`${this.baseUrl}/tiposIncidencia/listar`);

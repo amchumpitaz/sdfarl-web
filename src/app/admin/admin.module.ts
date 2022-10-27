@@ -9,7 +9,7 @@ import { AdminComponent } from './admin.component';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
-import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDropdownModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AdminRoutingModule } from './admin.routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -30,9 +30,14 @@ import { CargaComponent } from './core/mantenimiento/carga/carga.component';
 import { ProductosCargaComponent } from './core/mantenimiento/carga/productos-carga/productos-carga.component';
 import { FotografiaCargaComponent } from './core/mantenimiento/carga/fotografias-carga/fotografia-carga.component';
 import { DocTecnicosCargaComponent } from './core/mantenimiento/carga/docTecnicos-carga/docTecnicos-carga.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
     imports: [
+        NgxChartsModule,
+        NgbModule,
+        ChartsModule,
         CommonModule,
         AdminRoutingModule,
         TranslateModule,
@@ -58,7 +63,7 @@ import { DocTecnicosCargaComponent } from './core/mantenimiento/carga/docTecnico
                     CambiarcontraseniaComponent,
                     DatosComponent,
                     MispedidosComponent,
-                    // PedidosComponent,
+                    PedidosComponent,
                     // ProductosConsultadosComponent,
                     // ProductosVendidosComponent,
                     // TiempoPublicacionComponent,

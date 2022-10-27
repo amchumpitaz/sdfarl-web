@@ -1,4 +1,4 @@
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDatepicker, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AdminAlertModule } from './admin/core/helpers/adminAlert/adminAlert.module';
 import { CommonModule, HashLocationStrategy, LocationStrategy, PathLocationStrategy, } from '@angular/common';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -26,6 +26,8 @@ import { ValoresNumericosDirective } from './shared/directives/valores-numericos
 import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { HeaderComponent } from './layout/header/header.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { ChartsModule } from 'ng2-charts';
 
 export const createTranslateLoader = (http: HttpClient) => {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -34,6 +36,8 @@ export const createTranslateLoader = (http: HttpClient) => {
 @NgModule({
    imports: [
       CommonModule,
+      ChartsModule,
+      NgxChartsModule,
       FormsModule,
       ReactiveFormsModule,
       BrowserModule,

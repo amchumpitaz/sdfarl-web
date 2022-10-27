@@ -1,3 +1,174 @@
-<p>
-  pedidos works!
-</p>
+<h1> Dashboard de casos de fraude </h1>
+
+<div class="form-row mb-12 mt-3">
+  <div class="col-md-6 mb-3">
+    <label for="validationCustom01">Aduanas</label>
+    <select class="form-control custom-select-search" [(ngModel)]="aduana">
+      <option [ngValue]="null">--{{'Selecciona' | translate }}--</option>
+      <option *ngFor="let d of aduanas" [value]="d.id">
+        {{d.descripcion | translate }}
+      </option>
+    <input >
+    </select>
+  </div>
+
+  <div class="col-md-6 mb-3">
+    <label for="validationCustom01">{{'Fecha de Evaluación' | translate }}</label>
+    <!-- <input type="daterange" class="form-control" id="Fecha de Evaluación" [(ngModel)]="fech_crea"> -->
+    <div class="col-12">
+      <div class="dp-hidden position-absolute">
+        <div class="input-group">
+          <input
+            name="datepicker"
+            class="form-control"
+            ngbDatepicker
+            #datepicker="ngbDatepicker"
+            [autoClose]="'outside'"
+            (dateSelect)="onDateSelection($event)"
+            [displayMonths]="2"
+            [dayTemplate]="t"
+            outsideDays="hidden"
+            [startDate]="fromDate!"
+            tabindex="-1"
+          />
+          <ng-template #t let-date let-focused="focused">
+            <span
+              class="custom-day"
+              [class.focused]="focused"
+              [class.range]="isRange(date)"
+              [class.faded]="isHovered(date) || isInside(date)"
+              (mouseenter)="hoveredDate = date"
+              (mouseleave)="hoveredDate = null"
+            >
+              {{ date.day }}
+            </span>
+          </ng-template>
+        </div>
+      </div>
+      <div class="input-group">
+        <input
+          #dpFromDate
+          class="form-control"
+          placeholder="yyyy-mm-dd"
+          name="dpFromDate"
+          [value]="formatter.format(fromDate)"
+          (input)="fromDate = validateInput(fromDate, dpFromDate.value)"
+        />
+        <button class="btn btn-outline-secondary bi bi-calendar3" (click)="datepicker.toggle()" type="button"></button>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="input-group">
+        <input
+          #dpToDate
+          class="form-control"
+          placeholder="yyyy-mm-dd"
+          name="dpToDate"
+          [value]="formatter.format(toDate)"
+          (input)="toDate = validateInput(toDate, dpToDate.value)"
+        />
+        <button class="btn btn-outline-secondary bi bi-calendar3" (click)="datepicker.toggle()" type="button"></button>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+<div class="form-group row">
+  <div class="col-sm-6">
+    <button type="submit" style="width: 150px;" class="btn btn-info"
+      (click)="busquedaDashboard()">{{'Buscar' | translate }}</button>
+  </div>
+  <div class="col-sm-6">
+    <button type="submit" style="width: 150px;" class="btn btn-success float-right"
+      (click)="limpiarBusqueda()">{{'Limpiar Búsqueda' | translate }}</button>
+  </div>
+</div>
+
+  <h2>Casos Fraudulentos</h2>
+  <ngx-charts-pie-chart [view]="viewpie" [scheme]="colorScheme" [results]="single" [legend]="showLegend"
+  [explodeSlices]="explodeSlices" [labels]="showLabels" [doughnut]="doughnut" [gradient]="gradient">
+  </ngx-charts-pie-chart>
+  <hr>
+  <div style="display:inline-block"><h2>Casos fraudulentos por dia y aduanas</h2></div>
+  
+  <ngx-charts-bar-vertical-2d [view]="view" [scheme]="colorScheme" [results]="multi" [gradient]="gradient"
+  [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
+  [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" (select)="onSelect($event)">
+  </ngx-charts-bar-vertical-2d>
+  <hr>
+
+<!-- <h1>1.)single</h1>
+<ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [results]="single" [gradient]="gradient"
+  [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
+  [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" (select)="onSelect($event)">
+</ngx-charts-bar-vertical>
+<hr>
+<h1>2.)pair</h1>
+<ngx-charts-bar-vertical-2d [view]="view" [scheme]="colorScheme" [results]="multi" [gradient]="gradient"
+  [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
+  [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" (select)="onSelect($event)">
+</ngx-charts-bar-vertical-2d>
+<hr>
+<h1>3.)Pai-chart</h1>
+<ngx-charts-pie-chart [view]="viewpie" [scheme]="colorScheme" [results]="single" [legend]="showLegend"
+  [explodeSlices]="explodeSlices" [labels]="showLabels" [doughnut]="doughnut" [gradient]="gradient"> -->
+
+
+<!-- <ngx-charts-advanced-pie-chart 
+[results]="saleData"
+[gradient]="true" >
+</ngx-charts-advanced-pie-chart>
+
+<ngx-charts-advanced-pie-chart 
+[results]="saleData"
+[gradient]="true" >
+</ngx-charts-advanced-pie-chart> -->
+
+<!-- <canvas
+  mdbChart
+  [type]="'doughnut'"
+  [datasets]="datasets"
+  [labels]="labels"
+></canvas> -->
+
+
+<!-- <div style="display: block;" class="chart">
+  <canvas baseChart
+        
+          [datasets]="labelMFL"
+          [labels]="lineChartLabels"
+          [options]="lineChartOptions"
+          [chartType]="ChartType"
+          (chartHover)="chartHovered($event)"
+          (chartClick)="chartClicked($event)"></canvas>
+</div> -->
+
+<!-- <canvas 
+style="display: block;background-color: #ffd1d1;" 
+width="600" 
+height="300" 
+id="canvas" 
+#myCanvas
+
+baseChart 
+attr.type="{{lineChartType}}" 
+attr.datasets="{{lineChartData}}" 
+attr.labels="{{lineChartLabels}}" 
+attr.options="{{mfChartOptions}}"
+attr.legend="{{lineChartLegend}}">
+</canvas> -->
+
+<!-- <div>
+  <div>
+    <div style="display: block">
+      <canvas baseChart
+      attr.data="{{lineChartData}}"
+      attr.options="{{mfChartOptions}}"
+      attr.type="{{lineChartType}}"
+      attr.legend="{{lineChartLegend}}">
+      </canvas>
+    </div>
+    <button mat-button mat-raised-button color="primary" (click)="randomize()">Update</button>
+  </div>
+</div> -->

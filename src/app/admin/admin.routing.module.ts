@@ -40,7 +40,7 @@ const routes: Routes = [
             { path: 'cambiarcontrasenia', component: CambiarcontraseniaComponent },
             { path: 'datos', component: DatosComponent },
             { path: 'movimiento', component: MispedidosComponent },
-            // { path: 'pedidos', component: PedidosComponent },
+            { path: 'reporteria', component: PedidosComponent },
             // { path: 'productos-consultados', component: ProductosConsultadosComponent },
             // { path: 'productos-vendidos', component: ProductosVendidosComponent },
             // { path: 'tiempo-publicacion', component: TiempoPublicacionComponent },
