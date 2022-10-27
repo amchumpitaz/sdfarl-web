@@ -87,7 +87,7 @@ export class PedidosComponent implements OnInit {
   gradient = true;
   showLegend = true;
   showXAxisLabel = true;
-  xAxisLabel = 'Aduanas';
+  xAxisLabel = 'Periodos';
   showYAxisLabel = true;
   yAxisLabel = 'Casos Fraudulentos';
   timeline = true;
