@@ -275,11 +275,13 @@ aduanas = [{
       (data) => {
         const singles = [];
         console.log(data);
-        for (const value of data['data']) {
-          console.log(value);
-          console.log(value[0]);
-          console.log(value[1]);
-          singles.push({ 'name': value[1].toUpperCase(), 'value': value[0]});
+        if (data['data'] !== undefined) {
+          for (const value of data['data']) {
+            console.log(value);
+            console.log(value[0]);
+            console.log(value[1]);
+            singles.push({ 'name': value[1].toUpperCase(), 'value': value[0]});
+          }
         }
 
         this.single = singles;
@@ -295,18 +297,20 @@ aduanas = [{
 
         const multis = [];
         console.log(data);
-        for (const value of data['data']) {
-          const series = [];
+        if (data['data'] !== undefined) {
+          for (const value of data['data']) {
+            const series = [];
 
-          let name;
-          this.aduanas.forEach(function(val) {
-            if (val.id === Number(value[2])) {
-              name = val.descripcion;
-            }
-          });
-          series.push({ 'name': name, 'value': value[0]});
-          multis.push({ 'name': value[1], 'series': series});
-          console.log(multis);
+            let name;
+            this.aduanas.forEach(function(val) {
+              if (val.id === Number(value[2])) {
+                name = val.descripcion;
+              }
+            });
+            series.push({ 'name': name, 'value': value[0]});
+            multis.push({ 'name': value[1], 'series': series});
+            console.log(multis);
+          }
         }
 
         this.multi = multis;
