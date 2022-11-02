@@ -1,23 +1,21 @@
-import { AdminModalService } from './../../helpers/adminAlert/modal.service';
-import { Router } from '@angular/router';
-import { Usuario } from './usuarios.model';
 import { Component, OnInit } from '@angular/core';
-import { NotificationService } from 'src/app/shared/services';
-import { NgbModalRef, NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { UsuarioService } from './usuarios.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import { ModalService } from 'src/app/shared/alert/modal.service';
-import { CategoriaService } from '../categorias/categoria.service';
-import { MisPedidosService } from '../../mispedidos/mispedidos.service';
 import { TokenStorageService } from 'src/app/shared/auth/token-storage.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-@Component({
-  selector: 'app-usuarios',
-  templateUrl: './usuarios.component.html',
-  styleUrls: ['./usuarios.component.scss']
-})
+import { NotificationService } from 'src/app/shared/services';
+import { AdminModalService } from '../../helpers/adminAlert/modal.service';
+import { MisPedidosService } from '../../mispedidos/mispedidos.service';
+import { CategoriaService } from '../categorias/categoria.service';
+import { UsuarioService } from '../usuarios/usuarios.service';
 
-export class UsuariosComponent implements OnInit {
+@Component({
+  selector: 'app-movimientos-pendientes',
+  templateUrl: './movimientos-pendientes.component.html',
+  styleUrls: ['./movimientos-pendientes.component.scss']
+})
+export class MovimientosPendientesComponent implements OnInit {
 
   categorias: any;
   textCategoria: string;
@@ -54,14 +52,12 @@ export class UsuariosComponent implements OnInit {
   ngOnInit() {
     this.username = this.tokenStorage.getUsername();
     this.rol = this.tokenStorage.getAuthorities();
-    // this.rol === 'ADMIN' ?  null :
     this.body = {
-      'usuario': this.username,
-      'rol': this.rol
+      'usuario': this.username
     };
     console.log(this.body);
 
-    this.misPedidosService.getListaMovimientosAsignados(this.body).subscribe(
+    this.misPedidosService.getListaMovimientosPendientes(this.body).subscribe(
       (data) => {
         console.log(data);
         this.movimientosAsignados = data.asig_movs;
@@ -129,7 +125,7 @@ export class UsuariosComponent implements OnInit {
   getProductoById(id: number) {
     this.usuarioService.add(id);
     this.body = {'movimiento' : id};
-    this.router.navigate(['admin/movimientosAsignados/mantenimiento']);
+    this.router.navigate(['admin/movimientosPendientes/mantenimiento']);
   }
 
   getPercentFraude(probabilidad: string) {
@@ -140,14 +136,4 @@ export class UsuariosComponent implements OnInit {
     return ((parseFloat(probabilidad) * 100) < 40) ? 1 : ((parseFloat(probabilidad) * 100) < 60) ? 2 : 3;
   }
 
-  dataURItoBlob(dataURI) {
-    const byteString = window.atob(dataURI);
-    const arrayBuffer = new ArrayBuffer(byteString.length);
-    const int8Array = new Uint8Array(arrayBuffer);
-    for (let i = 0; i < byteString.length; i++) {
-      int8Array[i] = byteString.charCodeAt(i);
-    }
-    const blob = new Blob([int8Array], { type: 'image/jpeg' });
-    return blob;
- }
 }

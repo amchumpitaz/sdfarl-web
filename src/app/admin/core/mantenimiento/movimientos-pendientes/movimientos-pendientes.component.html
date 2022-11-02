@@ -1,0 +1,119 @@
+<div class="container">
+  <div class="row py-3 pt-5 text-left text_underline">
+    <div class="col col-lg-6 pl-0">
+      <i class="icon fa fa-shopping-cart"></i>
+      <h2>Movimientos Pendientes de Asignación</h2>
+    </div>
+    <!-- <div class="col col-lg-6 text-right">
+      <button class="btn btn-outline-primary" [routerLink]="['/admin/controles/mantenimiento']"
+        [routerLinkActive]="['router-link-active']">
+        <span class="fa fa-plus fa-lg" aria-hidden="true"></span>
+        {{'Nuevo' | translate }}
+      </button>
+    </div> -->
+  </div>
+  <!-- <div class="col-md-12 text-center mb-3 h-25 w-100 d-flex rounded">
+    <img *ngIf="!imgURL" src="assets/images/no-image.jpg" w-100 h-100 class="mx-auto d-block rounded" style="width: auto;">
+    <img [src]="imgURL" w-100 h-100 class="mx-auto d-block rounded" *ngIf="imgURL" style="width: 100%;">
+  </div> -->
+<!-- <div class="form-row mb-12 mt-3">
+  <div class="col-md-6 mb-3">
+    <label for="validationCustom01">{{'Categoria' | translate }}</label>
+    <select class="form-control custom-select-search" [(ngModel)]="producto.categoria">
+      <option [ngValue]="null">--{{'Selecciona' | translate }}--</option>
+      <option *ngFor="let d of categorias" [value]="d.id">
+        {{d.titulo | translate }}
+      </option>
+    <input >
+    </select>
+  </div>
+
+  <div class="col-md-6 mb-3">
+    <label for="validationCustom01">{{'Titulo' | translate }}</label>
+    <input type="text" class="form-control" id="titulo" [(ngModel)]="producto.titulo">
+  </div>
+</div> -->
+<!-- <div class="form-group row">
+  <div class="col-sm-6">
+    <button type="submit" style="width: 150px;" class="btn btn-info"
+      (click)="busquedaProductos(producto)">{{'Buscar' | translate }}</button>
+  </div>
+  <div class="col-sm-6">
+    <button type="submit" style="width: 150px;" class="btn btn-success float-right"
+      (click)="limpiarBusqueda()">{{'Limpiar Búsqueda' | translate }}</button>
+  </div>
+</div> -->
+<div class="row">
+  <div class="col col-lg-12 pt-3 pb-3">
+    <div>
+      <div id="tabla" class="card-body table-responsive p-2">
+        <table class="table table-hover">
+          <thead>
+            <tr style="background-color: #cfd8dc !important">
+              <!-- <td class="text-center">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" name="all" class="custom-control-input" id="customCheck"
+                    [checked]="isAllChecked()" (change)="checkAll($event)" />
+                  <label class="custom-control-label" for="customCheck"></label>
+                </div>
+              </td> -->
+              <!-- <td class="text-center">Id</td> -->
+              <td class="text-center">Identificador de movimiento</td>
+              <td class="text-center">Probabilidad de Fraude</td>
+              <td class="text-center">Nivel de Riesgo</td>
+              <!-- <td class="text-center">Autor</td> -->
+              <!-- <td class="text-center">Fraude Evaluado</td> -->
+              <td class="text-center">Autor</td>
+              <td class="text-center">Fec. Creación</td>
+            </tr>
+          </thead>
+          <tbody *ngIf="movimientosAsignados; else noData">
+            <tr *ngFor="let producto of movimientosAsignados; let i = index">
+              <!-- <th class="text-center">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" name="productocb[]" class="custom-control-input" id="customCheck{{i}}"
+                    value="{{producto.codigo}}" [(ngModel)]="producto.state" />
+                  <label class="custom-control-label" attr.for="customCheck{{i}}"></label>
+                </div>
+              </th> -->
+              <!-- <td class="text-center">{{ producto?.id }}</td> -->
+              <td class="text-center">{{ producto?.movimiento }}</td>
+              <td class="text-center">{{ getPercentFraude(producto?.probabilidad) }}%</td>
+              <td class="text-center"><i *ngIf="getNivelRiesgo(producto?.probabilidad) === 1" class="fa fa-circle" style="font-size:24px; color: green"></i>
+                <i *ngIf="getNivelRiesgo(producto?.probabilidad) === 2" class="fa fa-circle" style="font-size:24px; color: yellow"></i>
+                <i *ngIf="getNivelRiesgo(producto?.probabilidad) === 3" class="fa fa-circle" style="font-size:24px; color: red"></i></td>
+              <!-- <td class="text-center">{{ producto?.usuario }}</td>
+              <td class="text-center">{{ producto?.es_fraude }}</td> -->
+              <td class="text-center">{{ producto?.usr_crea }}</td>
+              <td class="text-center">{{ producto?.fec_crea }}</td>
+              <td class="text-center">
+                <div class="btn-group" role="group">
+                  <button type="button" class="btn btn-outline-dark" (click)="getProductoById(producto.movimiento)"><span class="fa fa-pencil fa-lg"
+                      aria-hidden="true"></span></button>
+                  <button type="button" class="btn btn-outline-danger"
+                    (click)="modalEliminarProducto(producto.id)"><span class="fa fa-trash fa-lg"
+                      aria-hidden="true"></span></button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+          <ng-template #noData>
+            <tbody>
+              <tr>
+                <td colspan="8" class="text-center">{{'Ningún registro que mostrar según sus criterios de búsqueda' | translate }}.</td>
+              </tr>
+            </tbody>
+          </ng-template>
+        </table>
+      </div>
+      <br>
+      <div class="form-group row">
+        <div class="col-sm-10">
+          <!-- <button type="submit" style="width: 150px;" class="btn btn-danger"
+            (click)="eliminaMasiva()">{{'Eliminar' | translate }}</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

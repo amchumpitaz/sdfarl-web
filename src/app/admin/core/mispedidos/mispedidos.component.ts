@@ -32,6 +32,8 @@ export class MispedidosComponent implements OnInit, OnDestroy {
   archivoCodificado: any;
   user: any;
 
+  username: any;
+
   registerForm: FormGroup;
   submitted: boolean;
 
@@ -432,6 +434,7 @@ export class MispedidosComponent implements OnInit, OnDestroy {
   onSubmit() {
     console.log(this.registerForm);
     this.submitted = true;
+    this.username = this.tokenStorage.getUsername();
 
     // stop here if form is invalid
     if (this.registerForm.invalid) {
@@ -458,7 +461,8 @@ export class MispedidosComponent implements OnInit, OnDestroy {
         parseFloat(this.registerForm.get('seguroitem').value),
         parseFloat(this.registerForm.get('valoraduanausd').value),
         parseFloat(this.registerForm.get('agenteaduana').value),
-        parseFloat(this.registerForm.get('valortotaladuanausd').value));
+        parseFloat(this.registerForm.get('valortotaladuanausd').value),
+        this.username);
       // Here go register service
       console.log(this.incidencia);
       this.misPedidosService.createIncidencia(this.incidencia).subscribe(

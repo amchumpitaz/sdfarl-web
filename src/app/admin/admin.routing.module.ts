@@ -19,6 +19,8 @@ import { ProductosCargaComponent } from './core/mantenimiento/carga/productos-ca
 import { FotografiaCargaComponent } from './core/mantenimiento/carga/fotografias-carga/fotografia-carga.component';
 import { DocTecnicosCargaComponent } from './core/mantenimiento/carga/docTecnicos-carga/docTecnicos-carga.component';
 import { ProductosMantenimientoComponent } from './core/mantenimiento/productos/productos-mantenimiento/productos-mantenimiento.component';
+import { MovimientosPendientesComponent } from './core/mantenimiento/movimientos-pendientes/movimientos-pendientes.component';
+import { MovimientosMantenimientoPendientesComponent } from './core/mantenimiento/movimientos-pendientes/movimientos-mantenimiento-pendientes/movimientos-mantenimiento-pendientes.component';
 
 const routes: Routes = [
     {
@@ -27,8 +29,8 @@ const routes: Routes = [
         children: [
             // { path: 'historial', component: HistorialComponent },
             // { path: 'categorias', component: CategoriasComponent },
-            // { path: 'perfiles', component: PerfilesComponent },
-            // { path: 'perfiles/mantenimiento', component: PerfilesMantenimientoComponent },
+            { path: 'movimientosPendientes', component: MovimientosPendientesComponent },
+            { path: 'movimientosPendientes/mantenimiento', component: MovimientosMantenimientoPendientesComponent },
             { path: 'controles', component: ProductosComponent },
             { path: 'controles/mantenimiento', component: ProductosMantenimientoComponent },
             // { path: 'carga', component: CargaComponent },

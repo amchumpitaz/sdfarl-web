@@ -59,6 +59,10 @@ export class MisPedidosService {
       return this.http.post(`${this.baseUrl}/listar/movimientos_asignados`, body);
     }
 
+    getListaMovimientosPendientes(body): Observable<any> {
+      return this.http.post(`${this.baseUrl}/listar/movimientos_pendientes`, body);
+    }
+
     getRecursos(usuario: string): Observable<any> {
       return this.http.get(`${this.baseUrl}/security/get_acceso/${usuario}`);
     }

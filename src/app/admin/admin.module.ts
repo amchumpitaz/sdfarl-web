@@ -32,6 +32,8 @@ import { FotografiaCargaComponent } from './core/mantenimiento/carga/fotografias
 import { DocTecnicosCargaComponent } from './core/mantenimiento/carga/docTecnicos-carga/docTecnicos-carga.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { ChartsModule } from 'ng2-charts';
+import { MovimientosPendientesComponent } from './core/mantenimiento/movimientos-pendientes/movimientos-pendientes.component';
+import { MovimientosMantenimientoPendientesComponent } from './core/mantenimiento/movimientos-pendientes/movimientos-mantenimiento-pendientes/movimientos-mantenimiento-pendientes.component';
 
 @NgModule({
     imports: [
@@ -50,8 +52,8 @@ import { ChartsModule } from 'ng2-charts';
     declarations: [ AdminComponent,
                     // HistorialComponent,
                     CategoriasComponent,
-                    // PerfilesComponent,
-                    // PerfilesMantenimientoComponent,
+                    MovimientosPendientesComponent,
+                    MovimientosMantenimientoPendientesComponent,
                     ProductosComponent,
                     ProductosMantenimientoComponent,
                     // CargaComponent,

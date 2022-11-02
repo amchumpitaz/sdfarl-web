@@ -130,7 +130,12 @@ aduanas = [{
 }];
 
   ngOnInit() {
-    this.fech_reg = this.fromDate['month'] + '/' + this.fromDate['day'] + '/' + this.fromDate['year'] + '-' + this.toDate['month'] + '/' + this.toDate['day'] + '/' + this.toDate['year'] ;
+    this.fech_reg = this.fromDate['month'] + '/'
+     + this.fromDate['day'] + '/'
+      + this.fromDate['year'] + '-'
+       + this.toDate['month'] + '/'
+        + this.toDate['day'] + '/'
+         + this.toDate['year'] ;
 
     this.body = {
       'fech_reg': this.fech_reg,
@@ -256,7 +261,14 @@ aduanas = [{
     console.log(this.fromDate['day']);
     console.log(this.fromDate['month']);
     console.log(this.fromDate['year']);
-    this.fech_reg = this.fromDate['month'] + '/' + this.fromDate['day'] + '/' + this.fromDate['year'] + '-' + this.toDate['month'] + '/' + this.toDate['day'] + '/' + this.toDate['year'] ;
+
+    this.fech_reg = this.fromDate['month'] + '/'
+    + this.fromDate['day'] + '/'
+    + this.fromDate['year'] + '-'
+    + this.toDate['month'] + '/'
+    + this.toDate['day'] + '/'
+    + this.toDate['year'] ;
+
     console.log(this.fech_reg);
 
     this.body = {
