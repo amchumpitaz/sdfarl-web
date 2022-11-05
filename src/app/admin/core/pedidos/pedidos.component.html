@@ -1,10 +1,26 @@
 <h1> Dashboard de casos de fraude </h1>
 
-<div class="form-row mb-12 mt-3">
-  <div class="col-md-6 mb-3">
+<div class="form-group row">
+  <div class="col-sm-2">
+    <button type="submit" style="width: 150px;" class="btn btn-info"
+      (click)="busquedaDashboard()">{{'Buscar' | translate }}</button>
+  </div>
+  <div class="col-sm-2">
+    <button type="submit" style="width: 150px;" class="btn btn-success float-right"
+      (click)="limpiarBusqueda()">{{'Limpiar Búsqueda' | translate }}</button>
+  </div>
+  <div class="col-sm-2">
+    <button type="submit" style="width: 150px;" class="btn btn-success float-right"
+      (click)="descargarPdf()">{{'Descargar PDF' | translate }}</button>
+  </div>
+</div>
+
+<div id="dvCharts">
+<div id="dvFiltro" class="form-row mb-12 mt-3">
+  <div class="col-md-3 mb-3">
     <label for="validationCustom01">Aduanas</label>
     <select class="form-control custom-select-search" [(ngModel)]="aduana">
-      <option [ngValue]="null">--{{'Selecciona' | translate }}--</option>
+      <option [ngValue]="null">--{{'--Todos--' | translate }}--</option>
       <option *ngFor="let d of aduanas" [value]="d.id">
         {{d.descripcion | translate }}
       </option>
@@ -12,10 +28,10 @@
     </select>
   </div>
 
-  <div class="col-md-6 mb-3">
-    <label for="validationCustom01">{{'Fecha de Evaluación' | translate }}</label>
+  <div class="col-md-3 mb-3">
+    <label for="validationCustom01">{{'Fecha de Evaluación - Desde:' | translate }}</label>
     <!-- <input type="daterange" class="form-control" id="Fecha de Evaluación" [(ngModel)]="fech_crea"> -->
-    <div class="col-12">
+    <div class="col-md-12 mb-3">
       <div class="dp-hidden position-absolute">
         <div class="input-group">
           <input
@@ -57,7 +73,10 @@
         <button class="btn btn-outline-secondary bi bi-calendar3" (click)="datepicker.toggle()" type="button"></button>
       </div>
     </div>
-    <div class="col-12">
+  </div>
+  <div class="col-md-3 mb-3">
+    <label for="validationCustom01">{{'Hasta:' | translate }}</label>
+    <div class="col-md-12 mb-3">
       <div class="input-group">
         <input
           #dpToDate
@@ -70,34 +89,25 @@
         <button class="btn btn-outline-secondary bi bi-calendar3" (click)="datepicker.toggle()" type="button"></button>
       </div>
     </div>
-    
   </div>
 </div>
-
-<div class="form-group row">
-  <div class="col-sm-6">
-    <button type="submit" style="width: 150px;" class="btn btn-info"
-      (click)="busquedaDashboard()">{{'Buscar' | translate }}</button>
-  </div>
-  <div class="col-sm-6">
-    <button type="submit" style="width: 150px;" class="btn btn-success float-right"
-      (click)="limpiarBusqueda()">{{'Limpiar Búsqueda' | translate }}</button>
-  </div>
-</div>
-
-  <h2>Casos Fraudulentos</h2>
-  <ngx-charts-pie-chart [view]="viewpie" [scheme]="colorScheme" [results]="single" [legend]="showLegend"
-  [explodeSlices]="explodeSlices" [labels]="showLabels" [doughnut]="doughnut" [gradient]="gradient">
-  </ngx-charts-pie-chart>
-  <hr>
+<div class="col-md-12 mb-3">
   <div style="display:inline-block"><h2>Casos fraudulentos por dia y aduanas</h2></div>
   
   <ngx-charts-bar-vertical-2d [view]="view" [scheme]="colorScheme" [results]="multi" [gradient]="gradient"
   [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
   [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" (select)="onSelect($event)">
   </ngx-charts-bar-vertical-2d>
+</div>
   <hr>
-
+<div class="col-md-6 mb-3">
+  <h2>Casos Fraudulentos</h2>
+  <ngx-charts-pie-chart [view]="viewpie" [scheme]="colorScheme" [results]="single" [legend]="showLegend"
+  [explodeSlices]="explodeSlices" [labels]="showLabels" [doughnut]="doughnut" [gradient]="gradient">
+  </ngx-charts-pie-chart>
+</div>
+  <hr>
+</div>
 <!-- <h1>1.)single</h1>
 <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [results]="single" [gradient]="gradient"
   [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"

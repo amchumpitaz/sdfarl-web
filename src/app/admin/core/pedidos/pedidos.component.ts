@@ -3,12 +3,26 @@ import { NgbCalendar, NgbDate, NgbDateParserFormatter, NgbDateStruct } from '@ng
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { ChartsModule } from 'ng2-charts';
 import { MisPedidosService } from '../mispedidos/mispedidos.service';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 @Component({
   selector: 'app-pedidos',
   templateUrl: './pedidos.component.html',
   styleUrls: ['./pedidos.component.scss']
 })
 export class PedidosComponent implements OnInit {
+
+  constructor(private charts: ChartsModule,
+    private charts2: NgxChartsModule,
+    private calendar: NgbCalendar,
+    public formatter: NgbDateParserFormatter,
+    private misPedidosService: MisPedidosService) {
+      // this.fromDate = calendar.getToday();
+      this.fromDate = calendar.getPrev(calendar.getToday(), 'd', 30);
+		  this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
+      this.fromDateDef = calendar.getPrev(calendar.getToday(), 'd', 30);
+		  this.toDateDef = calendar.getNext(calendar.getToday(), 'd', 10);
+    }
 
   @ViewChild('NgbdDatepicker') d: NgbDateStruct;
 
@@ -23,53 +37,6 @@ export class PedidosComponent implements OnInit {
   body: any;
   single = [];
   multi = [];
-
-  constructor(private charts: ChartsModule,
-    private charts2: NgxChartsModule,
-    private calendar: NgbCalendar,
-    public formatter: NgbDateParserFormatter,
-    private misPedidosService: MisPedidosService) {
-      // this.fromDate = calendar.getToday();
-      this.fromDate = calendar.getPrev(calendar.getToday(), 'd', 30);
-		  this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
-      this.fromDateDef = calendar.getPrev(calendar.getToday(), 'd', 30);
-		  this.toDateDef = calendar.getNext(calendar.getToday(), 'd', 10);
-    }
-
-    onDateSelection(date: NgbDate) {
-      if (!this.fromDate && !this.toDate) {
-        this.fromDate = date;
-      } else if (this.fromDate && !this.toDate && date && date.after(this.fromDate)) {
-        this.toDate = date;
-      } else {
-        this.toDate = null;
-        this.fromDate = date;
-      }
-    }
-
-    isHovered(date: NgbDate) {
-      return (
-        this.fromDate && !this.toDate && this.hoveredDate && date.after(this.fromDate) && date.before(this.hoveredDate)
-      );
-    }
-
-    isInside(date: NgbDate) {
-      return this.toDate && date.after(this.fromDate) && date.before(this.toDate);
-    }
-
-    isRange(date: NgbDate) {
-      return (
-        date.equals(this.fromDate) ||
-        (this.toDate && date.equals(this.toDate)) ||
-        this.isInside(date) ||
-        this.isHovered(date)
-      );
-    }
-
-    validateInput(currentValue: NgbDate | null, input: string): NgbDate | null {
-      const parsed = this.formatter.parse(input);
-      return parsed && this.calendar.isValid(NgbDate.from(parsed)) ? NgbDate.from(parsed) : currentValue;
-    }
 
 
   aduana: any;
@@ -128,6 +95,41 @@ aduanas = [{
   id: 1.1,
   descripcion: 'Aduana Central'
 }];
+
+    onDateSelection(date: NgbDate) {
+      if (!this.fromDate && !this.toDate) {
+        this.fromDate = date;
+      } else if (this.fromDate && !this.toDate && date && date.after(this.fromDate)) {
+        this.toDate = date;
+      } else {
+        this.toDate = null;
+        this.fromDate = date;
+      }
+    }
+
+    isHovered(date: NgbDate) {
+      return (
+        this.fromDate && !this.toDate && this.hoveredDate && date.after(this.fromDate) && date.before(this.hoveredDate)
+      );
+    }
+
+    isInside(date: NgbDate) {
+      return this.toDate && date.after(this.fromDate) && date.before(this.toDate);
+    }
+
+    isRange(date: NgbDate) {
+      return (
+        date.equals(this.fromDate) ||
+        (this.toDate && date.equals(this.toDate)) ||
+        this.isInside(date) ||
+        this.isHovered(date)
+      );
+    }
+
+    validateInput(currentValue: NgbDate | null, input: string): NgbDate | null {
+      const parsed = this.formatter.parse(input);
+      return parsed && this.calendar.isValid(NgbDate.from(parsed)) ? NgbDate.from(parsed) : currentValue;
+    }
 
   ngOnInit() {
     this.fech_reg = this.fromDate['month'] + '/'
@@ -254,6 +256,32 @@ aduanas = [{
 
   }
 
+  descargarPdf() {
+    // Extraemos el
+    const DATA = document.getElementById('dvCharts');
+    const FILTRO = document.getElementById('dvFiltro');
+    const doc = new jsPDF('p', 'pt', 'a4');
+    const options = {
+      background: 'white',
+      scale: 3
+    };
+    html2canvas(DATA, options).then((canvas) => {
+
+      const img = canvas.toDataURL('image/PNG');
+
+      // Add image Canvas to PDF
+      const bufferX = 15;
+      const bufferY = 15;
+      const imgProps = (doc as any).getImageProperties(img);
+      const pdfWidth = doc.internal.pageSize.getWidth() - 2 * bufferX;
+      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+      doc.addImage(img, 'PNG', bufferX, bufferY, pdfWidth, pdfHeight, undefined, 'FAST');
+      return doc;
+    }).then((docResult) => {
+      docResult.save(`${new Date().toISOString()}_Charts.pdf`);
+    });
+  }
+
   busquedaDashboard() {
     console.log(this.aduana);
     console.log(this.fromDate);
@@ -337,5 +365,4 @@ aduanas = [{
     this.fromDate = this.fromDateDef;
 		this.toDate = this.toDateDef;
   }
-
 }
