@@ -25,7 +25,9 @@ import { ChartsModule } from 'ng2-charts';
     PedidosRoutingModule,
     ScrollToModule.forRoot(),
   ],
-  declarations: [PedidosComponent],
+  declarations: [
+    // PedidosComponent
+  ],
   providers: [DatePipe, ModalService]
 })
 export class PedidosModule { }

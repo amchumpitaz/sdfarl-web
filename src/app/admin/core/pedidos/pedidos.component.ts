@@ -19,8 +19,10 @@ export class PedidosComponent implements OnInit {
     private misPedidosService: MisPedidosService) {
       // this.fromDate = calendar.getToday();
       this.fromDate = calendar.getPrev(calendar.getToday(), 'd', 30);
+    // tslint:disable-next-line:indent
 		  this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
       this.fromDateDef = calendar.getPrev(calendar.getToday(), 'd', 30);
+    // tslint:disable-next-line:indent
 		  this.toDateDef = calendar.getNext(calendar.getToday(), 'd', 10);
     }
 

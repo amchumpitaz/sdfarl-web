@@ -93,17 +93,26 @@
 </div>
 <div class="col-md-12 mb-3">
   <div style="display:inline-block"><h2>Casos fraudulentos por dia y aduanas</h2></div>
-  
+
   <ngx-charts-bar-vertical-2d [view]="view" [scheme]="colorScheme" [results]="multi" [gradient]="gradient"
   [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
-  [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" (select)="onSelect($event)">
+  [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel">
   </ngx-charts-bar-vertical-2d>
+  <!--                              (select)="onSelect($event)"-->
 </div>
   <hr>
+
+  <!--    [view]="viewpie" -->
+  <!--    [explodeSlices]="explodeSlices" -->
 <div class="col-md-6 mb-3">
   <h2>Casos Fraudulentos</h2>
-  <ngx-charts-pie-chart [view]="viewpie" [scheme]="colorScheme" [results]="single" [legend]="showLegend"
-  [explodeSlices]="explodeSlices" [labels]="showLabels" [doughnut]="doughnut" [gradient]="gradient">
+  <ngx-charts-pie-chart
+    [scheme]="colorScheme"
+    [results]="single"
+    [legend]="showLegend"
+    [labels]="showLabels"
+    [doughnut]="doughnut"
+    [gradient]="gradient">
   </ngx-charts-pie-chart>
 </div>
   <hr>
@@ -125,12 +134,12 @@
   [explodeSlices]="explodeSlices" [labels]="showLabels" [doughnut]="doughnut" [gradient]="gradient"> -->
 
 
-<!-- <ngx-charts-advanced-pie-chart 
+<!-- <ngx-charts-advanced-pie-chart
 [results]="saleData"
 [gradient]="true" >
 </ngx-charts-advanced-pie-chart>
 
-<ngx-charts-advanced-pie-chart 
+<ngx-charts-advanced-pie-chart
 [results]="saleData"
 [gradient]="true" >
 </ngx-charts-advanced-pie-chart> -->
@@ -145,7 +154,7 @@
 
 <!-- <div style="display: block;" class="chart">
   <canvas baseChart
-        
+
           [datasets]="labelMFL"
           [labels]="lineChartLabels"
           [options]="lineChartOptions"
@@ -154,17 +163,17 @@
           (chartClick)="chartClicked($event)"></canvas>
 </div> -->
 
-<!-- <canvas 
-style="display: block;background-color: #ffd1d1;" 
-width="600" 
-height="300" 
-id="canvas" 
+<!-- <canvas
+style="display: block;background-color: #ffd1d1;"
+width="600"
+height="300"
+id="canvas"
 #myCanvas
 
-baseChart 
-attr.type="{{lineChartType}}" 
-attr.datasets="{{lineChartData}}" 
-attr.labels="{{lineChartLabels}}" 
+baseChart
+attr.type="{{lineChartType}}"
+attr.datasets="{{lineChartData}}"
+attr.labels="{{lineChartLabels}}"
 attr.options="{{mfChartOptions}}"
 attr.legend="{{lineChartLegend}}">
 </canvas> -->
