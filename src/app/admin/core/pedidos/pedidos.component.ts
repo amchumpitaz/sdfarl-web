@@ -4,6 +4,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { ChartsModule } from 'ng2-charts';
 import { MisPedidosService } from '../mispedidos/mispedidos.service';
 import jsPDF from 'jspdf';
+
 import html2canvas from 'html2canvas';
 @Component({
   selector: 'app-pedidos',
@@ -29,6 +30,8 @@ export class PedidosComponent implements OnInit {
   @ViewChild('NgbdDatepicker') d: NgbDateStruct;
 
   hoveredDate: NgbDate | null = null;
+
+  jsPDF: any;
 
 	fromDate: NgbDate | null;
 	toDate: NgbDate | null;
@@ -262,7 +265,6 @@ aduanas = [{
     // Extraemos el
     const DATA = document.getElementById('dvCharts');
     const FILTRO = document.getElementById('dvFiltro');
-    const doc = new jsPDF('p', 'pt', 'a4');
     const options = {
       background: 'white',
       scale: 3
@@ -270,11 +272,11 @@ aduanas = [{
     html2canvas(DATA, options).then((canvas) => {
 
       const img = canvas.toDataURL('image/PNG');
-
+      const doc = new jsPDF('p', 'pt', 'a4');
       // Add image Canvas to PDF
       const bufferX = 15;
       const bufferY = 15;
-      const imgProps = (doc as any).getImageProperties(img);
+      const imgProps = doc.getImageProperties(img);
       const pdfWidth = doc.internal.pageSize.getWidth() - 2 * bufferX;
       const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
       doc.addImage(img, 'PNG', bufferX, bufferY, pdfWidth, pdfHeight, undefined, 'FAST');
